@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Developer&#39;s Backing</title>
-    <link>http://takaishota.github.io/DevelopersBacking/</link>
-    <description>Recent content on Developer&#39;s Backing</description>
+    <title>Test on Developer&#39;s Backing</title>
+    <link>http://takaishota.github.io/DevelopersBacking/tags/test/</link>
+    <description>Recent content in Test on Developer&#39;s Backing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Thu, 02 Jul 2015 21:30:25 +0900</lastBuildDate>
-    <atom:link href="http://takaishota.github.io/DevelopersBacking/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://takaishota.github.io/DevelopersBacking/tags/test/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>勉強会用のブログを作成しました。</title>

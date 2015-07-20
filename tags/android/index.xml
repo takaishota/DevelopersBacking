@@ -19,12 +19,12 @@
 
 &lt;p&gt;7/14（火）にNetcom Developer&amp;rsquo;s Backing #3を行いました。&lt;/p&gt;
 
-&lt;h1 id=&#34;section1:5085db82a101e3dc9634adea56a17c54&#34;&gt;スマフォアプリ開発に役立つツールやクラウドサービスについて：Webインテグレーション事業部　高柳さん&lt;/h1&gt;
+&lt;h2 id=&#34;スマフォアプリ開発に役立つツールやクラウドサービスについて-webインテグレーション事業部-高柳さん:5085db82a101e3dc9634adea56a17c54&#34;&gt;スマフォアプリ開発に役立つツールやクラウドサービスについて：Webインテグレーション事業部　高柳さん&lt;/h2&gt;
 
 &lt;p&gt;Webインテグレーション事業部のスマフォアプリ開発チームにおいてどんな環境で開発を行っているかを紹介してもらいました。
 また、過去の開発案件や現在進行中のプロジェクトについても紹介していただきました。&lt;/p&gt;
 
-&lt;h2 id=&#34;モバイル端末の実機検証を効率化するサービス:5085db82a101e3dc9634adea56a17c54&#34;&gt;モバイル端末の実機検証を効率化するサービス&lt;/h2&gt;
+&lt;h3 id=&#34;モバイル端末の実機検証を効率化するサービス:5085db82a101e3dc9634adea56a17c54&#34;&gt;モバイル端末の実機検証を効率化するサービス&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Scirocco Cloud&lt;br /&gt;
@@ -51,7 +51,7 @@ AndroidとFire OSに対応。&lt;br /&gt;
 &lt;a href=&#34;http://aws.amazon.com/jp/device-farm/&#34;&gt;http://aws.amazon.com/jp/device-farm/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;その他-スマフォアプリ開発時に使用しているもの:5085db82a101e3dc9634adea56a17c54&#34;&gt;その他、スマフォアプリ開発時に使用しているもの&lt;/h2&gt;
+&lt;h3 id=&#34;その他-スマフォアプリ開発時に使用しているもの:5085db82a101e3dc9634adea56a17c54&#34;&gt;その他、スマフォアプリ開発時に使用しているもの&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;バージョン管理：Github（プライベートリポジトリ）&lt;/li&gt;
@@ -70,7 +70,7 @@ AndroidとFire OSに対応。&lt;br /&gt;
 &lt;li&gt;コミュニケーションツール：Chat&amp;amp;Messenger（以前はChatWorkなども使われていたが、、）&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;section2:5085db82a101e3dc9634adea56a17c54&#34;&gt;watchOS-2-Samplerを実機に入れてみた：デジタルマーケティング事業部 高井&lt;/h1&gt;
+&lt;h2 id=&#34;watchos-2-samplerを実機に入れてみた-デジタルマーケティング事業部-高井:5085db82a101e3dc9634adea56a17c54&#34;&gt;watchOS-2-Samplerを実機に入れてみた：デジタルマーケティング事業部 高井&lt;/h2&gt;
 
 &lt;p&gt;iOSのSamplerアプリで有名な堤さんのwatchOS-2-Samplerを入れてみました。&lt;br /&gt;
 watchOS2で新しく追加されたAPIを使ったサンプルアプリ。
@@ -78,7 +78,7 @@ watchOS2で新しく追加されたAPIを使ったサンプルアプリ。
 
 &lt;p&gt;そのうち、自分でも何か作ってみようと思います。&lt;/p&gt;
 
-&lt;h2 id=&#34;実機にインストールするときにめんどくさかった点:5085db82a101e3dc9634adea56a17c54&#34;&gt;実機にインストールするときにめんどくさかった点&lt;/h2&gt;
+&lt;h3 id=&#34;実機にインストールするときにめんどくさかった点:5085db82a101e3dc9634adea56a17c54&#34;&gt;実機にインストールするときにめんどくさかった点&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;iOS9betaをペアリングするiPhoneにインストールしないといけない&lt;/li&gt;

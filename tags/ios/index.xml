@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Netcom Developer&#39;s Backing</title>
-    <link>http://takaishota.github.io/DevelopersBacking/post/</link>
-    <description>Recent content in Posts on Netcom Developer&#39;s Backing</description>
+    <title>Ios on Netcom Developer&#39;s Backing</title>
+    <link>http://takaishota.github.io/DevelopersBacking/tags/ios/</link>
+    <description>Recent content in Ios on Netcom Developer&#39;s Backing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 20 Jul 2015 14:21:11 +0900</lastBuildDate>
-    <atom:link href="http://takaishota.github.io/DevelopersBacking/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://takaishota.github.io/DevelopersBacking/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Netcom Developer&#39;s Backing #3のまとめ</title>
@@ -104,34 +104,6 @@ watchOS2で新しく追加されたAPIを使ったサンプルアプリ。
 &lt;/ul&gt;
 
 &lt;p&gt;余談ですが、高柳さんのチームではこちらのSampler開発者の堤さんが関わるプロジェクトを進行中らしいです。機会があれば、お話を聞いてみたいです。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>社内勉強会用のブログを作成しました。</title>
-      <link>http://takaishota.github.io/DevelopersBacking/post/first-post/</link>
-      <pubDate>Thu, 02 Jul 2015 21:30:25 +0900</pubDate>
-      
-      <guid>http://takaishota.github.io/DevelopersBacking/post/first-post/</guid>
-      <description>&lt;p&gt;社内の勉強会用にブログを作成しました。
-そのうち、外部の人とも交流を持てる機会にしたいので、とりあえずGithub Pagesで公開してみました。&lt;/p&gt;
-
-&lt;p&gt;勉強会は隔週金曜日の17:30~18:00にラボで開催しています。&lt;/p&gt;
-
-&lt;p&gt;7/3（金）に3回目になります。
-3回目は社内の公式のiOSアプリの新規開発にたぶん1番関わっている、高柳くんにiOSの開発環境、プロセスについて情報共有してもらう予定です。&lt;/p&gt;
-
-&lt;p&gt;Netcom Developer&amp;rsquo;s Backing&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;日時：隔週金曜日 17:30〜18:00&lt;/li&gt;
-&lt;li&gt;場所：汐留ラボ&lt;/li&gt;
-&lt;li&gt;参加資格：自分で開発をしている若くて穏やかな人。&lt;/li&gt;
-&lt;li&gt;内容：開発、デザインについての情報共有。初歩的なことかもしれなくてもOK。
-今のところ、iOS関連の話題が中心。&lt;/li&gt;
-&lt;li&gt;できるだけゆるい勉強会にする。ただ、原則休みがないようにしてできるだけ継続する。&lt;/li&gt;
-&lt;li&gt;毎回、お菓子と飲み物を用意する。&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

@@ -6,25 +6,143 @@
     <description>Recent content on Netcom Developer&#39;s Backing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 20 Jul 2015 14:21:11 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 28 Aug 2015 19:38:34 +0900</lastBuildDate>
     <atom:link href="http://takaishota.github.io/DevelopersBacking/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Netcom Developer&#39;s Backing #5のまとめ</title>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20150828/</link>
+      <pubDate>Fri, 28 Aug 2015 19:38:34 +0900</pubDate>
+      
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20150828/</guid>
+      <description>
+
+&lt;p&gt;8/28（金）にNetcom Developer&amp;rsquo;s Backing #5を行いました。&lt;/p&gt;
+
+&lt;h2 id=&#34;io9で必要になりそうな対応の共有:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;iO9で必要になりそうな対応の共有&lt;/h2&gt;
+
+&lt;h3 id=&#34;不具合:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;不具合&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ATS対応（HTTP通信がHTTPSに自動的に変換される）&lt;br /&gt;
+-&amp;gt; とりあえずはplistの設定で回避するが、最終的には静的コンテンツも含めてhttpsにした方が良いかも&lt;br /&gt;
+　参考：&lt;a href=&#34;http://qiita.com/yanayanalte/items/e6d83c12af77fa238a58&#34;&gt;http://qiita.com/yanayanalte/items/e6d83c12af77fa238a58&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;bitcode設定の追加&lt;br /&gt;
+-&amp;gt; XCode7からデフォルトでYESになっているのでとりあえずNOに&lt;br /&gt;
+　参考：&lt;a href=&#34;http://qiita.com/usagimaru/items/cb19f283db4ac0cd8bd6&#34;&gt;http://qiita.com/usagimaru/items/cb19f283db4ac0cd8bd6&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;カスタムURLスキームによる遷移を使用している場合にあらかじめinfo.plistに記載しておかないとエラーになる&lt;br /&gt;
+　参考：&lt;a href=&#34;http://qiita.com/Night___/items/60355d21951cffbef51b&#34;&gt;http://qiita.com/Night___/items/60355d21951cffbef51b&lt;/a&gt;
+&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;バックグラウンドでの位置情報取得についての変更&lt;br /&gt;
+-&amp;gt; iOS 9からは CLLocationManager にallowsBackgroundLocationUpdates: Bool というプロパティが追加され、
+これを YES にしないとバックグラウンドで位置情報を取得できないとのこと。デフォルトではNO。&lt;br /&gt;
+　参考：&lt;a href=&#34;http://blog.koogawa.com/entry/2015/07/02/165656&#34;&gt;http://blog.koogawa.com/entry/2015/07/02/165656&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;新機能-すこし調査したので追記:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;新機能（すこし調査したので追記）&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Search API
+-&amp;gt; SpotlightやSafari検索に出るので、コンテンツのエンゲージメントや見つけてもらいやすさ向上&lt;br /&gt;
+　参考：&lt;a href=&#34;http://qiita.com/mono0926/items/27af791065ed919255e0&#34;&gt;http://qiita.com/mono0926/items/27af791065ed919255e0&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Universal Links
+-&amp;gt; iOS 8までのカスタムURLスキーム(player-ookami://some-contentなど)のようなアプリ起動専用のURLが不要でWeb URL1つに統一されるらしい&lt;br /&gt;
+-&amp;gt; ブラウザ等で閲覧するコンテンツがある場合にUXの向上（アプリで開くなどが不要に）&lt;br /&gt;
+　参考：&lt;a href=&#34;http://qiita.com/mono0926/items/2bf651246714f20df626&#34;&gt;http://qiita.com/mono0926/items/2bf651246714f20df626&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;その他-おそらくios9による問題ではない:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;その他（おそらくiOS9による問題ではない）&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;viewDidLayoutSubviewsの呼び出されるタイミングが変わってる？（おそらくiOS9からの問題ではなく、新たにAutoLayoutを使用したことによるものでは？）&lt;br /&gt;
+-&amp;gt; AutoLayout使用時のviewのframeはviewWillApearでは決定されておらず、viewDidLayoutSubviewsの中では決定されている。&lt;br /&gt;
+　参考：&lt;a href=&#34;http://blog.xranker.info/blog/2014/01/27/autolayout/&#34;&gt;http://blog.xranker.info/blog/2014/01/27/autolayout/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;開発中のapple-watchアプリの紹介:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;開発中のApple Watchアプリの紹介&lt;/h2&gt;
+
+&lt;p&gt;社内出欠登録アプリのwatch版&lt;/p&gt;
+
+&lt;h3 id=&#34;機能:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;機能&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iPhoneアプリに実装されているBLEでの出席登録のNotificationのカスタマイズ&lt;br /&gt;
+-&amp;gt; WatchOS2版では単独で登録も行えるようにする予定だったが（CoreLocationが使えるということだったので）&lt;br /&gt;
+ Developer Forumsなどを見たところ、どうもiBeaconの監視はできないらしい（it is limited to CLRegion &amp;amp; location updates only）&lt;br /&gt;
+ 　参考：&lt;a href=&#34;https://forums.developer.apple.com/message/5744&#34;&gt;https://forums.developer.apple.com/message/5744&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;チーム出欠状況のサーバからの参照
+-&amp;gt; iPhone経由でサーバからの情報を取得し、Page-Based Navigation形式で表示&lt;/li&gt;
+&lt;li&gt;遅刻、休暇などの出欠ステータス登録
+-&amp;gt; サーバ側のAPIが出社済みしかないようなので側だけ実装&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;開発tips-watchkit-os1-での開発:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;開発Tips（ WatchKit（OS1）での開発）&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;watch appビルド時の本体アプリのデバッグについて&lt;br /&gt;
+-&amp;gt; WatchKitアプリのシュミレータ実行中に親のiPhoneアプリのprintなどのデバッグログがコンソールに表示されない&lt;br /&gt;
+表示する方法&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;WatchAppのRun実行後、XcodeメニューのDebug &amp;gt; Attach to Process &amp;gt; （Likely TargetのYOUR iOS App) を選択&lt;/li&gt;
+&lt;li&gt;ブレークポイントをクリックして出てくる吹き出し中のActionにLog Message、Debugger Commandを指定して表示することができる&lt;br /&gt;
+　参考：&lt;a href=&#34;https://realm.io/jp/news/more-watchkit-mistakes/&#34;&gt;https://realm.io/jp/news/more-watchkit-mistakes/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ローカル通知のiOSによるiPhone/watchの振り分けについて&lt;br /&gt;
+-&amp;gt; Notificationの通知はiOSがiPhoneの状態によって判断して表示
+-&amp;gt; 高柳くんに後ほど以前調べた調査結果を共有してもらう&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;不具合-1:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;不具合&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;しばらく操作しているとチーム出社状況の表示やローカル通知テスト機能が動かなくなる、、、&lt;br /&gt;
+-&amp;gt; 直します&lt;/p&gt;
+
+&lt;h2 id=&#34;realm-6の共有:fadcfdeb71ea9748ae9c4b1460f7e0d2&#34;&gt;Realm#6の共有&lt;/h2&gt;
+
+&lt;p&gt;当日のスライドは以下に&lt;br /&gt;
+&lt;a href=&#34;http://realm.connpass.com/event/18692/presentation/?utm_campaign=new_event_links_to_participant&amp;amp;utm_source=notifications&amp;amp;utm_medium=email&amp;amp;utm_content=detail_btn&#34;&gt;http://realm.connpass.com/event/18692/presentation/?utm_campaign=new_event_links_to_participant&amp;amp;utm_source=notifications&amp;amp;utm_medium=email&amp;amp;utm_content=detail_btn&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Wantedlyの杉上さんのSyncというアプリの開発工程についてのお話が特に面白かったです。
+分からないところも多かったですが。MVVM設計の実践についてなど。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;次回は3週間後の 9/18（金）に開催予定です。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;potatotips#21にブログまとめ枠で参加するので情報共有&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;今回紹介したアプリを使用してみたレビュー結果を共有&lt;br /&gt;
+-&amp;gt; UIや機能の検討に既存のアプリを開発者視点でレビューするのは面白いかも&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（高井）&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Netcom Developer&#39;s Backing #3のまとめ</title>
-      <link>http://takaishota.github.io/DevelopersBacking/post/20140714/</link>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20150714/</link>
       <pubDate>Mon, 20 Jul 2015 14:21:11 +0900</pubDate>
       
-      <guid>http://takaishota.github.io/DevelopersBacking/post/20140714/</guid>
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20150714/</guid>
       <description>
 
 &lt;p&gt;7/14（火）にNetcom Developer&amp;rsquo;s Backing #3を行いました。&lt;/p&gt;
 
-&lt;h2 id=&#34;スマフォアプリ開発に役立つツールやクラウドサービスについて-webインテグレーション事業部-高柳さん:5085db82a101e3dc9634adea56a17c54&#34;&gt;スマフォアプリ開発に役立つツールやクラウドサービスについて：Webインテグレーション事業部　高柳さん&lt;/h2&gt;
+&lt;h2 id=&#34;スマフォアプリ開発に役立つツールやクラウドサービスについて-webインテグレーション事業部-高柳さん:97699a4e6807b4db80ec09d7bff2d52e&#34;&gt;スマフォアプリ開発に役立つツールやクラウドサービスについて：Webインテグレーション事業部　高柳さん&lt;/h2&gt;
 
 &lt;p&gt;Webインテグレーション事業部のスマフォアプリ開発チームにおいてどんな環境で開発を行っているかを紹介してもらいました。
 また、過去の開発案件や現在進行中のプロジェクトについても紹介していただきました。&lt;/p&gt;
 
-&lt;h3 id=&#34;モバイル端末の実機検証を効率化するサービス:5085db82a101e3dc9634adea56a17c54&#34;&gt;モバイル端末の実機検証を効率化するサービス&lt;/h3&gt;
+&lt;h3 id=&#34;モバイル端末の実機検証を効率化するサービス:97699a4e6807b4db80ec09d7bff2d52e&#34;&gt;モバイル端末の実機検証を効率化するサービス&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Scirocco Cloud&lt;br /&gt;
@@ -51,7 +169,7 @@ AndroidとFire OSに対応。&lt;br /&gt;
 &lt;a href=&#34;http://aws.amazon.com/jp/device-farm/&#34;&gt;http://aws.amazon.com/jp/device-farm/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;その他-スマフォアプリ開発時に使用しているもの:5085db82a101e3dc9634adea56a17c54&#34;&gt;その他、スマフォアプリ開発時に使用しているもの&lt;/h3&gt;
+&lt;h3 id=&#34;その他-スマフォアプリ開発時に使用しているもの:97699a4e6807b4db80ec09d7bff2d52e&#34;&gt;その他、スマフォアプリ開発時に使用しているもの&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;バージョン管理：Github（プライベートリポジトリ）&lt;/li&gt;
@@ -70,7 +188,7 @@ AndroidとFire OSに対応。&lt;br /&gt;
 &lt;li&gt;コミュニケーションツール：Chat&amp;amp;Messenger（以前はChatWorkなども使われていたが、、）&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;watchos-2-samplerを実機に入れてみた-デジタルマーケティング事業部-高井:5085db82a101e3dc9634adea56a17c54&#34;&gt;watchOS-2-Samplerを実機に入れてみた：デジタルマーケティング事業部 高井&lt;/h2&gt;
+&lt;h2 id=&#34;watchos-2-samplerを実機に入れてみた-デジタルマーケティング事業部-高井:97699a4e6807b4db80ec09d7bff2d52e&#34;&gt;watchOS-2-Samplerを実機に入れてみた：デジタルマーケティング事業部 高井&lt;/h2&gt;
 
 &lt;p&gt;iOSのSamplerアプリで有名な堤さんのwatchOS-2-Samplerを入れてみました。&lt;br /&gt;
 watchOS2で新しく追加されたAPIを使ったサンプルアプリ。
@@ -78,7 +196,7 @@ watchOS2で新しく追加されたAPIを使ったサンプルアプリ。
 
 &lt;p&gt;そのうち、自分でも何か作ってみようと思います。&lt;/p&gt;
 
-&lt;h3 id=&#34;実機にインストールするときにめんどくさかった点:5085db82a101e3dc9634adea56a17c54&#34;&gt;実機にインストールするときにめんどくさかった点&lt;/h3&gt;
+&lt;h3 id=&#34;実機にインストールするときにめんどくさかった点:97699a4e6807b4db80ec09d7bff2d52e&#34;&gt;実機にインストールするときにめんどくさかった点&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;iOS9betaをペアリングするiPhoneにインストールしないといけない&lt;/li&gt;

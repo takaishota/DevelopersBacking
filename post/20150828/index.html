@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/normalize.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/skeleton.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/custom.css">
+<link rel="alternate" href="/DevelopersBacking/index.xml" type="application/rss+xml" title="Netcom Developer&#39;s Backing">
+<title>Netcom Developer&#39;s Backing #5のまとめ - Netcom Developer&#39;s Backing</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		<div class="header-logo">
+			<a href="/DevelopersBacking/"><img src="/DevelopersBacking/images/logo.png" width="60" height="60"></a>
+		</div>
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="http://schema.org/BlogPosting">
+			<h1 class="entry-title" itemprop="headline">Netcom Developer&#39;s Backing #5のまとめ</h1>
+			<span class="entry-meta"><time itemprop="datePublished" datetime="2015-08-28">August 28, 2015</time></span>
+			<section itemprop="entry-text">
+				
+
+<p>8/28（金）にNetcom Developer&rsquo;s Backing #5を行いました。</p>
+
+<h2 id="io9で必要になりそうな対応の共有:fadcfdeb71ea9748ae9c4b1460f7e0d2">iO9で必要になりそうな対応の共有</h2>
+
+<h3 id="不具合:fadcfdeb71ea9748ae9c4b1460f7e0d2">不具合</h3>
+
+<ul>
+<li><p>ATS対応（HTTP通信がHTTPSに自動的に変換される）<br />
+-&gt; とりあえずはplistの設定で回避するが、最終的には静的コンテンツも含めてhttpsにした方が良いかも<br />
+　参考：<a href="http://qiita.com/yanayanalte/items/e6d83c12af77fa238a58">http://qiita.com/yanayanalte/items/e6d83c12af77fa238a58</a></p></li>
+
+<li><p>bitcode設定の追加<br />
+-&gt; XCode7からデフォルトでYESになっているのでとりあえずNOに<br />
+　参考：<a href="http://qiita.com/usagimaru/items/cb19f283db4ac0cd8bd6">http://qiita.com/usagimaru/items/cb19f283db4ac0cd8bd6</a></p></li>
+
+<li><p>カスタムURLスキームによる遷移を使用している場合にあらかじめinfo.plistに記載しておかないとエラーになる<br />
+　参考：<a href="http://qiita.com/Night___/items/60355d21951cffbef51b">http://qiita.com/Night___/items/60355d21951cffbef51b</a>
+</p></li>
+
+<li><p>バックグラウンドでの位置情報取得についての変更<br />
+-&gt; iOS 9からは CLLocationManager にallowsBackgroundLocationUpdates: Bool というプロパティが追加され、
+これを YES にしないとバックグラウンドで位置情報を取得できないとのこと。デフォルトではNO。<br />
+　参考：<a href="http://blog.koogawa.com/entry/2015/07/02/165656">http://blog.koogawa.com/entry/2015/07/02/165656</a></p></li>
+</ul>
+
+<h3 id="新機能-すこし調査したので追記:fadcfdeb71ea9748ae9c4b1460f7e0d2">新機能（すこし調査したので追記）</h3>
+
+<ul>
+<li><p>Search API
+-&gt; SpotlightやSafari検索に出るので、コンテンツのエンゲージメントや見つけてもらいやすさ向上<br />
+　参考：<a href="http://qiita.com/mono0926/items/27af791065ed919255e0">http://qiita.com/mono0926/items/27af791065ed919255e0</a></p></li>
+
+<li><p>Universal Links
+-&gt; iOS 8までのカスタムURLスキーム(player-ookami://some-contentなど)のようなアプリ起動専用のURLが不要でWeb URL1つに統一されるらしい<br />
+-&gt; ブラウザ等で閲覧するコンテンツがある場合にUXの向上（アプリで開くなどが不要に）<br />
+　参考：<a href="http://qiita.com/mono0926/items/2bf651246714f20df626">http://qiita.com/mono0926/items/2bf651246714f20df626</a></p></li>
+</ul>
+
+<h3 id="その他-おそらくios9による問題ではない:fadcfdeb71ea9748ae9c4b1460f7e0d2">その他（おそらくiOS9による問題ではない）</h3>
+
+<ul>
+<li>viewDidLayoutSubviewsの呼び出されるタイミングが変わってる？（おそらくiOS9からの問題ではなく、新たにAutoLayoutを使用したことによるものでは？）<br />
+-&gt; AutoLayout使用時のviewのframeはviewWillApearでは決定されておらず、viewDidLayoutSubviewsの中では決定されている。<br />
+　参考：<a href="http://blog.xranker.info/blog/2014/01/27/autolayout/">http://blog.xranker.info/blog/2014/01/27/autolayout/</a></li>
+</ul>
+
+<h2 id="開発中のapple-watchアプリの紹介:fadcfdeb71ea9748ae9c4b1460f7e0d2">開発中のApple Watchアプリの紹介</h2>
+
+<p>社内出欠登録アプリのwatch版</p>
+
+<h3 id="機能:fadcfdeb71ea9748ae9c4b1460f7e0d2">機能</h3>
+
+<ul>
+<li>iPhoneアプリに実装されているBLEでの出席登録のNotificationのカスタマイズ<br />
+-&gt; WatchOS2版では単独で登録も行えるようにする予定だったが（CoreLocationが使えるということだったので）<br />
+ Developer Forumsなどを見たところ、どうもiBeaconの監視はできないらしい（it is limited to CLRegion &amp; location updates only）<br />
+ 　参考：<a href="https://forums.developer.apple.com/message/5744">https://forums.developer.apple.com/message/5744</a></li>
+<li>チーム出欠状況のサーバからの参照
+-&gt; iPhone経由でサーバからの情報を取得し、Page-Based Navigation形式で表示</li>
+<li>遅刻、休暇などの出欠ステータス登録
+-&gt; サーバ側のAPIが出社済みしかないようなので側だけ実装</li>
+</ul>
+
+<h3 id="開発tips-watchkit-os1-での開発:fadcfdeb71ea9748ae9c4b1460f7e0d2">開発Tips（ WatchKit（OS1）での開発）</h3>
+
+<ul>
+<li><p>watch appビルド時の本体アプリのデバッグについて<br />
+-&gt; WatchKitアプリのシュミレータ実行中に親のiPhoneアプリのprintなどのデバッグログがコンソールに表示されない<br />
+表示する方法</p>
+
+<ul>
+<li>WatchAppのRun実行後、XcodeメニューのDebug &gt; Attach to Process &gt; （Likely TargetのYOUR iOS App) を選択</li>
+<li>ブレークポイントをクリックして出てくる吹き出し中のActionにLog Message、Debugger Commandを指定して表示することができる<br />
+　参考：<a href="https://realm.io/jp/news/more-watchkit-mistakes/">https://realm.io/jp/news/more-watchkit-mistakes/</a></li>
+</ul></li>
+
+<li><p>ローカル通知のiOSによるiPhone/watchの振り分けについて<br />
+-&gt; Notificationの通知はiOSがiPhoneの状態によって判断して表示
+-&gt; 高柳くんに後ほど以前調べた調査結果を共有してもらう</p></li>
+</ul>
+
+<h3 id="不具合-1:fadcfdeb71ea9748ae9c4b1460f7e0d2">不具合</h3>
+
+<ul>
+<li><p>しばらく操作しているとチーム出社状況の表示やローカル通知テスト機能が動かなくなる、、、<br />
+-&gt; 直します</p>
+
+<h2 id="realm-6の共有:fadcfdeb71ea9748ae9c4b1460f7e0d2">Realm#6の共有</h2>
+
+<p>当日のスライドは以下に<br />
+<a href="http://realm.connpass.com/event/18692/presentation/?utm_campaign=new_event_links_to_participant&amp;utm_source=notifications&amp;utm_medium=email&amp;utm_content=detail_btn">http://realm.connpass.com/event/18692/presentation/?utm_campaign=new_event_links_to_participant&amp;utm_source=notifications&amp;utm_medium=email&amp;utm_content=detail_btn</a></p></li>
+
+<li><p>Wantedlyの杉上さんのSyncというアプリの開発工程についてのお話が特に面白かったです。
+分からないところも多かったですが。MVVM設計の実践についてなど。</p></li>
+</ul>
+
+<hr />
+
+<p>次回は3週間後の 9/18（金）に開催予定です。</p>
+
+<ul>
+<li>potatotips#21にブログまとめ枠で参加するので情報共有<br /></li>
+<li>今回紹介したアプリを使用してみたレビュー結果を共有<br />
+-&gt; UIや機能の検討に既存のアプリを開発者視点でレビューするのは面白いかも</li>
+</ul>
+
+<p>（高井）</p>
+
+			</section>
+		</article>
+	</main>
+
+
+	<footer role="contentinfo">
+		<div class="hr"></div>
+		<div class="footer-link">
+			<a href="mailto:takaiashota@gmail.com" target="_blank">Email</a></span>
+			
+			<a href="https://www.facebook.com/shota.takai.9" target="_blank">Facebook</a></span>
+			<a href="https://github.com/takaishota" target="_blank">GitHub</a></span>
+		</div>
+		<div class="copyright">Copyright &copy; takaishota All rights reserved.</div>
+	</footer>
+
+</div>
+
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

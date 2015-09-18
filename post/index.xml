@@ -19,6 +19,114 @@
 
 &lt;p&gt;9/18（金）にNetcom Developer&amp;rsquo;s Backing #6を行いました。&lt;/p&gt;
 
+&lt;h1 id=&#34;第21回-potatotips-ios-android開発tips共有会-のまとめ:dc23a03c468a971622ed612b653b3171&#34;&gt;【第21回】potatotips(iOS/Android開発Tips共有会)のまとめ&lt;/h1&gt;
+
+&lt;h2 id=&#34;リクルートマーケティングパートナーズの大島さんのブログ:dc23a03c468a971622ed612b653b3171&#34;&gt;リクルートマーケティングパートナーズの大島さんのブログ&lt;/h2&gt;
+
+&lt;p&gt;当日のパワポがまとまっています。
+&lt;a href=&#34;http://tech.recruit-mp.co.jp/event/potatotips-21/&#34;&gt;http://tech.recruit-mp.co.jp/event/potatotips-21/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;気になった発表-iosエンジニアのためiosが中心です:dc23a03c468a971622ed612b653b3171&#34;&gt;気になった発表（iOSエンジニアのためiOSが中心です）&lt;/h3&gt;
+
+&lt;h4 id=&#34;3d-touch-on-iphone-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;3D Touch on iPhone (iOS)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;シュミレーターで3Dタッチ機能が動かなかったので動作確認はできてない&lt;/p&gt;
+
+&lt;h5 id=&#34;whta-is-3d-touch:dc23a03c468a971622ed612b653b3171&#34;&gt;Whta is 3D touch?&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iOS9で導入された感圧機能を使った新しい機能&lt;/li&gt;
+&lt;li&gt;対応端末はiPhone6S/iPhone6S,plus&lt;/li&gt;
+&lt;li&gt;一部の機能は9.1からだが、ほとんどは9.0で実装できる&lt;/li&gt;
+&lt;li&gt;Pressure Sensitivity・Quick Actions・Peek and Popという3つのインタラクションが追加された&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pressure-sensitivity.jpg&#34; alt=&#34;3DTouch&#34; /&gt;&lt;img src=&#34;img/quick-actions.jpg&#34; alt=&#34;3DTouch3&#34; /&gt;&lt;img src=&#34;img/peek-and-pop.jpg&#34; alt=&#34;3DTouch3&#34; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;pressure-sensitivity:dc23a03c468a971622ed612b653b3171&#34;&gt;Pressure Sensitivity&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タッチの圧力を判定&lt;/li&gt;
+&lt;li&gt;UITouchクラスに追加されているforce(CGFLoat)プロパティを判定する&lt;/li&gt;
+&lt;li&gt;iOS9.1からはUITouchクラスにスタイラスの角度取得のプロパティも追加される予定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;quick-actions:dc23a03c468a971622ed612b653b3171&#34;&gt;Quick Actions&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ホームアプリアイコンの押下時にメニューが表示できる&lt;/li&gt;
+&lt;li&gt;static quick action
+
+&lt;ul&gt;
+&lt;li&gt;info.plistで実装&lt;/li&gt;
+&lt;li&gt;表示できる数には限りがある&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;dynamic quick action
+
+&lt;ul&gt;
+&lt;li&gt;コードで実装&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;アクションがタップされた時はAppDelegateのデリゲートメソッドで取得できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;peek-and-pop:dc23a03c468a971622ed612b653b3171&#34;&gt;Peek and pop&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;次の画面を出す前にチラ見（Peek）できる&lt;/li&gt;
+&lt;li&gt;インタラクションの流れ
+
+&lt;ol&gt;
+&lt;li&gt;特定のエリアを軽く押す(Peek)&lt;/li&gt;
+&lt;li&gt;Peek画面が表示される（押すのをやめると元の画面に戻る）&lt;/li&gt;
+&lt;li&gt;さらに強く押す(Pop)とPeek画面が大きくなり、目的のview画面 となる&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;実装
+
+&lt;ol&gt;
+&lt;li&gt;peekのviewを指定して、UIViewControllerPreviewingDelegateを設定する&lt;/li&gt;
+&lt;li&gt;peekアクション時、popアクション時の各デリゲートメソッドで表示サイズの処理などを行う&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;UIWebViewやMKWebViewでは、すでに実装されている。allowsLinkPreviewをtrueにすると使えるようになります。（デフォルトはfalse）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;ショボいpull-requestを積み重ねて-自分の中でoss活動の敷居を下げる-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;ショボいPull Requestを積み重ねて、自分の中でOSS活動の敷居を下げる (iOS)&lt;/h4&gt;
+
+&lt;h4 id=&#34;バグのことは嫌いになってもxcodeのことは嫌いにならないでください-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;バグのことは嫌いになってもXcodeのことは嫌いにならないでください。 (iOS)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;XcodeでのデバッグについてのTips&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;xcodeでデバッグ時のtips:dc23a03c468a971622ed612b653b3171&#34;&gt;Xcodeでデバッグ時のTips&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;いつもクラッシュしたときにAppDelegateで止まる
+-&amp;gt; 全ての例外発生時を対象ににブレイクポイントを設定し、ブレイクポイント発生時にActionを指定する(po $arg1)
+-&amp;gt; ええ感じのところで止まり、ええ感じの出力&lt;/li&gt;
+&lt;li&gt;AutoLayout制約でのエラー
+-&amp;gt; シンボリックブレイクポイントを設定する
+-&amp;gt; 制約矛盾が発生した段階でブレイクし、viewの階層表示ができて分かりやすい&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;create-layouts-with-the-wearable-ui-library-android:dc23a03c468a971622ed612b653b3171&#34;&gt;Create Layouts with the Wearable UI Library (Android)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Android WearはUIコントロールたくさんあるんだなー（Apple Watchは超少ないのでうらやましい） #potatotips&lt;br /&gt;
+-&amp;gt; 同感です。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;遅れて見れなかった:dc23a03c468a971622ed612b653b3171&#34;&gt;（遅れて見れなかった）&lt;/h3&gt;
+
+&lt;h4 id=&#34;swift-compile-time-is-so-slow-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;Swift compile time is so slow (iOS)&lt;/h4&gt;
+
+&lt;p&gt;-&amp;gt; Swiftのコンパイルが遅いのでソースファイルを一つにまとめてビルドしてみたらコンパイル時間が大幅に短縮された話&lt;/p&gt;
+
+&lt;h4 id=&#34;apple-watch-tips-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;Apple Watch Tips (iOS)&lt;/h4&gt;
+
+&lt;p&gt;-&amp;gt; 画像のローディング時の工夫について&lt;/p&gt;
+
 &lt;h1 id=&#34;ios9の新機能について:dc23a03c468a971622ed612b653b3171&#34;&gt;iOS9の新機能について&lt;/h1&gt;
 
 &lt;h2 id=&#34;search-apisについて:dc23a03c468a971622ed612b653b3171&#34;&gt;Search APIsについて&lt;/h2&gt;
@@ -147,113 +255,6 @@ eligibleForPublicIndexingをYESにする&lt;br /&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/shu223/iOS-9-Sampler&#34;&gt;https://github.com/shu223/iOS-9-Sampler&lt;/a&gt;
 * Text Detector
 * UIStackView&lt;/p&gt;
-
-&lt;h1 id=&#34;potatotipsa-21のまとめ:dc23a03c468a971622ed612b653b3171&#34;&gt;potatotipsa #21のまとめ&lt;/h1&gt;
-
-&lt;h2 id=&#34;大島さんのブログ:dc23a03c468a971622ed612b653b3171&#34;&gt;大島さんのブログ&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://tech.recruit-mp.co.jp/event/potatotips-21/&#34;&gt;http://tech.recruit-mp.co.jp/event/potatotips-21/&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;気になった発表:dc23a03c468a971622ed612b653b3171&#34;&gt;気になった発表&lt;/h3&gt;
-
-&lt;h4 id=&#34;3d-touch-on-iphone-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;3D Touch on iPhone (iOS)&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;シュミレーターで3Dタッチ機能が動かなかったので動作確認はできてない&lt;/p&gt;
-
-&lt;h5 id=&#34;whta-is-3d-touch:dc23a03c468a971622ed612b653b3171&#34;&gt;Whta is 3D touch?&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;iOS9で導入された感圧機能を使った新しい機能&lt;/li&gt;
-&lt;li&gt;対応端末はiPhone6S/iPhone6S,plus&lt;/li&gt;
-&lt;li&gt;一部の機能は9.1からだが、ほとんどは9.0で実装できる&lt;/li&gt;
-&lt;li&gt;Pressure Sensitivity・Quick Actions・Peek and Popという3つのインタラクションが追加された&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pressure-sensitivity.jpg&#34; alt=&#34;3DTouch&#34; /&gt;&lt;img src=&#34;img/quick-actions.jpg&#34; alt=&#34;3DTouch3&#34; /&gt;&lt;img src=&#34;img/peek-and-pop.jpg&#34; alt=&#34;3DTouch3&#34; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&#34;pressure-sensitivity:dc23a03c468a971622ed612b653b3171&#34;&gt;Pressure Sensitivity&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;タッチの圧力を判定&lt;/li&gt;
-&lt;li&gt;UITouchクラスに追加されているforce(CGFLoat)プロパティを判定する&lt;/li&gt;
-&lt;li&gt;iOS9.1からはUITouchクラスにスタイラスの角度取得のプロパティも追加される予定&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;quick-actions:dc23a03c468a971622ed612b653b3171&#34;&gt;Quick Actions&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ホームアプリアイコンの押下時にメニューが表示できる&lt;/li&gt;
-&lt;li&gt;static quick action
-
-&lt;ul&gt;
-&lt;li&gt;info.plistで実装&lt;/li&gt;
-&lt;li&gt;表示できる数には限りがある&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;dynamic quick action
-
-&lt;ul&gt;
-&lt;li&gt;コードで実装&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;アクションがタップされた時はAppDelegateのデリゲートメソッドで取得できる&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;peek-and-pop:dc23a03c468a971622ed612b653b3171&#34;&gt;Peek and pop&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;次の画面を出す前にチラ見（Peek）できる&lt;/li&gt;
-&lt;li&gt;インタラクションの流れ
-
-&lt;ol&gt;
-&lt;li&gt;特定のエリアを軽く押す(Peek)&lt;/li&gt;
-&lt;li&gt;Peek画面が表示される（押すのをやめると元の画面に戻る）&lt;/li&gt;
-&lt;li&gt;さらに強く押す(Pop)とPeek画面が大きくなり、目的のview画面 となる&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;実装
-
-&lt;ol&gt;
-&lt;li&gt;peekのviewを指定して、UIViewControllerPreviewingDelegateを設定する&lt;/li&gt;
-&lt;li&gt;peekアクション時、popアクション時の各デリゲートメソッドで表示サイズの処理などを行う&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;UIWebViewやMKWebViewでは、すでに実装されている。allowsLinkPreviewをtrueにすると使えるようになります。（デフォルトはfalse）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;ショボいpull-requestを積み重ねて-自分の中でoss活動の敷居を下げる-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;ショボいPull Requestを積み重ねて、自分の中でOSS活動の敷居を下げる (iOS)&lt;/h4&gt;
-
-&lt;h4 id=&#34;バグのことは嫌いになってもxcodeのことは嫌いにならないでください-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;バグのことは嫌いになってもXcodeのことは嫌いにならないでください。 (iOS)&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;XcodeでのデバッグについてのTips&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;xcodeでデバッグ時のtips:dc23a03c468a971622ed612b653b3171&#34;&gt;Xcodeでデバッグ時のTips&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;いつもクラッシュしたときにAppDelegateで止まる
--&amp;gt; 全ての例外発生時を対象ににブレイクポイントを設定し、ブレイクポイント発生時にActionを指定する(po $arg1)
--&amp;gt; ええ感じのところで止まり、ええ感じの出力&lt;/li&gt;
-&lt;li&gt;AutoLayout制約でのエラー
--&amp;gt; シンボリックブレイクポイントを設定する
--&amp;gt; 制約矛盾が発生した段階でブレイクし、viewの階層表示ができて分かりやすい&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;create-layouts-with-the-wearable-ui-library-android:dc23a03c468a971622ed612b653b3171&#34;&gt;Create Layouts with the Wearable UI Library (Android)&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Android WearはUIコントロールたくさんあるんだなー（Apple Watchは超少ないのでうらやましい） #potatotips
--&amp;gt; 同感です。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;遅れて見れなかった:dc23a03c468a971622ed612b653b3171&#34;&gt;（遅れて見れなかった）&lt;/h3&gt;
-
-&lt;h4 id=&#34;swift-compile-time-is-so-slow-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;Swift compile time is so slow (iOS)&lt;/h4&gt;
-
-&lt;p&gt;-&amp;gt; Swiftのコンパイルが遅いのでソースファイルを一つにまとめてビルドしてみたらコンパイル時間が大幅に短縮された話&lt;/p&gt;
-
-&lt;h4 id=&#34;apple-watch-tips-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;Apple Watch Tips (iOS)&lt;/h4&gt;
-
-&lt;p&gt;-&amp;gt; 画像のローディング時の工夫について&lt;/p&gt;
 
 &lt;hr /&gt;
 

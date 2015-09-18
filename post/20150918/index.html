@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/normalize.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/skeleton.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/custom.css">
+<link rel="alternate" href="/DevelopersBacking/index.xml" type="application/rss+xml" title="Netcom Developer&#39;s Backing">
+<title>Netcom Developer&#39;s Backing #6のまとめ - Netcom Developer&#39;s Backing</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		<div class="header-logo">
+			<a href="/DevelopersBacking/"><img src="/DevelopersBacking/images/logo.png" width="60" height="60"></a>
+		</div>
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="http://schema.org/BlogPosting">
+			<h1 class="entry-title" itemprop="headline">Netcom Developer&#39;s Backing #6のまとめ</h1>
+			<span class="entry-meta"><time itemprop="datePublished" datetime="2015-09-18">September 18, 2015</time></span>
+			<section itemprop="entry-text">
+				
+
+<p>9/18（金）にNetcom Developer&rsquo;s Backing #6を行いました。</p>
+
+<h1 id="ios9の新機能について:dc23a03c468a971622ed612b653b3171">iOS9の新機能について</h1>
+
+<h2 id="search-apisについて:dc23a03c468a971622ed612b653b3171">Search APIsについて</h2>
+
+<p>以下の3つの要素で構成されている。</p>
+
+<ul>
+<li>NSUserActivity</li>
+<li>CoreSpotlight</li>
+<li>Web Markup</li>
+</ul>
+
+<h3 id="ios側での対応:dc23a03c468a971622ed612b653b3171">iOS側での対応</h3>
+
+<h4 id="nsuseractivity-ユーザ端末内-他の端末にも:dc23a03c468a971622ed612b653b3171">NSUserActivity（ユーザ端末内/他の端末にも）</h4>
+
+<ul>
+<li>ユーザーがアプリ内で閲覧したコンテンツ（のみ）をindexして、SpotlightやSafariの検索バーから検索することができるようにする機能</li>
+
+<li><p>デバイス内だけでなく、アプリをインストールしていないユーザーのSpotlightやSafariの検索バーにも、コンテンツを表示することができる</p></li>
+
+<li><p>実装</p>
+
+<pre><code class="language-ruby">// NSUserActivity
+var activity:NSUserActivity = NSUserActivity(activityType: “com.yummly.browseRecipe“)
+
+
+activity.title = &quot;Baked Potato Chips&quot;
+activity.keywords = Set&lt;String&gt;(arrayLiteral: &quot;dog&quot;, &quot;cat&quot;, &quot;pig&quot;, &quot;sheep&quot;)
+activity.userInfo =  [&quot;id&quot;: &quot;http://www.yummly.com/recipe/BPC-983195&quot;]
+activity.eligibleForSearch = true
+activity.becomeCurrent()
+</code></pre></li>
+
+<li><p>Spotlightでタップ<br />
+appDelegateでapplication:continueUserActivity:restorationHandler:メソッドが呼ばれる<br />
+-&gt; このとき、何をするか、
+-&gt; WWDC2015のスライドには
+// Restore state for userActivity and userInfo
+とある。（まだよくわかってない）</p></li>
+
+<li><p>Cloud Indexへの登録
+eligibleForPublicIndexingをYESにする<br />
+-&gt; キーワードに対して人気が高いアプリと認識されると、アプリをインストールしていないユーザにも検索結果を表示できる
+<img src="img/20150618190808.png" alt="wwdc" /></p></li>
+</ul>
+
+<h4 id="corespotlight-ユーザ端末内のみ:dc23a03c468a971622ed612b653b3171">CoreSpotlight（ユーザ端末内のみ）</h4>
+
+<ul>
+<li>Spotlightに表示させるコンテンツを追加、更新する機能</li>
+<li>ユーザーの閲覧したコンテンツだけでなく、アプリ内の任意のコンテンツを検索させることができる</li>
+
+<li><p>NSUserActivityとの違いがよく分からない<br />
+-&gt; WWDCのスライドでは
+   CSSearchableIndexを add, update, and deleteできる
+   Used by Messages, Mail, Calendar, and Notes<br />
+   ということだが、、、
+-&gt; もう少し調べてみる
+  <a href="https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content">https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content</a></p>
+
+<p><img src="img/20150618190711-1.png" alt="wwdc" /></p></li>
+
+<li><p>実装</p></li>
+</ul>
+
+<pre><code class="language-ruby">  // Core Spotlight
+  let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeImage as String)
+  attributeSet.title = &quot;iOS-9-Sampler_CoreSpotlight&quot;
+  attributeSet.contentDescription = &quot;iOS-9-Sampler is a code example collection for new features of iOS 9.&quot;
+  attributeSet.keywords = [&quot;dog&quot;, &quot;cat&quot;, &quot;bird&quot;, &quot;fish&quot;]
+  let image = UIImage(named: &quot;m7&quot;)!
+  let data = UIImagePNGRepresentation(image)
+  attributeSet.thumbnailData = data
+
+  let searchableItem = CSSearchableItem(
+      uniqueIdentifier: uniqueIdentifier,
+      domainIdentifier: domainIdentifier,
+      attributeSet: attributeSet)
+
+  CSSearchableIndex.defaultSearchableIndex().indexSearchableItems([searchableItem]) { (error) -&gt; Void in
+      if error != nil {
+          print(&quot;failed with error:\(error)\n&quot;)
+      }
+      else {
+          print(&quot;Indexed!\n&quot;)
+      }
+  }
+</code></pre>
+
+<h3 id="webページ側での対応:dc23a03c468a971622ed612b653b3171">Webページ側での対応</h3>
+
+<h4 id="web-markup:dc23a03c468a971622ed612b653b3171">Web Markup</h4>
+
+<ul>
+<li>Universal Linkやメタ情報をAppleのクロールがインデックスできる仕様で記載する</li>
+<li>Smart App Banners</li>
+
+<li><p>Open Graph または schema.org で定義されているフォーマットで詳細情報を追加する</p></li>
+
+<li><p>チェックツール
+<a href="https://search.developer.apple.com/appsearch-validation-tool/">https://search.developer.apple.com/appsearch-validation-tool/</a></p></li>
+</ul>
+
+<h3 id="具体的な実装はこちらの記事を参考にすると良さそうです-あと-ios-9-sampler:dc23a03c468a971622ed612b653b3171">具体的な実装はこちらの記事を参考にすると良さそうです。あと、iOS-9-Sampler。</h3>
+
+<p><a href="http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight">http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight</a>
+<a href="http://ameblo.jp/ca-1pixel/entry-12047222782.html">http://ameblo.jp/ca-1pixel/entry-12047222782.html</a></p>
+
+<h2 id="他に気になるのは:dc23a03c468a971622ed612b653b3171">他に気になるのは</h2>
+
+<h3 id="multitasking-enhancements-for-ipad:dc23a03c468a971622ed612b653b3171">Multitasking Enhancements for iPad</h3>
+
+<p>-&gt; まだ調べてない</p>
+
+<h3 id="3d-touch:dc23a03c468a971622ed612b653b3171">3D Touch</h3>
+
+<p>-&gt; これは先日のPotatotips#21で発表してた人がいた（まだシュミレーターで試せないそう、、、）</p>
+
+<h3 id="watch-connectivity:dc23a03c468a971622ed612b653b3171">Watch Connectivity</h3>
+
+<p>-&gt;　これは、今サンプルアプリを作成中（証券会社のお気に入り銘柄を表示するアプリ）</p>
+
+<h2 id="恒例のios-9-sampler:dc23a03c468a971622ed612b653b3171">恒例のiOS-9-Sampler</h2>
+
+<p><a href="https://github.com/shu223/iOS-9-Sampler">https://github.com/shu223/iOS-9-Sampler</a>
+* Text Detector
+* UIStackView</p>
+
+<h1 id="potatotipsa-21のまとめ:dc23a03c468a971622ed612b653b3171">potatotipsa #21のまとめ</h1>
+
+<h2 id="大島さんのブログ:dc23a03c468a971622ed612b653b3171">大島さんのブログ</h2>
+
+<p><a href="http://tech.recruit-mp.co.jp/event/potatotips-21/">http://tech.recruit-mp.co.jp/event/potatotips-21/</a></p>
+
+<h3 id="気になった発表:dc23a03c468a971622ed612b653b3171">気になった発表</h3>
+
+<h4 id="3d-touch-on-iphone-ios:dc23a03c468a971622ed612b653b3171">3D Touch on iPhone (iOS)</h4>
+
+<ul>
+<li><p>シュミレーターで3Dタッチ機能が動かなかったので動作確認はできてない</p>
+
+<h5 id="whta-is-3d-touch:dc23a03c468a971622ed612b653b3171">Whta is 3D touch?</h5>
+
+<ul>
+<li>iOS9で導入された感圧機能を使った新しい機能</li>
+<li>対応端末はiPhone6S/iPhone6S,plus</li>
+<li>一部の機能は9.1からだが、ほとんどは9.0で実装できる</li>
+<li>Pressure Sensitivity・Quick Actions・Peek and Popという3つのインタラクションが追加された</li>
+</ul></li>
+</ul>
+
+<p><img src="img/pressure-sensitivity.jpg" alt="3DTouch" /><img src="img/quick-actions.jpg" alt="3DTouch3" /><img src="img/peek-and-pop.jpg" alt="3DTouch3" /></p>
+
+<h5 id="pressure-sensitivity:dc23a03c468a971622ed612b653b3171">Pressure Sensitivity</h5>
+
+<ul>
+<li>タッチの圧力を判定</li>
+<li>UITouchクラスに追加されているforce(CGFLoat)プロパティを判定する</li>
+<li>iOS9.1からはUITouchクラスにスタイラスの角度取得のプロパティも追加される予定</li>
+</ul>
+
+<h2 id="quick-actions:dc23a03c468a971622ed612b653b3171">Quick Actions</h2>
+
+<ul>
+<li>ホームアプリアイコンの押下時にメニューが表示できる</li>
+<li>static quick action
+
+<ul>
+<li>info.plistで実装</li>
+<li>表示できる数には限りがある</li>
+</ul></li>
+<li>dynamic quick action
+
+<ul>
+<li>コードで実装</li>
+</ul></li>
+<li>アクションがタップされた時はAppDelegateのデリゲートメソッドで取得できる</li>
+</ul>
+
+<h2 id="peek-and-pop:dc23a03c468a971622ed612b653b3171">Peek and pop</h2>
+
+<ul>
+<li>次の画面を出す前にチラ見（Peek）できる</li>
+<li>インタラクションの流れ
+
+<ol>
+<li>特定のエリアを軽く押す(Peek)</li>
+<li>Peek画面が表示される（押すのをやめると元の画面に戻る）</li>
+<li>さらに強く押す(Pop)とPeek画面が大きくなり、目的のview画面 となる</li>
+</ol></li>
+<li>実装
+
+<ol>
+<li>peekのviewを指定して、UIViewControllerPreviewingDelegateを設定する</li>
+<li>peekアクション時、popアクション時の各デリゲートメソッドで表示サイズの処理などを行う</li>
+</ol></li>
+<li>UIWebViewやMKWebViewでは、すでに実装されている。allowsLinkPreviewをtrueにすると使えるようになります。（デフォルトはfalse）</li>
+</ul>
+
+<h4 id="ショボいpull-requestを積み重ねて-自分の中でoss活動の敷居を下げる-ios:dc23a03c468a971622ed612b653b3171">ショボいPull Requestを積み重ねて、自分の中でOSS活動の敷居を下げる (iOS)</h4>
+
+<h4 id="バグのことは嫌いになってもxcodeのことは嫌いにならないでください-ios:dc23a03c468a971622ed612b653b3171">バグのことは嫌いになってもXcodeのことは嫌いにならないでください。 (iOS)</h4>
+
+<ul>
+<li>XcodeでのデバッグについてのTips</li>
+</ul>
+
+<h4 id="xcodeでデバッグ時のtips:dc23a03c468a971622ed612b653b3171">Xcodeでデバッグ時のTips</h4>
+
+<ul>
+<li>いつもクラッシュしたときにAppDelegateで止まる
+-&gt; 全ての例外発生時を対象ににブレイクポイントを設定し、ブレイクポイント発生時にActionを指定する(po $arg1)
+-&gt; ええ感じのところで止まり、ええ感じの出力</li>
+<li>AutoLayout制約でのエラー
+-&gt; シンボリックブレイクポイントを設定する
+-&gt; 制約矛盾が発生した段階でブレイクし、viewの階層表示ができて分かりやすい</li>
+</ul>
+
+<h4 id="create-layouts-with-the-wearable-ui-library-android:dc23a03c468a971622ed612b653b3171">Create Layouts with the Wearable UI Library (Android)</h4>
+
+<ul>
+<li>Android WearはUIコントロールたくさんあるんだなー（Apple Watchは超少ないのでうらやましい） #potatotips
+-&gt; 同感です。</li>
+</ul>
+
+<h3 id="遅れて見れなかった:dc23a03c468a971622ed612b653b3171">（遅れて見れなかった）</h3>
+
+<h4 id="swift-compile-time-is-so-slow-ios:dc23a03c468a971622ed612b653b3171">Swift compile time is so slow (iOS)</h4>
+
+<p>-&gt; Swiftのコンパイルが遅いのでソースファイルを一つにまとめてビルドしてみたらコンパイル時間が大幅に短縮された話</p>
+
+<h4 id="apple-watch-tips-ios:dc23a03c468a971622ed612b653b3171">Apple Watch Tips (iOS)</h4>
+
+<p>-&gt; 画像のローディング時の工夫について</p>
+
+<hr />
+
+<p>次回は2週間後の 10/2（金）に開催予定です。</p>
+
+<p>（高井）</p>
+
+			</section>
+		</article>
+	</main>
+
+
+	<footer role="contentinfo">
+		<div class="hr"></div>
+		<div class="footer-link">
+			<a href="mailto:takaiashota@gmail.com" target="_blank">Email</a></span>
+			
+			<a href="https://www.facebook.com/shota.takai.9" target="_blank">Facebook</a></span>
+			<a href="https://github.com/takaishota" target="_blank">GitHub</a></span>
+		</div>
+		<div class="copyright">Copyright &copy; takaishota All rights reserved.</div>
+	</footer>
+
+</div>
+
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

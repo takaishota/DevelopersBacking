@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Searchapis on Netcom Developer&#39;s Backing</title>
+    <link>http://takaishota.github.io/DevelopersBacking/tags/searchapis/</link>
+    <description>Recent content in Searchapis on Netcom Developer&#39;s Backing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 18 Sep 2015 17:57:25 +0900</lastBuildDate>
+    <atom:link href="http://takaishota.github.io/DevelopersBacking/tags/searchapis/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Netcom Developer&#39;s Backing #6のまとめ</title>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20150918/</link>
+      <pubDate>Fri, 18 Sep 2015 17:57:25 +0900</pubDate>
+      
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20150918/</guid>
+      <description>
+
+&lt;p&gt;9/18（金）にNetcom Developer&amp;rsquo;s Backing #6を行いました。&lt;/p&gt;
+
+&lt;h1 id=&#34;ios9の新機能について:dc23a03c468a971622ed612b653b3171&#34;&gt;iOS9の新機能について&lt;/h1&gt;
+
+&lt;h2 id=&#34;search-apisについて:dc23a03c468a971622ed612b653b3171&#34;&gt;Search APIsについて&lt;/h2&gt;
+
+&lt;p&gt;以下の3つの要素で構成されている。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;NSUserActivity&lt;/li&gt;
+&lt;li&gt;CoreSpotlight&lt;/li&gt;
+&lt;li&gt;Web Markup&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;ios側での対応:dc23a03c468a971622ed612b653b3171&#34;&gt;iOS側での対応&lt;/h3&gt;
+
+&lt;h4 id=&#34;nsuseractivity-ユーザ端末内-他の端末にも:dc23a03c468a971622ed612b653b3171&#34;&gt;NSUserActivity（ユーザ端末内/他の端末にも）&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ユーザーがアプリ内で閲覧したコンテンツ（のみ）をindexして、SpotlightやSafariの検索バーから検索することができるようにする機能&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;デバイス内だけでなく、アプリをインストールしていないユーザーのSpotlightやSafariの検索バーにも、コンテンツを表示することができる&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;実装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;// NSUserActivity
+var activity:NSUserActivity = NSUserActivity(activityType: “com.yummly.browseRecipe“)
+
+
+activity.title = &amp;quot;Baked Potato Chips&amp;quot;
+activity.keywords = Set&amp;lt;String&amp;gt;(arrayLiteral: &amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;pig&amp;quot;, &amp;quot;sheep&amp;quot;)
+activity.userInfo =  [&amp;quot;id&amp;quot;: &amp;quot;http://www.yummly.com/recipe/BPC-983195&amp;quot;]
+activity.eligibleForSearch = true
+activity.becomeCurrent()
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Spotlightでタップ&lt;br /&gt;
+appDelegateでapplication:continueUserActivity:restorationHandler:メソッドが呼ばれる&lt;br /&gt;
+-&amp;gt; このとき、何をするか、
+-&amp;gt; WWDC2015のスライドには
+// Restore state for userActivity and userInfo
+とある。（まだよくわかってない）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Cloud Indexへの登録
+eligibleForPublicIndexingをYESにする&lt;br /&gt;
+-&amp;gt; キーワードに対して人気が高いアプリと認識されると、アプリをインストールしていないユーザにも検索結果を表示できる
+&lt;img src=&#34;img/20150618190808.png&#34; alt=&#34;wwdc&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;corespotlight-ユーザ端末内のみ:dc23a03c468a971622ed612b653b3171&#34;&gt;CoreSpotlight（ユーザ端末内のみ）&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Spotlightに表示させるコンテンツを追加、更新する機能&lt;/li&gt;
+&lt;li&gt;ユーザーの閲覧したコンテンツだけでなく、アプリ内の任意のコンテンツを検索させることができる&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NSUserActivityとの違いがよく分からない&lt;br /&gt;
+-&amp;gt; WWDCのスライドでは
+   CSSearchableIndexを add, update, and deleteできる
+   Used by Messages, Mail, Calendar, and Notes&lt;br /&gt;
+   ということだが、、、
+-&amp;gt; もう少し調べてみる
+  &lt;a href=&#34;https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content&#34;&gt;https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/20150618190711-1.png&#34; alt=&#34;wwdc&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;実装&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  // Core Spotlight
+  let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeImage as String)
+  attributeSet.title = &amp;quot;iOS-9-Sampler_CoreSpotlight&amp;quot;
+  attributeSet.contentDescription = &amp;quot;iOS-9-Sampler is a code example collection for new features of iOS 9.&amp;quot;
+  attributeSet.keywords = [&amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;fish&amp;quot;]
+  let image = UIImage(named: &amp;quot;m7&amp;quot;)!
+  let data = UIImagePNGRepresentation(image)
+  attributeSet.thumbnailData = data
+
+  let searchableItem = CSSearchableItem(
+      uniqueIdentifier: uniqueIdentifier,
+      domainIdentifier: domainIdentifier,
+      attributeSet: attributeSet)
+
+  CSSearchableIndex.defaultSearchableIndex().indexSearchableItems([searchableItem]) { (error) -&amp;gt; Void in
+      if error != nil {
+          print(&amp;quot;failed with error:\(error)\n&amp;quot;)
+      }
+      else {
+          print(&amp;quot;Indexed!\n&amp;quot;)
+      }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;webページ側での対応:dc23a03c468a971622ed612b653b3171&#34;&gt;Webページ側での対応&lt;/h3&gt;
+
+&lt;h4 id=&#34;web-markup:dc23a03c468a971622ed612b653b3171&#34;&gt;Web Markup&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Universal Linkやメタ情報をAppleのクロールがインデックスできる仕様で記載する&lt;/li&gt;
+&lt;li&gt;Smart App Banners&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Open Graph または schema.org で定義されているフォーマットで詳細情報を追加する&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;チェックツール
+&lt;a href=&#34;https://search.developer.apple.com/appsearch-validation-tool/&#34;&gt;https://search.developer.apple.com/appsearch-validation-tool/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;具体的な実装はこちらの記事を参考にすると良さそうです-あと-ios-9-sampler:dc23a03c468a971622ed612b653b3171&#34;&gt;具体的な実装はこちらの記事を参考にすると良さそうです。あと、iOS-9-Sampler。&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight&#34;&gt;http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight&lt;/a&gt;
+&lt;a href=&#34;http://ameblo.jp/ca-1pixel/entry-12047222782.html&#34;&gt;http://ameblo.jp/ca-1pixel/entry-12047222782.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;他に気になるのは:dc23a03c468a971622ed612b653b3171&#34;&gt;他に気になるのは&lt;/h2&gt;
+
+&lt;h3 id=&#34;multitasking-enhancements-for-ipad:dc23a03c468a971622ed612b653b3171&#34;&gt;Multitasking Enhancements for iPad&lt;/h3&gt;
+
+&lt;p&gt;-&amp;gt; まだ調べてない&lt;/p&gt;
+
+&lt;h3 id=&#34;3d-touch:dc23a03c468a971622ed612b653b3171&#34;&gt;3D Touch&lt;/h3&gt;
+
+&lt;p&gt;-&amp;gt; これは先日のPotatotips#21で発表してた人がいた（まだシュミレーターで試せないそう、、、）&lt;/p&gt;
+
+&lt;h3 id=&#34;watch-connectivity:dc23a03c468a971622ed612b653b3171&#34;&gt;Watch Connectivity&lt;/h3&gt;
+
+&lt;p&gt;-&amp;gt;　これは、今サンプルアプリを作成中（証券会社のお気に入り銘柄を表示するアプリ）&lt;/p&gt;
+
+&lt;h2 id=&#34;恒例のios-9-sampler:dc23a03c468a971622ed612b653b3171&#34;&gt;恒例のiOS-9-Sampler&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/shu223/iOS-9-Sampler&#34;&gt;https://github.com/shu223/iOS-9-Sampler&lt;/a&gt;
+* Text Detector
+* UIStackView&lt;/p&gt;
+
+&lt;h1 id=&#34;potatotipsa-21のまとめ:dc23a03c468a971622ed612b653b3171&#34;&gt;potatotipsa #21のまとめ&lt;/h1&gt;
+
+&lt;h2 id=&#34;大島さんのブログ:dc23a03c468a971622ed612b653b3171&#34;&gt;大島さんのブログ&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tech.recruit-mp.co.jp/event/potatotips-21/&#34;&gt;http://tech.recruit-mp.co.jp/event/potatotips-21/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;気になった発表:dc23a03c468a971622ed612b653b3171&#34;&gt;気になった発表&lt;/h3&gt;
+
+&lt;h4 id=&#34;3d-touch-on-iphone-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;3D Touch on iPhone (iOS)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;シュミレーターで3Dタッチ機能が動かなかったので動作確認はできてない&lt;/p&gt;
+
+&lt;h5 id=&#34;whta-is-3d-touch:dc23a03c468a971622ed612b653b3171&#34;&gt;Whta is 3D touch?&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iOS9で導入された感圧機能を使った新しい機能&lt;/li&gt;
+&lt;li&gt;対応端末はiPhone6S/iPhone6S,plus&lt;/li&gt;
+&lt;li&gt;一部の機能は9.1からだが、ほとんどは9.0で実装できる&lt;/li&gt;
+&lt;li&gt;Pressure Sensitivity・Quick Actions・Peek and Popという3つのインタラクションが追加された&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pressure-sensitivity.jpg&#34; alt=&#34;3DTouch&#34; /&gt;&lt;img src=&#34;img/quick-actions.jpg&#34; alt=&#34;3DTouch3&#34; /&gt;&lt;img src=&#34;img/peek-and-pop.jpg&#34; alt=&#34;3DTouch3&#34; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;pressure-sensitivity:dc23a03c468a971622ed612b653b3171&#34;&gt;Pressure Sensitivity&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タッチの圧力を判定&lt;/li&gt;
+&lt;li&gt;UITouchクラスに追加されているforce(CGFLoat)プロパティを判定する&lt;/li&gt;
+&lt;li&gt;iOS9.1からはUITouchクラスにスタイラスの角度取得のプロパティも追加される予定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;quick-actions:dc23a03c468a971622ed612b653b3171&#34;&gt;Quick Actions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ホームアプリアイコンの押下時にメニューが表示できる&lt;/li&gt;
+&lt;li&gt;static quick action
+
+&lt;ul&gt;
+&lt;li&gt;info.plistで実装&lt;/li&gt;
+&lt;li&gt;表示できる数には限りがある&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;dynamic quick action
+
+&lt;ul&gt;
+&lt;li&gt;コードで実装&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;アクションがタップされた時はAppDelegateのデリゲートメソッドで取得できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;peek-and-pop:dc23a03c468a971622ed612b653b3171&#34;&gt;Peek and pop&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;次の画面を出す前にチラ見（Peek）できる&lt;/li&gt;
+&lt;li&gt;インタラクションの流れ
+
+&lt;ol&gt;
+&lt;li&gt;特定のエリアを軽く押す(Peek)&lt;/li&gt;
+&lt;li&gt;Peek画面が表示される（押すのをやめると元の画面に戻る）&lt;/li&gt;
+&lt;li&gt;さらに強く押す(Pop)とPeek画面が大きくなり、目的のview画面 となる&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;実装
+
+&lt;ol&gt;
+&lt;li&gt;peekのviewを指定して、UIViewControllerPreviewingDelegateを設定する&lt;/li&gt;
+&lt;li&gt;peekアクション時、popアクション時の各デリゲートメソッドで表示サイズの処理などを行う&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;UIWebViewやMKWebViewでは、すでに実装されている。allowsLinkPreviewをtrueにすると使えるようになります。（デフォルトはfalse）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;ショボいpull-requestを積み重ねて-自分の中でoss活動の敷居を下げる-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;ショボいPull Requestを積み重ねて、自分の中でOSS活動の敷居を下げる (iOS)&lt;/h4&gt;
+
+&lt;h4 id=&#34;バグのことは嫌いになってもxcodeのことは嫌いにならないでください-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;バグのことは嫌いになってもXcodeのことは嫌いにならないでください。 (iOS)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;XcodeでのデバッグについてのTips&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;xcodeでデバッグ時のtips:dc23a03c468a971622ed612b653b3171&#34;&gt;Xcodeでデバッグ時のTips&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;いつもクラッシュしたときにAppDelegateで止まる
+-&amp;gt; 全ての例外発生時を対象ににブレイクポイントを設定し、ブレイクポイント発生時にActionを指定する(po $arg1)
+-&amp;gt; ええ感じのところで止まり、ええ感じの出力&lt;/li&gt;
+&lt;li&gt;AutoLayout制約でのエラー
+-&amp;gt; シンボリックブレイクポイントを設定する
+-&amp;gt; 制約矛盾が発生した段階でブレイクし、viewの階層表示ができて分かりやすい&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;create-layouts-with-the-wearable-ui-library-android:dc23a03c468a971622ed612b653b3171&#34;&gt;Create Layouts with the Wearable UI Library (Android)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Android WearはUIコントロールたくさんあるんだなー（Apple Watchは超少ないのでうらやましい） #potatotips
+-&amp;gt; 同感です。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;遅れて見れなかった:dc23a03c468a971622ed612b653b3171&#34;&gt;（遅れて見れなかった）&lt;/h3&gt;
+
+&lt;h4 id=&#34;swift-compile-time-is-so-slow-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;Swift compile time is so slow (iOS)&lt;/h4&gt;
+
+&lt;p&gt;-&amp;gt; Swiftのコンパイルが遅いのでソースファイルを一つにまとめてビルドしてみたらコンパイル時間が大幅に短縮された話&lt;/p&gt;
+
+&lt;h4 id=&#34;apple-watch-tips-ios:dc23a03c468a971622ed612b653b3171&#34;&gt;Apple Watch Tips (iOS)&lt;/h4&gt;
+
+&lt;p&gt;-&amp;gt; 画像のローディング時の工夫について&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;次回は2週間後の 10/2（金）に開催予定です。&lt;/p&gt;
+
+&lt;p&gt;（高井）&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

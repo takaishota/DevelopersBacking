@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/normalize.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/skeleton.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/custom.css">
+<link rel="alternate" href="/DevelopersBacking/index.xml" type="application/rss+xml" title="Netcom Developer&#39;s Backing">
+<title>potatotips#21（iOS・Android開発Tips共有会）のまとめ - Netcom Developer&#39;s Backing</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		<div class="header-logo">
+			<a href="/DevelopersBacking/"><img src="/DevelopersBacking/images/logo.png" width="60" height="60"></a>
+		</div>
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="http://schema.org/BlogPosting">
+			<h1 class="entry-title" itemprop="headline">potatotips#21（iOS・Android開発Tips共有会）のまとめ</h1>
+			<span class="entry-meta"><time itemprop="datePublished" datetime="2015-09-16">September 16, 2015</time></span>
+			<section itemprop="entry-text">
+				
+
+<p>9/16にpotatotips#21（iOS/Android開発Tips共有会）にブログまとめ枠で参加しました。</p>
+
+<h1 id="第21回-potatotips-ios-android開発tips共有会-のまとめ:570477c102d4483d5e151b36959a9047">【第21回】potatotips(iOS/Android開発Tips共有会)のまとめ</h1>
+
+<p>今回の主催者のブログに当日のパワポがまとまっています。<br />
+<a href="http://tech.recruit-mp.co.jp/event/potatotips-21/">http://tech.recruit-mp.co.jp/event/potatotips-21/</a></p>
+
+<p>あと、アジェンダなどはこちらに記載されています。<br />
+<a href="https://github.com/potatotips/potatotips/wiki/potatotips-21">https://github.com/potatotips/potatotips/wiki/potatotips-21</a></p>
+
+<h2 id="気になった発表-ios中心です:570477c102d4483d5e151b36959a9047">気になった発表（iOS中心です）</h2>
+
+<h3 id="3d-touch-on-iphone-ios:570477c102d4483d5e151b36959a9047">3D Touch on iPhone (iOS)</h3>
+
+<ul>
+<li><p>シュミレーターで3Dタッチ機能が動かなかったので動作確認はできてない</p>
+
+<h4 id="whta-is-3d-touch:570477c102d4483d5e151b36959a9047">Whta is 3D touch?</h4>
+
+<ul>
+<li>iOS9で導入された感圧機能を使った新しい機能</li>
+<li>対応端末はiPhone6S/iPhone6S,plus</li>
+<li>一部の機能は9.1からだが、ほとんどは9.0で実装できる</li>
+<li>Pressure Sensitivity・Quick Actions・Peek and Popという3つのインタラクションが追加された</li>
+</ul></li>
+</ul>
+
+<p><img src="img/pressure-sensitivity.jpg" alt="3DTouch" /><img src="img/quick-actions.jpg" alt="3DTouch3" /><img src="img/peek-and-pop.jpg" alt="3DTouch3" /></p>
+
+<h4 id="pressure-sensitivity:570477c102d4483d5e151b36959a9047">Pressure Sensitivity</h4>
+
+<ul>
+<li>タッチの圧力を判定</li>
+<li>UITouchクラスに追加されているforce(CGFLoat)プロパティを判定する</li>
+<li>iOS9.1からはUITouchクラスにスタイラスの角度取得のプロパティも追加される予定</li>
+</ul>
+
+<h4 id="quick-actions:570477c102d4483d5e151b36959a9047">Quick Actions</h4>
+
+<ul>
+<li>ホームアプリアイコンの押下時にメニューが表示できる</li>
+<li>static quick action
+
+<ul>
+<li>info.plistで実装</li>
+<li>表示できる数には限りがある</li>
+</ul></li>
+<li>dynamic quick action
+
+<ul>
+<li>コードで実装</li>
+</ul></li>
+<li>アクションがタップされた時はAppDelegateのデリゲートメソッドで取得できる</li>
+</ul>
+
+<h4 id="peek-and-pop:570477c102d4483d5e151b36959a9047">Peek and pop</h4>
+
+<ul>
+<li>次の画面を出す前にチラ見（Peek）できる</li>
+<li>インタラクションの流れ
+
+<ol>
+<li>特定のエリアを軽く押す(Peek)</li>
+<li>Peek画面が表示される（押すのをやめると元の画面に戻る）</li>
+<li>さらに強く押す(Pop)とPeek画面が大きくなり、目的のview画面 となる</li>
+</ol></li>
+<li>実装
+
+<ol>
+<li>peekのviewを指定して、UIViewControllerPreviewingDelegateを設定する</li>
+<li>peekアクション時、popアクション時の各デリゲートメソッドで表示サイズの処理などを行う</li>
+</ol></li>
+<li>UIWebViewやMKWebViewでは、すでに実装されている。allowsLinkPreviewをtrueにすると使えるようになります。（デフォルトはfalse）<br /></li>
+</ul>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/4YvSUYs1kauGqL" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/toyship/3d-touch-for-ios" title="3D touch for iOS" target="_blank">3D touch for iOS</a> </strong> from <strong><a href="//www.slideshare.net/toyship" target="_blank">toyship</a></strong> </div></p>
+
+<h3 id="バグのことは嫌いになってもxcodeのことは嫌いにならないでください-ios:570477c102d4483d5e151b36959a9047">バグのことは嫌いになってもXcodeのことは嫌いにならないでください。 (iOS)</h3>
+
+<ul>
+<li>XcodeでのデバッグについてのTips</li>
+</ul>
+
+<h4 id="xcodeでデバッグ時のtips:570477c102d4483d5e151b36959a9047">Xcodeでデバッグ時のTips</h4>
+
+<ul>
+<li>いつもクラッシュしたときにAppDelegateで止まる<br />
+-&gt; 全ての例外発生時を対象ににブレイクポイントを設定し、ブレイクポイント発生時にActionを指定する(po $arg1)<br />
+-&gt; ええ感じのところで止まり、ええ感じの出力<br /></li>
+<li>AutoLayout制約でのエラー<br />
+-&gt; シンボリックブレイクポイントを設定する<br />
+-&gt; 制約矛盾が発生した段階でブレイクし、viewの階層表示ができて分かりやすい<br /></li>
+</ul>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/s3t9kpzwSz9Gq" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/daisukeyamashita180/21-potatotips-yamashita" title="バグのことは嫌いになってもXcodeのことは嫌いにならないでください。" target="_blank">バグのことは嫌いになってもXcodeのことは嫌いにならないでください。</a> </strong> from <strong><a href="//www.slideshare.net/daisukeyamashita180" target="_blank">Daisuke Yamashita</a></strong> </div></p>
+
+<h3 id="create-layouts-with-the-wearable-ui-library-android:570477c102d4483d5e151b36959a9047">Create Layouts with the Wearable UI Library (Android)</h3>
+
+<ul>
+<li>Android WearはUIコントロールたくさんあるんだなー（Apple Watchは超少ないのでうらやましい） #potatotips（当日のツイート）<br />
+-&gt; 同感です。Android WearのWearable UI Libraryの各UIを紹介されていました。</li>
+</ul>
+
+<h2 id="以下は-興味ありましたが遅れて見れませんでした:570477c102d4483d5e151b36959a9047">（以下は、興味ありましたが遅れて見れませんでした、、、）</h2>
+
+<h3 id="swift-compile-time-is-so-slow-ios:570477c102d4483d5e151b36959a9047">Swift compile time is so slow (iOS)</h3>
+
+<p>-&gt; Swiftのコンパイルが遅いのでソースファイルを一つにまとめてビルドしてみたらコンパイル時間が大幅に短縮された話</p>
+
+<script async class="speakerdeck-embed" data-id="5f3f2e3432c94ee0a7a2e31231a61625" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h3 id="apple-watch-tips-ios:570477c102d4483d5e151b36959a9047">Apple Watch Tips (iOS)</h3>
+
+<p>-&gt; 画像のローディング時の工夫について</p>
+
+<script async class="speakerdeck-embed" data-id="f845ef2cc00846b4a47deb1aa444baab" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="感想:570477c102d4483d5e151b36959a9047">感想</h2>
+
+<p>主催者によるのかもしれませんが、前回参加したときよりゆるい雰囲気でしたw
+それと、前回参加してから半年ぐらいは経っていると思いますが、Androidの割合がかなり増えているようでした。
+直近の新機能について発表されていたのは、iPhone6Sから搭載される3Dタッチのみで、
+まだ端末が出ていない上にシュミレーターでも動かなかったということでしたが、
+発表をきいている限りでは、これまでの長押しで提供できたインタラクションとそんなに変わらないんじゃないかと思いました。
+次回以降tvOSとか、watchOS2とか、SearchAPIsとかについての実装例とかありそうでおもしろそうです。</p>
+
+			</section>
+		</article>
+	</main>
+
+
+	<footer role="contentinfo">
+		<div class="hr"></div>
+		<div class="footer-link">
+			<a href="mailto:takaiashota@gmail.com" target="_blank">Email</a></span>
+			
+			<a href="https://www.facebook.com/shota.takai.9" target="_blank">Facebook</a></span>
+			<a href="https://github.com/takaishota" target="_blank">GitHub</a></span>
+		</div>
+		<div class="copyright">Copyright &copy; takaishota All rights reserved.</div>
+	</footer>
+
+</div>
+
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

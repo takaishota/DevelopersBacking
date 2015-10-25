@@ -32,7 +32,7 @@
 
 <p>10/16（金）にNetcom Developer&rsquo;s Backing #7を行いました。</p>
 
-<h2 id="analyze-access-log-with-elasticsearch-kibana-石川さん:3910319bb7460ea77f3a203b24e5aefb">Analyze Access Log with Elasticsearch + Kibana：石川さん</h2>
+<h1 id="analyze-access-log-with-elasticsearch-kibana-石川さん:3910319bb7460ea77f3a203b24e5aefb">Analyze Access Log with Elasticsearch + Kibana：石川さん</h1>
 
 <ul>
 <li>webサーバーのアクセスログ、ただ退避してローテーションで消えていっていませんか?</li>
@@ -40,7 +40,7 @@
 <strong>-&gt; 大事な資産を有効活用しよう！</strong></li>
 </ul>
 
-<h3 id="アクセスログ調査あるある:3910319bb7460ea77f3a203b24e5aefb">アクセスログ調査あるある</h3>
+<h2 id="アクセスログ調査あるある:3910319bb7460ea77f3a203b24e5aefb">アクセスログ調査あるある</h2>
 
 <ul>
 <li>トップページアクセスのクエリパラメータのTOP10が知りた～い</li>
@@ -50,7 +50,7 @@
 <img src="http://tiqav.com/2VR.jpg" alt="img" /></li>
 </ul>
 
-<h3 id="ツールを使う:3910319bb7460ea77f3a203b24e5aefb">ツールを使う</h3>
+<h2 id="ツールを使う:3910319bb7460ea77f3a203b24e5aefb">ツールを使う</h2>
 
 <ul>
 <li>Webalizer<br />
@@ -67,11 +67,11 @@
 GrafanaはGraphiteやInfluxDB向け可視化ツール</li>
 </ul>
 
-<h3 id="今回やりたかったこと:3910319bb7460ea77f3a203b24e5aefb">今回やりたかったこと</h3>
+<h2 id="今回やりたかったこと:3910319bb7460ea77f3a203b24e5aefb">今回やりたかったこと</h2>
 
 <p>某スマートフォン予約開始時のアクセスログ調査</p>
 
-<h4 id="性能観点:3910319bb7460ea77f3a203b24e5aefb">性能観点</h4>
+<h3 id="性能観点:3910319bb7460ea77f3a203b24e5aefb">性能観点</h3>
 
 <ul>
 <li>どのタイミングで負荷があがっているのか</li>
@@ -81,7 +81,7 @@ GrafanaはGraphiteやInfluxDB向け可視化ツール</li>
 <li>重い(遅い)ページはどこか</li>
 </ul>
 
-<h4 id="業務観点:3910319bb7460ea77f3a203b24e5aefb">業務観点</h4>
+<h3 id="業務観点:3910319bb7460ea77f3a203b24e5aefb">業務観点</h3>
 
 <ul>
 <li>アクセスの多い店舗はどこか</li>
@@ -89,11 +89,11 @@ GrafanaはGraphiteやInfluxDB向け可視化ツール</li>
 <li>リファラTOP100</li>
 </ul>
 
-<h5 id="特に性能に関しては可視化することによって問題点がわかりやすくなる:3910319bb7460ea77f3a203b24e5aefb">特に性能に関しては可視化することによって問題点がわかりやすくなる。</h5>
+<h4 id="特に性能に関しては可視化することによって問題点がわかりやすくなる:3910319bb7460ea77f3a203b24e5aefb">特に性能に関しては可視化することによって問題点がわかりやすくなる。</h4>
 
 <p>-&gt; 可視化可能なツールでやろう。</p>
 
-<h3 id="elasticsearch-kibana:3910319bb7460ea77f3a203b24e5aefb">Elasticsearch + Kibana</h3>
+<h2 id="elasticsearch-kibana:3910319bb7460ea77f3a203b24e5aefb">Elasticsearch + Kibana</h2>
 
 <ul>
 <li>最近流行りのログ可視化パターン。</li>
@@ -103,11 +103,11 @@ GrafanaはGraphiteやInfluxDB向け可視化ツール</li>
 Apache-log(LTSV) -&gt; fluentd -&gt; Elasitcserach</li>
 </ul>
 
-<h3 id="やりたいこと:3910319bb7460ea77f3a203b24e5aefb">やりたいこと</h3>
+<h2 id="やりたいこと:3910319bb7460ea77f3a203b24e5aefb">やりたいこと</h2>
 
 <p><img src="img/2015101601.png" alt="img" /></p>
 
-<h3 id="elasitcserach:3910319bb7460ea77f3a203b24e5aefb">Elasitcserach</h3>
+<h2 id="elasitcserach:3910319bb7460ea77f3a203b24e5aefb">Elasitcserach</h2>
 
 <ul>
 <li>全文検索エンジン</li>
@@ -124,7 +124,7 @@ $ cd elasticsearch-1.7.2
 $ ./bin/elasticsearch
 </code></pre>
 
-<h3 id="kibana-4:3910319bb7460ea77f3a203b24e5aefb">Kibana(4)</h3>
+<h2 id="kibana-4:3910319bb7460ea77f3a203b24e5aefb">Kibana(4)</h2>
 
 <ul>
 <li>Elasticsearch用可視化ツール</li>
@@ -139,9 +139,9 @@ $ vi config/kibana.yml # fix elasticsearch_url
 $ ./bin/kibana
 </code></pre>
 
-<h4 id="データのロード:3910319bb7460ea77f3a203b24e5aefb">データのロード</h4>
+<h3 id="データのロード:3910319bb7460ea77f3a203b24e5aefb">データのロード</h3>
 
-<h5 id="リアルタイムでのロード:3910319bb7460ea77f3a203b24e5aefb">リアルタイムでのロード</h5>
+<h4 id="リアルタイムでのロード:3910319bb7460ea77f3a203b24e5aefb">リアルタイムでのロード</h4>
 
 <ul>
 <li>fluentd
@@ -153,7 +153,7 @@ $ ./bin/kibana
 </ul></li>
 </ul>
 
-<h5 id="バルクロード:3910319bb7460ea77f3a203b24e5aefb">バルクロード</h5>
+<h4 id="バルクロード:3910319bb7460ea77f3a203b24e5aefb">バルクロード</h4>
 
 <ul>
 <li>embulk
@@ -166,7 +166,7 @@ $ ./bin/kibana
 </ul></li>
 </ul>
 
-<h3 id="embulkを使ったapacheアクセスログのロード:3910319bb7460ea77f3a203b24e5aefb">embulkを使ったApacheアクセスログのロード</h3>
+<h2 id="embulkを使ったapacheアクセスログのロード:3910319bb7460ea77f3a203b24e5aefb">embulkを使ったApacheアクセスログのロード</h2>
 
 <p><img src="img/2015101602.png" alt="img" /></p>
 
@@ -176,9 +176,9 @@ $ ./bin/kibana
 <li>Output: Elasticsearchへバルクロード</li>
 </ul>
 
-<h3 id="parserについて:3910319bb7460ea77f3a203b24e5aefb">Parserについて</h3>
+<h2 id="parserについて:3910319bb7460ea77f3a203b24e5aefb">Parserについて</h2>
 
-<h4 id="embulk-parser-apache-log:3910319bb7460ea77f3a203b24e5aefb">embulk-parser-apache-log</h4>
+<h3 id="embulk-parser-apache-log:3910319bb7460ea77f3a203b24e5aefb">embulk-parser-apache-log</h3>
 
 <ul>
 <li>Apacheのアクセスログを1行ずつパースするパーサプラグイン</li>
@@ -188,12 +188,12 @@ $ ./bin/kibana
 <pre><code>%v %{X-Forwarded-For}i %l %u %t \&quot;%m %U%q %H\&quot; %&gt;s %b \&quot;%{Referer}i\&quot; \&quot;%{User-Agent}i\&quot; %I %O %D
 </code></pre>
 
-<h5 id="しかし今回出力されるログはカスタムログ形式:3910319bb7460ea77f3a203b24e5aefb">しかし今回出力されるログはカスタムログ形式・・・</h5>
+<h4 id="しかし今回出力されるログはカスタムログ形式:3910319bb7460ea77f3a203b24e5aefb">しかし今回出力されるログはカスタムログ形式・・・</h4>
 
 <p>-&gt; 既存のパーサでは対応できない！！！<br />
    ないものは作る！</p>
 
-<h4 id="embulk-parser-apache-custom-log:3910319bb7460ea77f3a203b24e5aefb">embulk-parser-apache-custom-log</h4>
+<h3 id="embulk-parser-apache-custom-log:3910319bb7460ea77f3a203b24e5aefb">embulk-parser-apache-custom-log</h3>
 
 <p>作りました!<br />
 <strong>jami-i/embulk-parser-apache-custom-log</strong></p>
@@ -232,7 +232,7 @@ $ ./bin/kibana
 <pre><code>Ex: %D → number, %t -&gt; timestamp, %i -&gt; string
 </code></pre>
 
-<h4 id="あとは設定ファイルを書いて流すだけ:3910319bb7460ea77f3a203b24e5aefb">あとは設定ファイルを書いて流すだけ</h4>
+<h3 id="あとは設定ファイルを書いて流すだけ:3910319bb7460ea77f3a203b24e5aefb">あとは設定ファイルを書いて流すだけ</h3>
 
 <pre><code>in:
   type: file
@@ -254,7 +254,7 @@ index: “apache-log_20150912”
 
 </code></pre>
 
-<h3 id="elasticsearchの-罠:3910319bb7460ea77f3a203b24e5aefb">Elasticsearchの罠</h3>
+<h2 id="elasticsearchの-罠:3910319bb7460ea77f3a203b24e5aefb">Elasticsearchの罠</h2>
 
 <ul>
 <li>基本的に値はAnalyzeされる
@@ -272,7 +272,7 @@ index: “apache-log_20150912”
 </ul></li>
 </ul>
 
-<h3 id="処理時間:3910319bb7460ea77f3a203b24e5aefb">処理時間</h3>
+<h2 id="処理時間:3910319bb7460ea77f3a203b24e5aefb">処理時間</h2>
 
 <ul>
 <li>CPU Corei5 1.9GHz</li>
@@ -283,7 +283,7 @@ index: “apache-log_20150912”
 <p>-&gt; 一晩かかった・・・<br />
 　パースする正規表現が複雑すぎる・・・</p>
 
-<h3 id="問題発覚:3910319bb7460ea77f3a203b24e5aefb">問題発覚</h3>
+<h2 id="問題発覚:3910319bb7460ea77f3a203b24e5aefb">問題発覚</h2>
 
 <ul>
 <li>アクセスの多かった店舗の集計がうまくできず・・・</li>
@@ -298,13 +298,13 @@ index: “apache-log_20150912”
 
 <p>-&gt; Elastic力が足りない</p>
 
-<h4 id="結局はsqlで集計:3910319bb7460ea77f3a203b24e5aefb">結局はSQLで集計</h4>
+<h3 id="結局はsqlで集計:3910319bb7460ea77f3a203b24e5aefb">結局はSQLで集計</h3>
 
-<h5 id="dbにロードするoutput-plugin:3910319bb7460ea77f3a203b24e5aefb">DBにロードするoutput-plugin</h5>
+<h4 id="dbにロードするoutput-plugin:3910319bb7460ea77f3a203b24e5aefb">DBにロードするoutput-plugin</h4>
 
 <p><a href="https://github.com/embulk/embulk-output-jdbc">https://github.com/embulk/embulk-output-jdbc</a></p>
 
-<h5 id="今度も設定ファイルを書いて流すだけ:3910319bb7460ea77f3a203b24e5aefb">今度も設定ファイルを書いて流すだけ</h5>
+<h4 id="今度も設定ファイルを書いて流すだけ:3910319bb7460ea77f3a203b24e5aefb">今度も設定ファイルを書いて流すだけ</h4>
 
 <pre><code>in:
   type: file
@@ -325,7 +325,7 @@ out:
 <pre><code>$ embulk run load_access_log.yml
 </code></pre>
 
-<h4 id="集計:3910319bb7460ea77f3a203b24e5aefb">集計</h4>
+<h3 id="集計:3910319bb7460ea77f3a203b24e5aefb">集計</h3>
 
 <ul>
 <li>Select referrer, count(1) from apache_log where ～～</li>
@@ -333,23 +333,23 @@ out:
 <li>Regexp_like()やrank()も使えるので集計もバッチリ</li>
 </ul>
 
-<h3 id="まとめ:3910319bb7460ea77f3a203b24e5aefb">まとめ</h3>
+<h2 id="まとめ:3910319bb7460ea77f3a203b24e5aefb">まとめ</h2>
 
-<h4 id="ツールごとに得意不得意がある:3910319bb7460ea77f3a203b24e5aefb">ツールごとに得意不得意がある</h4>
+<h3 id="ツールごとに得意不得意がある:3910319bb7460ea77f3a203b24e5aefb">ツールごとに得意不得意がある</h3>
 
 <ul>
 <li>時系列 -&gt; elasticsearch</li>
 <li>複雑な集計 -&gt; DB</li>
 </ul>
 
-<h4 id="qiitaとかにあるelasticsearch-kibanaの記事:3910319bb7460ea77f3a203b24e5aefb">QiitaとかにあるElasticsearch＋Kibanaの記事</h4>
+<h3 id="qiitaとかにあるelasticsearch-kibanaの記事:3910319bb7460ea77f3a203b24e5aefb">QiitaとかにあるElasticsearch＋Kibanaの記事</h3>
 
 <ul>
 <li>本当にかじっただけ</li>
 <li>実運用にはいろいろ工夫が必要</li>
 </ul>
 
-<h4 id="embulk便利:3910319bb7460ea77f3a203b24e5aefb">Embulk便利</h4>
+<h3 id="embulk便利:3910319bb7460ea77f3a203b24e5aefb">Embulk便利</h3>
 
 <ul>
 <li>単純なDBのimport/exportにも使える！</li>
@@ -357,13 +357,13 @@ out:
 <li>既存のアクセスログをそのまま取り込める！</li>
 </ul>
 
-<h4 id="ログ設計で手を抜かないこと:3910319bb7460ea77f3a203b24e5aefb">ログ設計で手を抜かないこと</h4>
+<h3 id="ログ設計で手を抜かないこと:3910319bb7460ea77f3a203b24e5aefb">ログ設計で手を抜かないこと</h3>
 
 <ul>
 <li>確実にltsvのほうが楽。（パースコストが低い）</li>
 </ul>
 
-<h5 id="jami-i-embulk-parser-apache-custom-log:3910319bb7460ea77f3a203b24e5aefb">jami-i/embulk-parser-apache-custom-log</h5>
+<h3 id="jami-i-embulk-parser-apache-custom-log:3910319bb7460ea77f3a203b24e5aefb">jami-i/embulk-parser-apache-custom-log</h3>
 
 <p><a href="https://github.com/jami-i/embulk-parser-apache-custom-log">https://github.com/jami-i/embulk-parser-apache-custom-log</a></p>
 

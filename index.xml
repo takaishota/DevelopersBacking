@@ -6,8 +6,355 @@
     <description>Recent content on Netcom Developer&#39;s Backing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 18 Sep 2015 17:57:25 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2015 00:06:50 +0900</lastBuildDate>
     <atom:link href="http://takaishota.github.io/DevelopersBacking/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Netcom Developer&#39;s Backing #7のまとめ</title>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20151016/</link>
+      <pubDate>Mon, 26 Oct 2015 00:06:50 +0900</pubDate>
+      
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20151016/</guid>
+      <description>
+
+&lt;p&gt;10/16（金）にNetcom Developer&amp;rsquo;s Backing #7を行いました。&lt;/p&gt;
+
+&lt;h2 id=&#34;analyze-access-log-with-elasticsearch-kibana-石川さん:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Analyze Access Log with Elasticsearch + Kibana：石川さん&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;webサーバーのアクセスログ、ただ退避してローテーションで消えていっていませんか?&lt;/li&gt;
+&lt;li&gt;障害調査/アクセス解析/転送量解析など様々な用途に利用できる貴重な商用ファクト&lt;br /&gt;
+&lt;strong&gt;-&amp;gt; 大事な資産を有効活用しよう！&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;アクセスログ調査あるある:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;アクセスログ調査あるある&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;トップページアクセスのクエリパラメータのTOP10が知りた～い&lt;/li&gt;
+&lt;li&gt;あ、やっぱりトップページじゃなくて/hogeのでお願い。&lt;/li&gt;
+&lt;li&gt;あと2つ追加で～～～～
+-&amp;gt; 毎回、アクセスログにgrepかけて出力とかやってられない！
+&lt;img src=&#34;http://tiqav.com/2VR.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;ツールを使う:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;ツールを使う&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Webalizer&lt;br /&gt;
+-&amp;gt; そんなのもありましたねぇ・・・&lt;/li&gt;
+&lt;li&gt;ApacheLogViewer&lt;br /&gt;
+-&amp;gt; いまいち使いづらい&lt;/li&gt;
+&lt;li&gt;Hadoop, Hive, Spark&lt;br /&gt;
+-&amp;gt; 環境を用意するのが大変。要件として最初から存在するならアリかな。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Elasticsearch + Kibana&lt;/strong&gt;&lt;br /&gt;
+-&amp;gt; Hadoopよりは構築が簡単。Kibanaカッコイイ・・・&lt;br /&gt;
+流行ってる(バズってる）&lt;/li&gt;
+&lt;li&gt;InfluxDB ＋ Grafana&lt;br /&gt;
+-&amp;gt; 時系列DBのInfluxDBにため込むパターン&lt;br /&gt;
+GrafanaはGraphiteやInfluxDB向け可視化ツール&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;今回やりたかったこと:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;今回やりたかったこと&lt;/h3&gt;
+
+&lt;p&gt;某スマートフォン予約開始時のアクセスログ調査&lt;/p&gt;
+
+&lt;h4 id=&#34;性能観点:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;性能観点&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;どのタイミングで負荷があがっているのか&lt;/li&gt;
+&lt;li&gt;エラー(sc &amp;gt;= 400)となっているリクエストがどれくらいあるのか&lt;/li&gt;
+&lt;li&gt;TPSの計算&lt;/li&gt;
+&lt;li&gt;転送量の推計&lt;/li&gt;
+&lt;li&gt;重い(遅い)ページはどこか&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;業務観点:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;業務観点&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;アクセスの多い店舗はどこか&lt;/li&gt;
+&lt;li&gt;ユーザーエージェントの比率&lt;/li&gt;
+&lt;li&gt;リファラTOP100&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;特に性能に関しては可視化することによって問題点がわかりやすくなる:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;特に性能に関しては可視化することによって問題点がわかりやすくなる。&lt;/h5&gt;
+
+&lt;p&gt;-&amp;gt; 可視化可能なツールでやろう。&lt;/p&gt;
+
+&lt;h3 id=&#34;elasticsearch-kibana:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Elasticsearch + Kibana&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;最近流行りのログ可視化パターン。&lt;/li&gt;
+&lt;li&gt;全文検索エンジンのElasticsearchに可視化ツールであるKibanaを組み合わせる。&lt;/li&gt;
+&lt;li&gt;カッコイイ&lt;/li&gt;
+&lt;li&gt;プロトタイプで導入実績あり&lt;br /&gt;
+Apache-log(LTSV) -&amp;gt; fluentd -&amp;gt; Elasitcserach&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;やりたいこと:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;やりたいこと&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/2015101601.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;elasitcserach:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Elasitcserach&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;全文検索エンジン&lt;/li&gt;
+&lt;li&gt;Apache LuceneのRESTインターフェースみたいなもの&lt;/li&gt;
+&lt;li&gt;Kuromoji等の日本語形態素アナライザも入れられる&lt;/li&gt;
+&lt;li&gt;Javaさえあれば動く。&lt;/li&gt;
+&lt;li&gt;複数台のサーバーでクラスタリングが可能&lt;/li&gt;
+&lt;li&gt;スキーマレス&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.2.tar.gz
+$ tar zxvf elasticsearch-1.7.2.tar.gz
+$ cd elasticsearch-1.7.2
+$ ./bin/elasticsearch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;kibana-4:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Kibana(4)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch用可視化ツール&lt;/li&gt;
+&lt;li&gt;GUIからElasticsearchに投げる集計クエリを構築、結果をグラフ化してくれる。&lt;/li&gt;
+&lt;li&gt;Kibana4からNodejs製に&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl https://download.elastic.co/kibana/kibana/kibana-4.1.2-linux-x64.tar.gz
+$ tar zxvf kibana-4.1.2-linux-x64.tar.gz
+$ cd kibana-4.1.2
+$ vi config/kibana.yml # fix elasticsearch_url
+$ ./bin/kibana
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;データのロード:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;データのロード&lt;/h4&gt;
+
+&lt;h5 id=&#34;リアルタイムでのロード:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;リアルタイムでのロード&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;fluentd
+
+&lt;ul&gt;
+&lt;li&gt;ログコレクタのデファクトスタンダード&lt;/li&gt;
+&lt;li&gt;tail-pluginを使ってaccess_logをtail&lt;/li&gt;
+&lt;li&gt;ログフォーマットを変更できる場合はltsvで出力するのがおすすめ&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;バルクロード:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;バルクロード&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;embulk
+
+&lt;ul&gt;
+&lt;li&gt;去年ぐらいに出てきたバルクローダ&lt;/li&gt;
+&lt;li&gt;任意のInputから任意のOutputへバルクロードできる。&lt;/li&gt;
+&lt;li&gt;fluentdと同じ、TresureData製。&lt;br /&gt;
+&lt;strong&gt;-&amp;gt; 環境の制約等で今回はこちらを利用&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;embulkを使ったapacheアクセスログのロード:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;embulkを使ったApacheアクセスログのロード&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/2015101602.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Input: ローカルファイル読み込みプラグイン&lt;/li&gt;
+&lt;li&gt;Parser: Apacheログをパース&lt;/li&gt;
+&lt;li&gt;Output: Elasticsearchへバルクロード&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;parserについて:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Parserについて&lt;/h3&gt;
+
+&lt;h4 id=&#34;embulk-parser-apache-log:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;embulk-parser-apache-log&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Apacheのアクセスログを1行ずつパースするパーサプラグイン&lt;/li&gt;
+&lt;li&gt;combinedもしくはextendログをパースすることができる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;%v %{X-Forwarded-For}i %l %u %t \&amp;quot;%m %U%q %H\&amp;quot; %&amp;gt;s %b \&amp;quot;%{Referer}i\&amp;quot; \&amp;quot;%{User-Agent}i\&amp;quot; %I %O %D
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;しかし今回出力されるログはカスタムログ形式:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;しかし今回出力されるログはカスタムログ形式・・・&lt;/h5&gt;
+
+&lt;p&gt;-&amp;gt; 既存のパーサでは対応できない！！！&lt;br /&gt;
+   ないものは作る！&lt;/p&gt;
+
+&lt;h4 id=&#34;embulk-parser-apache-custom-log:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;embulk-parser-apache-custom-log&lt;/h4&gt;
+
+&lt;p&gt;作りました!&lt;br /&gt;
+&lt;strong&gt;jami-i/embulk-parser-apache-custom-log&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/jami-i/embulk-parser-apache-custom-log&#34;&gt;https://github.com/jami-i/embulk-parser-apache-custom-log&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以下のコマンドでインストールできる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ embulk gem install embulk-parser-apache-custom-log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;既存のパーサとくらべて&lt;/li&gt;
+&lt;li&gt;設定にApacheのCustomLogディレクティブをそのまま記載できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;in:
+  type: file
+  path_prefix: &amp;quot;output_&amp;quot;
+  parser :
+    type : &amp;quot;apache-custom-log&amp;quot;
+    format : &amp;quot;%v %{X-Forwarded-For}i %l %u %t \&amp;quot;%m %U%q %H\&amp;quot; %&amp;gt;s %b \&amp;quot;%{Referer}i\&amp;quot; \&amp;quot;%{User-Agent}i\&amp;quot; %I %O %D&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;パラメータを持つ項目をパースできる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;Ex: %{X-Forwarded-For}i, %{User-Agent}i
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;項目によって型を維持&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;Ex: %D → number, %t -&amp;gt; timestamp, %i -&amp;gt; string
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;あとは設定ファイルを書いて流すだけ:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;あとは設定ファイルを書いて流すだけ&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;in:
+  type: file
+  path_prefix: &amp;quot;output_&amp;quot;
+  parser :
+    type : &amp;quot;apache-custom-log&amp;quot;
+    format : &amp;quot;%v %{X-Forwarded-For}i %l %u %t \&amp;quot;%m %U%q %H\&amp;quot; %&amp;gt;s %b \&amp;quot;%{Referer}i\&amp;quot; \&amp;quot;%{User-Agent}i\&amp;quot; %I %O %D“
+out:
+  type: elasticsearch
+  nodes:
+    - {host: host-a, port: 9300}
+    - {host: host-b, port: 9300}
+    - {host: host-c, port: 9300}
+index: “apache-log_20150912”
+  index_type: “apache-log”
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$ embulk run load_access_log.yml
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;elasticsearchの-罠:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Elasticsearchの罠&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;基本的に値はAnalyzeされる
+
+&lt;ul&gt;
+&lt;li&gt;全文検索のため。検索で正しくヒットしなくなる。
+&lt;a href=&#34;http://qiita.com/harukasan/items/4ec517d8d96f557367e1&#34;&gt;http://qiita.com/harukasan/items/4ec517d8d96f557367e1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Mapping(型 SQLのDDLみたいなもの）を定義したほうがよい
+
+&lt;ul&gt;
+&lt;li&gt;基本的にはスキーマレス。初期データをベースにスキーマが作成される。&lt;/li&gt;
+&lt;li&gt;数値型は数値として読み込ませないとKibana上でaggregationに使えない。&lt;br /&gt;
+→ 何度かやり直す羽目に・・・&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;処理時間:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;処理時間&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CPU Corei5 1.9GHz&lt;/li&gt;
+&lt;li&gt;メモリ 8GB&lt;/li&gt;
+&lt;li&gt;アクセスログ 20GB&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-&amp;gt; 一晩かかった・・・&lt;br /&gt;
+　パースする正規表現が複雑すぎる・・・&lt;/p&gt;
+
+&lt;h3 id=&#34;問題発覚:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;問題発覚&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;アクセスの多かった店舗の集計がうまくできず・・・&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;クエリが複雑すぎてKibanaからは投げられない？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Elasticsearchに直接クエリを投げれば！&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;curl –XGET hoge:9200/apache_log/_search –d @search.json | jq . | less
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;-&amp;gt; Elastic力が足りない&lt;/p&gt;
+
+&lt;h4 id=&#34;結局はsqlで集計:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;結局はSQLで集計&lt;/h4&gt;
+
+&lt;h5 id=&#34;dbにロードするoutput-plugin:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;DBにロードするoutput-plugin&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/embulk/embulk-output-jdbc&#34;&gt;https://github.com/embulk/embulk-output-jdbc&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;今度も設定ファイルを書いて流すだけ:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;今度も設定ファイルを書いて流すだけ&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;in:
+  type: file
+  path_prefix: &amp;quot;output_&amp;quot;
+  parser :
+    type : &amp;quot;apache-custom-log&amp;quot;
+    format : &amp;quot;%v %{X-Forwarded-For}i %l %u %t \&amp;quot;%m %U%q %H\&amp;quot; %&amp;gt;s %b \&amp;quot;%{Referer}i\&amp;quot; \&amp;quot;%{User-Agent}i\&amp;quot; %I %O %D“
+out:
+  type: oracle
+  driver_path: ojdbc7.jar
+  host: oracle-host
+  user: “hoge”
+  password: “hoge”
+  table: “apache_log”
+  mode: insert_direct
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$ embulk run load_access_log.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;集計:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;集計&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Select referrer, count(1) from apache_log where ～～&lt;/li&gt;
+&lt;li&gt;Where句に複雑な条件が書ける。&lt;/li&gt;
+&lt;li&gt;Regexp_like()やrank()も使えるので集計もバッチリ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;まとめ:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;まとめ&lt;/h3&gt;
+
+&lt;h4 id=&#34;ツールごとに得意不得意がある:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;ツールごとに得意不得意がある&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;時系列 -&amp;gt; elasticsearch&lt;/li&gt;
+&lt;li&gt;複雑な集計 -&amp;gt; DB&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;qiitaとかにあるelasticsearch-kibanaの記事:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;QiitaとかにあるElasticsearch＋Kibanaの記事&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;本当にかじっただけ&lt;/li&gt;
+&lt;li&gt;実運用にはいろいろ工夫が必要&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;embulk便利:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Embulk便利&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;単純なDBのimport/exportにも使える！&lt;/li&gt;
+&lt;li&gt;embulk-parser-apache-custom-log ぜひ！&lt;/li&gt;
+&lt;li&gt;既存のアクセスログをそのまま取り込める！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;ログ設計で手を抜かないこと:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;ログ設計で手を抜かないこと&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;確実にltsvのほうが楽。（パースコストが低い）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;jami-i-embulk-parser-apache-custom-log:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;jami-i/embulk-parser-apache-custom-log&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/jami-i/embulk-parser-apache-custom-log&#34;&gt;https://github.com/jami-i/embulk-parser-apache-custom-log&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Netcom Developer&#39;s Backing #6のまとめ</title>

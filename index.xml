@@ -56,7 +56,7 @@ GrafanaはGraphiteやInfluxDB向け可視化ツール&lt;/li&gt;
 
 &lt;h2 id=&#34;今回やりたかったこと:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;今回やりたかったこと&lt;/h2&gt;
 
-&lt;p&gt;某スマートフォン予約開始時のアクセスログ調査&lt;/p&gt;
+&lt;p&gt;某予約サイトアクセスログ調査&lt;/p&gt;
 
 &lt;h3 id=&#34;性能観点:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;性能観点&lt;/h3&gt;
 

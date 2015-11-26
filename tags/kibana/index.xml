@@ -34,7 +34,7 @@
 &lt;li&gt;あ、やっぱりトップページじゃなくて/hogeのでお願い。&lt;/li&gt;
 &lt;li&gt;あと2つ追加で～～～～
 -&amp;gt; 毎回、アクセスログにgrepかけて出力とかやってられない！
-&lt;img src=&#34;http://tiqav.com/2VR.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://tiqav.com/2VR.jpg&#34; width=&#34;300px&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;ツールを使う:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;ツールを使う&lt;/h2&gt;
@@ -92,7 +92,7 @@ Apache-log(LTSV) -&amp;gt; fluentd -&amp;gt; Elasitcserach&lt;/li&gt;
 
 &lt;h2 id=&#34;やりたいこと:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;やりたいこと&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;img/2015101601.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/2015101601.png&#34; width=&#34;300px&#34;&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;elasitcserach:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;Elasitcserach&lt;/h2&gt;
 
@@ -155,7 +155,7 @@ $ ./bin/kibana
 
 &lt;h2 id=&#34;embulkを使ったapacheアクセスログのロード:3910319bb7460ea77f3a203b24e5aefb&#34;&gt;embulkを使ったApacheアクセスログのロード&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;img/2015101602.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/2015101602.png&#34; width=&#34;300px&#34;&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Input: ローカルファイル読み込みプラグイン&lt;/li&gt;

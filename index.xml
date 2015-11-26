@@ -6,8 +6,217 @@
     <description>Recent content on Netcom Developer&#39;s Backing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 26 Oct 2015 00:06:50 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2015 00:06:50 +0900</lastBuildDate>
     <atom:link href="http://takaishota.github.io/DevelopersBacking/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Netcom Developer&#39;s Backing #9のまとめ</title>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20151126/</link>
+      <pubDate>Fri, 27 Nov 2015 00:06:50 +0900</pubDate>
+      
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20151126/</guid>
+      <description>
+
+&lt;p&gt;11/26（木）にNetcom Developer&amp;rsquo;s Backing #9を行いました。
+11月末で退社される金森さんに、これまでの取り組みやなどについて話していただきました。&lt;/p&gt;
+
+&lt;h1 id=&#34;これまでの活動について振り返り-金森さん:a6843830e7571316fb965fd6e49c2945&#34;&gt;これまでの活動について振り返り：金森さん&lt;/h1&gt;
+
+&lt;h2 id=&#34;業務経歴:a6843830e7571316fb965fd6e49c2945&#34;&gt;業務経歴&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;入社後、1年ぐらいWebアプリケーションの開発を担当&lt;/li&gt;
+&lt;li&gt;その後はGAの導入や運用、カスタマイズ開発、営業や対外活動など、GAのスペシャリストとして様々な行程を担当&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;業務外での活動:a6843830e7571316fb965fd6e49c2945&#34;&gt;業務外での活動&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;業務外での活動も積極的に行ってきた&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;勉強会:a6843830e7571316fb965fd6e49c2945&#34;&gt;勉強会&lt;/h3&gt;
+
+&lt;h4 id=&#34;よく行っていたのが:a6843830e7571316fb965fd6e49c2945&#34;&gt;よく行っていたのが&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Web先端技術味見部&lt;br /&gt;
+&lt;a href=&#34;https://atnd.org/users/130743?state=manage&#34;&gt;https://atnd.org/users/130743?state=manage&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;HTML5とか勉強会&lt;br /&gt;
+&lt;a href=&#34;https://html5j.doorkeeper.jp/&#34;&gt;https://html5j.doorkeeper.jp/&lt;/a&gt;&lt;br /&gt;
+すぐに埋まるのでメーリングリストで情報をもらうようにしている&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;白ヤギ勉強会というカメリオを開発している会社主催の勉強会ではGAの開発に関して発表した&lt;br /&gt;
+&lt;a href=&#34;http://aial.connpass.com/event/12123/&#34;&gt;http://aial.connpass.com/event/12123/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;特に-発表するのは準備とかが大変だが-自分にとっての勉強にもなるのでやった方が良い:a6843830e7571316fb965fd6e49c2945&#34;&gt;特に、発表するのは準備とかが大変だが、自分にとっての勉強にもなるのでやった方が良い&lt;/h4&gt;
+
+&lt;h3 id=&#34;ハッカソン:a6843830e7571316fb965fd6e49c2945&#34;&gt;ハッカソン&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;朝日新聞主催のデータジャーナリズムハッカソン
+&lt;a href=&#34;http://www.asahi.com/miraimedia/sympo/hackathon/&#34;&gt;http://www.asahi.com/miraimedia/sympo/hackathon/&lt;/a&gt;&lt;br /&gt;
+準グランプリ&lt;br /&gt;
+&lt;a href=&#34;http://news-for-all.appspot.com/#/&#34;&gt;http://news-for-all.appspot.com/#/&lt;/a&gt;&lt;br /&gt;
+報道空白域をさがせ！：全国紙とＮＨＫによる報道とSNSでの発信をヒートマップで示し、「報道空白域」を見つけるためのWebツールを開発。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Service Worker ハッカソン（HTML5のService Worker機能を使ったWebアプリ開発のハッカソン）&lt;br /&gt;
+&lt;a href=&#34;http://googledevjp.blogspot.jp/2015/03/service-worker.html&#34;&gt;http://googledevjp.blogspot.jp/2015/03/service-worker.html&lt;/a&gt;&lt;br /&gt;
+入賞&lt;br /&gt;
+Service Workerを利用したTODOアプリを開発。ユーザが見たら分かるけど、他人が見たら分からないレベルの文字に変換して表示する機能をつけた。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ハッカソンは短い時間でモノを作ることに集中できるので面白い&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;チームを組んで取り組むやつは結構しんどいので、もくもくと作ってできたら発表するみたいなのからやってみると良いかも&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;うちの社員にももっとやってほしいこと:a6843830e7571316fb965fd6e49c2945&#34;&gt;うちの社員にももっとやってほしいこと&lt;/h2&gt;
+
+&lt;h3 id=&#34;オープンソース活動にコミットしてほしい:a6843830e7571316fb965fd6e49c2945&#34;&gt;オープンソース活動にコミットしてほしい&lt;/h3&gt;
+
+&lt;h4 id=&#34;金森さんがこれまで参加してきた活動:a6843830e7571316fb965fd6e49c2945&#34;&gt;金森さんがこれまで参加してきた活動&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Test the Web Forwardというテストコードを書くプロジェクト&lt;br /&gt;
+HTML5の新しい機能が各ブラウザで実装されているかを確認するテストを書く&lt;br /&gt;
+&lt;a href=&#34;http://testthewebforward.org/&#34;&gt;http://testthewebforward.org/&lt;/a&gt;&lt;br /&gt;
+w3cの公式リポジトリにコミットされるので、Webの発展に貢献しているという実感が持てる&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;海外の技術記事の英語の翻訳とかもやっていた
+HTML5Rocks の英語記事の日本語翻訳
+&lt;a href=&#34;http://www.html5rocks.com/ja/tutorials/speed/unnecessary-paints/&#34;&gt;http://www.html5rocks.com/ja/tutorials/speed/unnecessary-paints/&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コードでコミットするのは難しい人におすすめ&lt;/li&gt;
+&lt;li&gt;翻訳の際に内容をよく理解することができる&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;いきなりコードを書いてプルリク等するのが難しい場合、使っていて見つけた不具合をissueにあげるなどからでも始めてみると良い&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;勉強だけでなく、業務の合間の気分転換としてもやっていた&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;業務だけになると自分の好きな分野についての勉強や自己研鑽がしにくくななるので-業務外の活動も積極的に行った方が良いと思う:a6843830e7571316fb965fd6e49c2945&#34;&gt;業務だけになると自分の好きな分野についての勉強や自己研鑽がしにくくななるので、業務外の活動も積極的に行った方が良いと思う&lt;/h4&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Netcom Developer&#39;s Backing #8のまとめ</title>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20151106/</link>
+      <pubDate>Mon, 16 Nov 2015 00:06:50 +0900</pubDate>
+      
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20151106/</guid>
+      <description>
+
+&lt;p&gt;11/06（金）にNetcom Developer&amp;rsquo;s Backing #8を行いました。&lt;/p&gt;
+
+&lt;h1 id=&#34;グッドデザインエキシビション2015の情報共有-高井:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;グッドデザインエキシビション2015の情報共有：高井&lt;/h1&gt;
+
+&lt;p&gt;グッドデザインエキシビション2015を見てきたので、スマフォアプリやWeb関連のプロダクトで面白そうなのを紹介しました。
+去年までと比べて、IOTっぽいプロダクトやスマフォアプリと連携したプロダクトがぐっと増えた印象でした。
+また、大賞や次点のプロダクトなどが創業間もないベンチャー企業だったのも、時代を反映してるように感じました。&lt;/p&gt;
+
+&lt;h2 id=&#34;大賞-特別賞など:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;大賞、特別賞など&lt;/h2&gt;
+
+&lt;h3 id=&#34;大賞-whill-whill:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;大賞：WHILL（WHILL）&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G060566_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+* 電動車椅子
+* 車いすユーザーの人もそうでない人も乗ることができる「
+パーソナルモビリティ」
+* マウスコントロール、シートスライドなどのユニバーサルデザイン
+* iPhoneのアプリを使って遠隔操作や、速度設定、鍵機能などの機能を実装&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/screen568x568.jpeg&#34; alt=&#34;img&#34; /&gt;&lt;img src=&#34;img/screen568x568-2.jpeg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;次点-hackberry-exiii:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;次点：HACKberry（exiii）&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G020160_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+* 電動義手
+* 3Dプリンタを使い製造コストを抑えた
+* 設計データをオープンソースとして公開
+* 家庭用３Dプリンターで作成可能&lt;/p&gt;
+
+&lt;h3 id=&#34;金賞-未来づくりデザイン賞:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;金賞、未来づくりデザイン賞&lt;/h3&gt;
+
+&lt;h4 id=&#34;mesh-スマートdiyプラットフォーム-ソニー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;MESH：スマートDIYプラットフォーム（ソニー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G121141_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;kocri-ハイブリッド黒板アプリ-サカワ-カヤック:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Kocri：ハイブリッド黒板アプリ（サカワ、カヤック）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G121134_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+&lt;img src=&#34;img/15G121134_03_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;freee-会社設立ソフト-freee:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;freee：会社設立ソフト（freee）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G121150_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;勉強サプリ-小-中学生向け学習サービス-リクルートマーケティングパートナーズ:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;勉強サプリ：小・中学生向け学習サービス（リクルートマーケティングパートナーズ）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G121144_02_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;olympus-opc-hack-make-project-オープンイノベーション活動-オリンパス:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;OLYMPUS OPC Hack &amp;amp; Make Project：オープンイノベーション活動（オリンパス）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G131207_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;クラウドワークス-クラウドワークス:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;クラウドワークス（クラウドワークス）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/screen322x572.jpeg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;iotっぽいプロダクトが増えていた:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;IOTっぽいプロダクトが増えていた&lt;/h2&gt;
+
+&lt;h4 id=&#34;キュリオスマートロック-qrio:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;キュリオスマートロック（Qrio）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G050539_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;br /&gt;
+&lt;img src=&#34;img/smart.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;スマートロックロボット-akerun-フォトシンス:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;スマートロックロボット Akerun（フォトシンス）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G050540_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;secual-secual:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Secual（Secual）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G040293_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+&lt;img src=&#34;img/detail_1079_apli_gazou_20150817.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;シンフォニックライトスピーカー-ソニー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;シンフォニックライトスピーカー（ソニー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G040307_03_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;スマートスポーツデバイス-アプリ-smart-b-trainer-ソニー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;スマートスポーツデバイス＆アプリ Smart B-Trainer™（ソニー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G121139_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;bocco-ユカイ工学:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;BOCCO（ユカイ工学）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G121143_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;br /&gt;
+&lt;img src=&#34;img/704b2196fb7cf29d4ae9f267adf41b3b.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;デジタルフォトアルバム-おもいでばこ-バッファロー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;デジタルフォトアルバム おもいでばこ（バッファロー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/15G040302_02_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;その他アプリ-web関連で気になったプロダクト:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;その他アプリ、Web関連で気になったプロダクト&lt;/h2&gt;
+
+&lt;h4 id=&#34;prott-グッドパッチ:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Prott（グッドパッチ）&lt;/h4&gt;
+
+&lt;p&gt;アプリのプロトタイピングのためのアプリ
+    &lt;img src=&#34;img/15G131183_02_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;talkie-アットホーム:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;TALKIE（アットホーム）&lt;/h4&gt;
+
+&lt;p&gt;新築分譲マンション検索アプリ
+  &lt;img src=&#34;img/15G121130_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;airウェイト-リクルートライフスタイル:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Airウェイト（リクルートライフスタイル）&lt;/h4&gt;
+
+&lt;p&gt;お店の順番受付表をデジタルに管理できるアプリ
+  &lt;img src=&#34;img/15G131176_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Netcom Developer&#39;s Backing #7のまとめ</title>

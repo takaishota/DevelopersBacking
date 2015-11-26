@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Netcom Developer&#39;s Backing</title>
+    <link>http://localhost:1313/DevelopersBacking/tags/docker/</link>
+    <description>Recent content in Docker on Netcom Developer&#39;s Backing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 26 Oct 2015 00:06:50 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/DevelopersBacking/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Netcom Developer&#39;s Backing #8のまとめ</title>
+      <link>http://localhost:1313/DevelopersBacking/post/20151106/</link>
+      <pubDate>Mon, 26 Oct 2015 00:06:50 +0900</pubDate>
+      
+      <guid>http://localhost:1313/DevelopersBacking/post/20151106/</guid>
+      <description>
+
+&lt;p&gt;11/06（金）にNetcom Developer&amp;rsquo;s Backing #8を行いました。&lt;/p&gt;
+
+&lt;h1 id=&#34;グッドデザインエキシビション2015の情報共有-高井:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;グッドデザインエキシビション2015の情報共有：高井&lt;/h1&gt;
+
+&lt;p&gt;グッドデザインエキシビション2015を見てきたので、スマフォアプリやWeb関連のプロダクトで面白そうなのを紹介しました。
+去年までと比べて、IOTっぽいプロダクトやスマフォアプリと連携したプロダクトがぐっと増えた印象でした。
+また、大賞や次点のプロダクトなどが創業間もないベンチャーだったのも、時代を反映してるように感じました。&lt;/p&gt;
+
+&lt;h2 id=&#34;大賞-特別賞など:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;大賞、特別賞など&lt;/h2&gt;
+
+&lt;h3 id=&#34;大賞-whill-whill:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;大賞：WHILL（WHILL）&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G060566_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+* 電動車椅子
+* 車いすユーザーの人もそうでない人も乗ることができる「
+パーソナルモビリティ」
+* マウスコントロール、シートスライドなどのユニバーサルデザイン
+* iPhoneのアプリを使って遠隔操作や、速度設定、鍵機能などの機能を実装&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/screen568x568.jpeg&#34; alt=&#34;img&#34; /&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/screen568x568-2.jpeg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;次点-hackberry-exiii:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;次点：HACKberry（exiii）&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G020160_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+* 電動義手
+* 3Dプリンタを使い製造コストを抑えた
+* 設計データをオープンソースとして公開
+* 家庭用３Dプリンターで作成可能&lt;/p&gt;
+
+&lt;h3 id=&#34;金賞-未来づくりデザイン賞:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;金賞、未来づくりデザイン賞&lt;/h3&gt;
+
+&lt;h4 id=&#34;mesh-スマートdiyプラットフォーム-ソニー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;MESH：スマートDIYプラットフォーム（ソニー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121141_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;kocri-ハイブリッド黒板アプリ-サカワ-カヤック:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Kocri：ハイブリッド黒板アプリ（サカワ、カヤック）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121134_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121134_03_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;freee-会社設立ソフト-freee:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;freee：会社設立ソフト（freee）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121150_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;勉強サプリ-小-中学生向け学習サービス-リクルートマーケティングパートナーズ:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;勉強サプリ：小・中学生向け学習サービス（リクルートマーケティングパートナーズ）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121144_02_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;olympus-opc-hack-make-project-オープンイノベーション活動-オリンパス:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;OLYMPUS OPC Hack &amp;amp; Make Project：オープンイノベーション活動（オリンパス）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G131207_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;クラウドワークス-クラウドワークス:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;クラウドワークス（クラウドワークス）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/screen322x572.jpeg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;iotっぽいプロダクトが増えていた:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;IOTっぽいプロダクトが増えていた&lt;/h2&gt;
+
+&lt;h4 id=&#34;キュリオスマートロック-qrio:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;キュリオスマートロック（Qrio）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G050539_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;br /&gt;
+&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/smart.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;スマートロックロボット-akerun-フォトシンス:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;スマートロックロボット Akerun（フォトシンス）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G050540_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;secual-secual:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Secual（Secual）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G040293_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;
+&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/detail_1079_apli_gazou_20150817.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;シンフォニックライトスピーカー-ソニー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;シンフォニックライトスピーカー（ソニー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G040307_03_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;スマートスポーツデバイス-アプリ-smart-b-trainer-ソニー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;スマートスポーツデバイス＆アプリ Smart B-Trainer™（ソニー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121139_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;bocco-ユカイ工学:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;BOCCO（ユカイ工学）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121143_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;br /&gt;
+&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/704b2196fb7cf29d4ae9f267adf41b3b.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;デジタルフォトアルバム-おもいでばこ-バッファロー:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;デジタルフォトアルバム おもいでばこ（バッファロー）&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G040302_02_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;その他アプリ-web関連で気になったプロダクト:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;その他アプリ、Web関連で気になったプロダクト&lt;/h2&gt;
+
+&lt;h4 id=&#34;prott-グッドパッチ:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Prott（グッドパッチ）&lt;/h4&gt;
+
+&lt;p&gt;アプリのプロトタイピングのためのアプリ
+    &lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G131183_02_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;talkie-アットホーム:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;TALKIE（アットホーム）&lt;/h4&gt;
+
+&lt;p&gt;新築分譲マンション検索アプリ
+  &lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G121130_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;airウェイト-リクルートライフスタイル:65f7732f4f701e5571a4f953dc1eebe1&#34;&gt;Airウェイト（リクルートライフスタイル）&lt;/h4&gt;
+
+&lt;p&gt;お店の順番受付表をデジタルに管理できるアプリ
+  &lt;img src=&#34;http://localhost:1313/DevelopersBacking/Users/takaishota/Desktop/imgs/15G131176_01_880x660.jpg&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -30,12 +30,14 @@
 
 &lt;p&gt;公式webページ：&lt;a href=&#34;https://jins-meme.com/ja/&#34;&gt;https://jins-meme.com/ja/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;センサとBlueToothを内蔵したメガネ。
-以下のセンサーで目の動きや頭の動きや傾きなどがbluetooth経由で取得できます。
-
-* 3点式眼電位センサー
-* 3軸加速度センサー
-* 3軸ジャイロセンサー&lt;/p&gt;
+&lt;p&gt;センサとBlueToothを内蔵したメガネ。&lt;br /&gt;
+以下のセンサーで目の動きや頭の動きや傾きなどがbluetooth経由で取得できます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;3点式眼電位センサー&lt;/li&gt;
+&lt;li&gt;3軸加速度センサー&lt;/li&gt;
+&lt;li&gt;3軸ジャイロセンサー&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;開発方法:138303b3945a90987eac0089729501b4&#34;&gt;開発方法&lt;/h2&gt;
 

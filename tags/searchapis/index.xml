@@ -36,13 +36,13 @@
 &lt;h4 id=&#34;nsuseractivity-ユーザ端末内-他の端末にも:dc23a03c468a971622ed612b653b3171&#34;&gt;NSUserActivity（ユーザ端末内/他の端末にも）&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;ユーザーがアプリ内で閲覧したコンテンツ（のみ）をindexして、SpotlightやSafariの検索バーから検索することができるようにする機能&lt;/li&gt;
+&lt;li&gt;ユーザーがアプリ内で閲覧したコンテンツをindexして、SpotlightやSafariの検索バーから検索することができるようにする機能&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;デバイス内だけでなく、アプリをインストールしていないユーザーのSpotlightやSafariの検索バーにも、コンテンツを表示することができる&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;デバイス内だけでなく、アプリをインストールしていないユーザーのSpotlightやSafariの検索バーにも、コンテンツを表示することができる（インストールされている複数端末から検索、表示される数が多い場合らしいが表示される条件の詳細は不明）&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;実装&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;// NSUserActivity
+&lt;pre&gt;&lt;code&gt;// NSUserActivity
 var activity:NSUserActivity = NSUserActivity(activityType: “com.yummly.browseRecipe“)
 
 
@@ -54,16 +54,16 @@ activity.becomeCurrent()
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Spotlightでタップ&lt;br /&gt;
-appDelegateでapplication:continueUserActivity:restorationHandler:メソッドが呼ばれる&lt;br /&gt;
--&amp;gt; このとき、何をするか、
--&amp;gt; WWDC2015のスライドには
-// Restore state for userActivity and userInfo
-とある。（まだよくわかってない）&lt;/p&gt;&lt;/li&gt;
+appDelegateでapplication:continueUserActivity:restorationHandler:メソッドが呼ばれるので引数からwebPageURLを取得し、アプリ内の対応する画面を表示する処理を記載する&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;li&gt;&lt;p&gt;Cloud Indexへの登録
+&lt;p&gt;※ ログイン画面などを挟まずに対応する画面を表示できるようにしないといけないらしい&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cloud Indexへの登録
 eligibleForPublicIndexingをYESにする&lt;br /&gt;
--&amp;gt; キーワードに対して人気が高いアプリと認識されると、アプリをインストールしていないユーザにも検索結果を表示できる
-&lt;img src=&#34;img/20150618190808.png&#34; alt=&#34;wwdc&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+-&amp;gt; キーワードに対して人気が高いアプリと認識されると、アプリをインストールしていないユーザにも検索結果を表示できる&lt;br /&gt;
+&lt;img src=&#34;img/20150618190808.png&#34; alt=&#34;wwdc&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;corespotlight-ユーザ端末内のみ:dc23a03c468a971622ed612b653b3171&#34;&gt;CoreSpotlight（ユーザ端末内のみ）&lt;/h4&gt;
@@ -76,16 +76,14 @@ eligibleForPublicIndexingをYESにする&lt;br /&gt;
 -&amp;gt; WWDCのスライドでは
    CSSearchableIndexを add, update, and deleteできる
    Used by Messages, Mail, Calendar, and Notes&lt;br /&gt;
-   ということだが、、、
--&amp;gt; もう少し調べてみる
-  &lt;a href=&#34;https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content&#34;&gt;https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content&lt;/a&gt;&lt;/p&gt;
+   ということ&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/20150618190711-1.png&#34; alt=&#34;wwdc&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;実装&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  // Core Spotlight
+&lt;pre&gt;&lt;code&gt;  // Core Spotlight
   let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeImage as String)
   attributeSet.title = &amp;quot;iOS-9-Sampler_CoreSpotlight&amp;quot;
   attributeSet.contentDescription = &amp;quot;iOS-9-Sampler is a code example collection for new features of iOS 9.&amp;quot;
@@ -114,19 +112,94 @@ eligibleForPublicIndexingをYESにする&lt;br /&gt;
 &lt;h4 id=&#34;web-markup:dc23a03c468a971622ed612b653b3171&#34;&gt;Web Markup&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Universal Linkやメタ情報をAppleのクロールがインデックスできる仕様で記載する&lt;/li&gt;
-&lt;li&gt;Smart App Banners&lt;/li&gt;
+&lt;li&gt;Appleがwebサイトをインデックスできるかどうか確認する（App Search API validation toolでデータを取得できるか）&lt;/li&gt;
+&lt;li&gt;WebサイトからAppへディープリンクするためのマークアップを加える（Smart App Banner, Universal Links）&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Open Graph または schema.org で定義されているフォーマットで詳細情報を追加する&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;構造化マークアップを加えることで検索結果をリッチにする（meta情報の付加）&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;チェックツール
 &lt;a href=&#34;https://search.developer.apple.com/appsearch-validation-tool/&#34;&gt;https://search.developer.apple.com/appsearch-validation-tool/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;具体的な実装はこちらの記事を参考にすると良さそうです-あと-ios-9-sampler:dc23a03c468a971622ed612b653b3171&#34;&gt;具体的な実装はこちらの記事を参考にすると良さそうです。あと、iOS-9-Sampler。&lt;/h3&gt;
+&lt;h3 id=&#34;universal-links対応概要:dc23a03c468a971622ed612b653b3171&#34;&gt;Universal Links対応概要&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight&#34;&gt;http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight&lt;/a&gt;
-&lt;a href=&#34;http://ameblo.jp/ca-1pixel/entry-12047222782.html&#34;&gt;http://ameblo.jp/ca-1pixel/entry-12047222782.html&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Webサイト
+
+&lt;ul&gt;
+&lt;li&gt;SSL対応&lt;/li&gt;
+&lt;li&gt;署名したJSONファイル配置&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;iOSアプリ
+
+&lt;ul&gt;
+&lt;li&gt;Capabilities設定&lt;/li&gt;
+&lt;li&gt;AppDelegateでハンドリング&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;webサイトでの実装内容詳細:dc23a03c468a971622ed612b653b3171&#34;&gt;Webサイトでの実装内容詳細&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;apple-app-site-associationファイル（JSON）の作成
+
+&lt;ul&gt;
+&lt;li&gt;app-id: team ID + bundle ID&lt;/li&gt;
+&lt;li&gt;paths: アプリで対応しているWebサイトのパス配列&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;applinks&amp;quot;: {
+        &amp;quot;apps&amp;quot;: [],
+        &amp;quot;details&amp;quot;: [
+            {
+                &amp;quot;appID&amp;quot;: &amp;quot;（TeamID）.（bundle ID）&amp;quot;,
+                &amp;quot;paths&amp;quot;: [ &amp;quot;/dir1/*&amp;quot;, &amp;quot;/dir2/*&amp;quot;]
+            }
+        ]
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※ 拡張子は不要&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;apple-app-site-associationファイルをSSL証明書で署名&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;openssl smime -sign -nodetach -in unsigned.json -out apple-app-site-association -outform DER -inkey private-key.pem -signer certificate.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Webサーバーのrootディレクトリにアップロード(https://（ホスト）/apple-app-site-association)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;iosアプリでの実装内容詳細:dc23a03c468a971622ed612b653b3171&#34;&gt;iOSアプリでの実装内容詳細&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Capabilities設定&lt;br /&gt;
+プロジェクト設定 &amp;gt; CapabilitiesのAssociated DomainsをONにして、Domainsに&amp;rdquo;applinks:ドメイン名&amp;rdquo;を追加&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;applinks:(ドメイン名)
+applinks:www.（ドメイン名）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AppDelegateでハンドリング
+
+&lt;ul&gt;
+&lt;li&gt;application:continueUserActivity:restorationHandler:でNSUserActivityのwebpageURLを見て、対応するViewを表示する&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;参考：
+App Search Programming Guide
+* Mark Up Web Content
+&lt;a href=&#34;https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/WebContent.html#//apple_ref/doc/uid/TP40016308-CH8-SW1&#34;&gt;https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/WebContent.html#//apple_ref/doc/uid/TP40016308-CH8-SW1&lt;/a&gt;
+* Support Universal Links
+&lt;a href=&#34;https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html&#34;&gt;https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;他に気になるのは:dc23a03c468a971622ed612b653b3171&#34;&gt;他に気になるのは&lt;/h2&gt;
 
@@ -144,9 +217,12 @@ eligibleForPublicIndexingをYESにする&lt;br /&gt;
 
 &lt;h2 id=&#34;恒例のios-9-sampler:dc23a03c468a971622ed612b653b3171&#34;&gt;恒例のiOS-9-Sampler&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/shu223/iOS-9-Sampler&#34;&gt;https://github.com/shu223/iOS-9-Sampler&lt;/a&gt;
-* Text Detector
-* UIStackView&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/shu223/iOS-9-Sampler&#34;&gt;https://github.com/shu223/iOS-9-Sampler&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Text Detector&lt;/li&gt;
+&lt;li&gt;UIStackView&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;hr /&gt;
 

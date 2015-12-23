@@ -49,13 +49,13 @@
 <h4 id="nsuseractivity-ユーザ端末内-他の端末にも:dc23a03c468a971622ed612b653b3171">NSUserActivity（ユーザ端末内/他の端末にも）</h4>
 
 <ul>
-<li>ユーザーがアプリ内で閲覧したコンテンツ（のみ）をindexして、SpotlightやSafariの検索バーから検索することができるようにする機能</li>
+<li>ユーザーがアプリ内で閲覧したコンテンツをindexして、SpotlightやSafariの検索バーから検索することができるようにする機能</li>
 
-<li><p>デバイス内だけでなく、アプリをインストールしていないユーザーのSpotlightやSafariの検索バーにも、コンテンツを表示することができる</p></li>
+<li><p>デバイス内だけでなく、アプリをインストールしていないユーザーのSpotlightやSafariの検索バーにも、コンテンツを表示することができる（インストールされている複数端末から検索、表示される数が多い場合らしいが表示される条件の詳細は不明）</p></li>
 
 <li><p>実装</p>
 
-<pre><code class="language-ruby">// NSUserActivity
+<pre><code>// NSUserActivity
 var activity:NSUserActivity = NSUserActivity(activityType: “com.yummly.browseRecipe“)
 
 
@@ -67,16 +67,16 @@ activity.becomeCurrent()
 </code></pre></li>
 
 <li><p>Spotlightでタップ<br />
-appDelegateでapplication:continueUserActivity:restorationHandler:メソッドが呼ばれる<br />
--&gt; このとき、何をするか、
--&gt; WWDC2015のスライドには
-// Restore state for userActivity and userInfo
-とある。（まだよくわかってない）</p></li>
+appDelegateでapplication:continueUserActivity:restorationHandler:メソッドが呼ばれるので引数からwebPageURLを取得し、アプリ内の対応する画面を表示する処理を記載する</p></li>
+</ul>
 
-<li><p>Cloud Indexへの登録
+<p>※ ログイン画面などを挟まずに対応する画面を表示できるようにしないといけないらしい</p>
+
+<ul>
+<li>Cloud Indexへの登録
 eligibleForPublicIndexingをYESにする<br />
--&gt; キーワードに対して人気が高いアプリと認識されると、アプリをインストールしていないユーザにも検索結果を表示できる
-<img src="img/20150618190808.png" alt="wwdc" /></p></li>
+-&gt; キーワードに対して人気が高いアプリと認識されると、アプリをインストールしていないユーザにも検索結果を表示できる<br />
+<img src="img/20150618190808.png" alt="wwdc" /></li>
 </ul>
 
 <h4 id="corespotlight-ユーザ端末内のみ:dc23a03c468a971622ed612b653b3171">CoreSpotlight（ユーザ端末内のみ）</h4>
@@ -89,16 +89,14 @@ eligibleForPublicIndexingをYESにする<br />
 -&gt; WWDCのスライドでは
    CSSearchableIndexを add, update, and deleteできる
    Used by Messages, Mail, Calendar, and Notes<br />
-   ということだが、、、
--&gt; もう少し調べてみる
-  <a href="https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content">https://www.hackingwithswift.com/read/32/4/how-to-add-core-spotlight-to-index-your-app-content</a></p>
+   ということ</p>
 
 <p><img src="img/20150618190711-1.png" alt="wwdc" /></p></li>
 
 <li><p>実装</p></li>
 </ul>
 
-<pre><code class="language-ruby">  // Core Spotlight
+<pre><code>  // Core Spotlight
   let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeImage as String)
   attributeSet.title = &quot;iOS-9-Sampler_CoreSpotlight&quot;
   attributeSet.contentDescription = &quot;iOS-9-Sampler is a code example collection for new features of iOS 9.&quot;
@@ -127,19 +125,94 @@ eligibleForPublicIndexingをYESにする<br />
 <h4 id="web-markup:dc23a03c468a971622ed612b653b3171">Web Markup</h4>
 
 <ul>
-<li>Universal Linkやメタ情報をAppleのクロールがインデックスできる仕様で記載する</li>
-<li>Smart App Banners</li>
+<li>Appleがwebサイトをインデックスできるかどうか確認する（App Search API validation toolでデータを取得できるか）</li>
+<li>WebサイトからAppへディープリンクするためのマークアップを加える（Smart App Banner, Universal Links）</li>
 
-<li><p>Open Graph または schema.org で定義されているフォーマットで詳細情報を追加する</p></li>
+<li><p>構造化マークアップを加えることで検索結果をリッチにする（meta情報の付加）</p></li>
 
 <li><p>チェックツール
 <a href="https://search.developer.apple.com/appsearch-validation-tool/">https://search.developer.apple.com/appsearch-validation-tool/</a></p></li>
 </ul>
 
-<h3 id="具体的な実装はこちらの記事を参考にすると良さそうです-あと-ios-9-sampler:dc23a03c468a971622ed612b653b3171">具体的な実装はこちらの記事を参考にすると良さそうです。あと、iOS-9-Sampler。</h3>
+<h3 id="universal-links対応概要:dc23a03c468a971622ed612b653b3171">Universal Links対応概要</h3>
 
-<p><a href="http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight">http://nsblogger.hatenablog.com/entry/2015/06/18/ios9_core_spotlight</a>
-<a href="http://ameblo.jp/ca-1pixel/entry-12047222782.html">http://ameblo.jp/ca-1pixel/entry-12047222782.html</a></p>
+<ul>
+<li>Webサイト
+
+<ul>
+<li>SSL対応</li>
+<li>署名したJSONファイル配置</li>
+</ul></li>
+<li>iOSアプリ
+
+<ul>
+<li>Capabilities設定</li>
+<li>AppDelegateでハンドリング</li>
+</ul></li>
+</ul>
+
+<h3 id="webサイトでの実装内容詳細:dc23a03c468a971622ed612b653b3171">Webサイトでの実装内容詳細</h3>
+
+<ul>
+<li>apple-app-site-associationファイル（JSON）の作成
+
+<ul>
+<li>app-id: team ID + bundle ID</li>
+<li>paths: アプリで対応しているWebサイトのパス配列</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-json">{
+    &quot;applinks&quot;: {
+        &quot;apps&quot;: [],
+        &quot;details&quot;: [
+            {
+                &quot;appID&quot;: &quot;（TeamID）.（bundle ID）&quot;,
+                &quot;paths&quot;: [ &quot;/dir1/*&quot;, &quot;/dir2/*&quot;]
+            }
+        ]
+    }
+}
+</code></pre>
+
+<p>※ 拡張子は不要</p>
+
+<ul>
+<li>apple-app-site-associationファイルをSSL証明書で署名</li>
+</ul>
+
+<pre><code>openssl smime -sign -nodetach -in unsigned.json -out apple-app-site-association -outform DER -inkey private-key.pem -signer certificate.pem
+</code></pre>
+
+<ul>
+<li>Webサーバーのrootディレクトリにアップロード(https://（ホスト）/apple-app-site-association)</li>
+</ul>
+
+<h3 id="iosアプリでの実装内容詳細:dc23a03c468a971622ed612b653b3171">iOSアプリでの実装内容詳細</h3>
+
+<ul>
+<li>Capabilities設定<br />
+プロジェクト設定 &gt; CapabilitiesのAssociated DomainsをONにして、Domainsに&rdquo;applinks:ドメイン名&rdquo;を追加</li>
+</ul>
+
+<pre><code>applinks:(ドメイン名)
+applinks:www.（ドメイン名）
+</code></pre>
+
+<ul>
+<li>AppDelegateでハンドリング
+
+<ul>
+<li>application:continueUserActivity:restorationHandler:でNSUserActivityのwebpageURLを見て、対応するViewを表示する<br /></li>
+</ul></li>
+</ul>
+
+<p>参考：
+App Search Programming Guide
+* Mark Up Web Content
+<a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/WebContent.html#//apple_ref/doc/uid/TP40016308-CH8-SW1">https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/WebContent.html#//apple_ref/doc/uid/TP40016308-CH8-SW1</a>
+* Support Universal Links
+<a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html">https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html</a></p>
 
 <h2 id="他に気になるのは:dc23a03c468a971622ed612b653b3171">他に気になるのは</h2>
 
@@ -157,9 +230,12 @@ eligibleForPublicIndexingをYESにする<br />
 
 <h2 id="恒例のios-9-sampler:dc23a03c468a971622ed612b653b3171">恒例のiOS-9-Sampler</h2>
 
-<p><a href="https://github.com/shu223/iOS-9-Sampler">https://github.com/shu223/iOS-9-Sampler</a>
-* Text Detector
-* UIStackView</p>
+<p><a href="https://github.com/shu223/iOS-9-Sampler">https://github.com/shu223/iOS-9-Sampler</a></p>
+
+<ul>
+<li>Text Detector</li>
+<li>UIStackView</li>
+</ul>
 
 <hr />
 

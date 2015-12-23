@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/normalize.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/skeleton.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/custom.css">
+<link rel="alternate" href="/DevelopersBacking/index.xml" type="application/rss+xml" title="Netcom Developer&#39;s Backing">
+<title>Netcom Developer&#39;s Backing #10のまとめ - Netcom Developer&#39;s Backing</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		<div class="header-logo">
+			<a href="/DevelopersBacking/"><img src="/DevelopersBacking/images/logo.png" width="60" height="60"></a>
+		</div>
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="http://schema.org/BlogPosting">
+			<h1 class="entry-title" itemprop="headline">Netcom Developer&#39;s Backing #10のまとめ</h1>
+			<span class="entry-meta"><time itemprop="datePublished" datetime="2015-12-18">December 18, 2015</time></span>
+			<section itemprop="entry-text">
+				
+
+<p>12/18（金）にNetcom Developer&rsquo;s Backing #10を行いました。</p>
+
+<h1 id="jins-memeを買ったのでご紹介とデモ-高井:138303b3945a90987eac0089729501b4">JINS MEMEを買ったのでご紹介とデモ：高井</h1>
+
+<p>JINS MEME Advent Calendar 2015がありますのでそちらにいろいろ情報があります。<br />
+<a href="http://qiita.com/advent-calendar/2015/jinsmeme">http://qiita.com/advent-calendar/2015/jinsmeme</a></p>
+
+<h2 id="概要:138303b3945a90987eac0089729501b4">概要</h2>
+
+<p><img src="./img/32700424-9b96-4a0b-9211-e35e478927de.png" alt="img" /></p>
+
+<p>公式webページ：<a href="https://jins-meme.com/ja/">https://jins-meme.com/ja/</a></p>
+
+<p>センサとBlueToothを内蔵したメガネ。
+以下のセンサーで目の動きや頭の動きや傾きなどがbluetooth経由で取得できます。
+
+* 3点式眼電位センサー
+* 3軸加速度センサー
+* 3軸ジャイロセンサー</p>
+
+<h2 id="開発方法:138303b3945a90987eac0089729501b4">開発方法</h2>
+
+<p>iOS用のSDKが公開されています（SDKとサンプルアプリはObj-Cです）。<br />
+※ Android向けSDKは2016年１月提供予定だそうです。</p>
+
+<p>開発者用アカウントを取得してSDKをダウンロードし、<br />
+アプリ登録をするとアプリID、アプリSecretキーが発行される。<br />
+これをAppDelegateで設定するとSDKを動かせます。<br />
+SDKをダウンロードするとサンプルソースがあるので、そちらから触ってみると良いと思います。</p>
+
+<p>DEVELOPERSサイト<br />
+<a href="https://developers.jins.com/ja/">https://developers.jins.com/ja/</a></p>
+
+<h2 id="取得できるデータ:138303b3945a90987eac0089729501b4">取得できるデータ</h2>
+
+<p>リアルタイムモード（β版の時点ではスタンダードモードというのも利用できて、一定期間の眠気や集中度なども取得できた）</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">分類</th>
+<th align="left">名前</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">視線</td>
+<td align="left">eyeMoveUp</td>
+<td align="left">視線が上に動いたかどうかを示す整数値<br>0：なし<br>1：移動検知ー小<br>2：移動検知ー中<br>3：逆移動検知ー大<br>4：逆移動検知ー特大</td>
+</tr>
+
+<tr>
+<td align="left">視線</td>
+<td align="left">eyeMoveDown</td>
+<td align="left">視線が下に動いたかどうかを示す整数値<br>0：なし<br>1：移動検知ー小<br>2：移動検知ー中<br>3：逆移動検知ー大<br>4：逆移動検知ー特大</td>
+</tr>
+
+<tr>
+<td align="left">視線</td>
+<td align="left">eyeMoveLeft</td>
+<td align="left">視線が左に動いたかどうかを示す整数値<br>0：なし<br>1：移動検知ー小<br>2：移動検知ー中<br>3：逆移動検知ー大<br>4：逆移動検知ー特大</td>
+</tr>
+
+<tr>
+<td align="left">視線</td>
+<td align="left">eyeMoveRight</td>
+<td align="left">視線が右に動いたかどうかを示す整数値<br><br>0：なし<br>1：移動検知ー小<br>2：移動検知ー中<br>3：逆移動検知ー大<br>4：逆移動検知ー特大</td>
+</tr>
+
+<tr>
+<td align="left">まばたき</td>
+<td align="left">blinkSpeed</td>
+<td align="left">まばたきのスピード（Millisecond）</td>
+</tr>
+
+<tr>
+<td align="left">まばたき</td>
+<td align="left">blinkStrength</td>
+<td align="left">まばたきの強さ (一般的に、50～200の間におさまります。)</td>
+</tr>
+
+<tr>
+<td align="left">歩行</td>
+<td align="left">walking</td>
+<td align="left">かかとを地面についたかどうか。それを検出するとtrueになる</td>
+</tr>
+
+<tr>
+<td align="left">姿勢</td>
+<td align="left">roll</td>
+<td align="left">姿勢を表す角度のうちのロール要素を示す度</td>
+</tr>
+
+<tr>
+<td align="left">姿勢</td>
+<td align="left">pitch</td>
+<td align="left">姿勢を表す角度のうちのピッチ要素を示す度</td>
+</tr>
+
+<tr>
+<td align="left">姿勢</td>
+<td align="left">yaw</td>
+<td align="left">姿勢を表す角度のうちのヨー要素を示す度</td>
+</tr>
+
+<tr>
+<td align="left">加速度</td>
+<td align="left">accX</td>
+<td align="left">加速度のX軸の値。-128 ~ 127 の1byteの整数値</td>
+</tr>
+
+<tr>
+<td align="left">加速度</td>
+<td align="left">accY</td>
+<td align="left">加速度のY軸の値。-128 ~ 127 の1byteの整数値</td>
+</tr>
+
+<tr>
+<td align="left">加速度</td>
+<td align="left">accZ</td>
+<td align="left">加速度のZ軸の値。-128 ~ 127 の1byteの整数値</td>
+</tr>
+
+<tr>
+<td align="left">着脱</td>
+<td align="left">fitError</td>
+<td align="left">JINS MEMEがきちんと装着されているかどうかを示す整数値。<br><br>0：エラーなし<br>1：左鼻パッドエラー<br>2：右鼻パッドエラー<br>3：ブリッジエラー</td>
+</tr>
+
+<tr>
+<td align="left">バッテリー</td>
+<td align="left">powerLeft</td>
+<td align="left">電池残量を表す整数値<br><br>0：充電中<br>1：低電圧<br>2：Lv2<br>3：Lv3 <br>4：Lv4<br>5：満充電</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="公式アプリ:138303b3945a90987eac0089729501b4">公式アプリ</h2>
+
+<p>3つリリースされている
+* JINS MEME<br />
+センサーで得たデータを解析し、集中・活力・落ち着きの3つの指標で精神状態を判定。
+* JINS MEME RUN  　正しいランニングフォームで走れているかを測定するアプリ。加速度センサー、ジャイロセンサーを使用。
+* JINS MEME DRIVE<br />
+  安全運転をサポートするアプリ。眼球の動きや瞬きを計測して、眠気を検出。</p>
+
+<h2 id="githubで公開されている公式以外のサンプル:138303b3945a90987eac0089729501b4">Githubで公開されている公式以外のサンプル</h2>
+
+<ul>
+<li><p>公式サンプルコードをSwiftで書き換えたソース<br />
+<a href="https://github.com/manchan/JinsMeme-Swift-Sample">https://github.com/manchan/JinsMeme-Swift-Sample</a></p></li>
+
+<li><p>アプリ上でセンサデータをグラフ表示するサンプル<br />
+<a href="https://github.com/shoya140/MEMELogger-iOS-developers">https://github.com/shoya140/MEMELogger-iOS-developers</a></p></li>
+
+<li><p>socketioサーバサーバを介してデータをリアルタイムにiOSからmac PCに出力するサンプル   <a href="https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/AutoLockScreen(socketio">https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/AutoLockScreen(socketio</a>)</p></li>
+
+<li><p>xx秒ごとにgoogle spread sheetに投げてデータを出力するサンプル<br />
+<a href="https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/Spreadsheet(POST">https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/Spreadsheet(POST</a>)</p></li>
+
+<li><p>流し目でカメラのシャッターを押すサンプル(gist)<br />
+<a href="https://gist.github.com/manchan/d270366af589034290d5">https://gist.github.com/manchan/d270366af589034290d5</a></p></li>
+</ul>
+
+			</section>
+		</article>
+	</main>
+
+
+	<footer role="contentinfo">
+		<div class="hr"></div>
+		<div class="footer-link">
+			<a href="mailto:takaiashota@gmail.com" target="_blank">Email</a></span>
+			
+			<a href="https://www.facebook.com/shota.takai.9" target="_blank">Facebook</a></span>
+			<a href="https://github.com/takaishota/DevelopersBacking" target="_blank">GitHub</a></span>
+		</div>
+		<div class="copyright">Copyright &copy; takaishota All rights reserved.</div>
+	</footer>
+
+</div>
+
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -6,8 +6,184 @@
     <description>Recent content in Posts on Netcom Developer&#39;s Backing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 27 Nov 2015 00:06:50 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 18 Dec 2015 00:06:50 +0900</lastBuildDate>
     <atom:link href="http://takaishota.github.io/DevelopersBacking/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Netcom Developer&#39;s Backing #10のまとめ</title>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20151218/</link>
+      <pubDate>Fri, 18 Dec 2015 00:06:50 +0900</pubDate>
+      
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20151218/</guid>
+      <description>
+
+&lt;p&gt;12/18（金）にNetcom Developer&amp;rsquo;s Backing #10を行いました。&lt;/p&gt;
+
+&lt;h1 id=&#34;jins-memeを買ったのでご紹介とデモ-高井:138303b3945a90987eac0089729501b4&#34;&gt;JINS MEMEを買ったのでご紹介とデモ：高井&lt;/h1&gt;
+
+&lt;p&gt;JINS MEME Advent Calendar 2015がありますのでそちらにいろいろ情報があります。&lt;br /&gt;
+&lt;a href=&#34;http://qiita.com/advent-calendar/2015/jinsmeme&#34;&gt;http://qiita.com/advent-calendar/2015/jinsmeme&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;概要:138303b3945a90987eac0089729501b4&#34;&gt;概要&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;./img/32700424-9b96-4a0b-9211-e35e478927de.png&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;公式webページ：&lt;a href=&#34;https://jins-meme.com/ja/&#34;&gt;https://jins-meme.com/ja/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;センサとBlueToothを内蔵したメガネ。
+以下のセンサーで目の動きや頭の動きや傾きなどがbluetooth経由で取得できます。
+
+* 3点式眼電位センサー
+* 3軸加速度センサー
+* 3軸ジャイロセンサー&lt;/p&gt;
+
+&lt;h2 id=&#34;開発方法:138303b3945a90987eac0089729501b4&#34;&gt;開発方法&lt;/h2&gt;
+
+&lt;p&gt;iOS用のSDKが公開されています（SDKとサンプルアプリはObj-Cです）。&lt;br /&gt;
+※ Android向けSDKは2016年１月提供予定だそうです。&lt;/p&gt;
+
+&lt;p&gt;開発者用アカウントを取得してSDKをダウンロードし、&lt;br /&gt;
+アプリ登録をするとアプリID、アプリSecretキーが発行される。&lt;br /&gt;
+これをAppDelegateで設定するとSDKを動かせます。&lt;br /&gt;
+SDKをダウンロードするとサンプルソースがあるので、そちらから触ってみると良いと思います。&lt;/p&gt;
+
+&lt;p&gt;DEVELOPERSサイト&lt;br /&gt;
+&lt;a href=&#34;https://developers.jins.com/ja/&#34;&gt;https://developers.jins.com/ja/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;取得できるデータ:138303b3945a90987eac0089729501b4&#34;&gt;取得できるデータ&lt;/h2&gt;
+
+&lt;p&gt;リアルタイムモード（β版の時点ではスタンダードモードというのも利用できて、一定期間の眠気や集中度なども取得できた）&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;分類&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;名前&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;視線&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;eyeMoveUp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;視線が上に動いたかどうかを示す整数値&lt;br&gt;0：なし&lt;br&gt;1：移動検知ー小&lt;br&gt;2：移動検知ー中&lt;br&gt;3：逆移動検知ー大&lt;br&gt;4：逆移動検知ー特大&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;視線&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;eyeMoveDown&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;視線が下に動いたかどうかを示す整数値&lt;br&gt;0：なし&lt;br&gt;1：移動検知ー小&lt;br&gt;2：移動検知ー中&lt;br&gt;3：逆移動検知ー大&lt;br&gt;4：逆移動検知ー特大&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;視線&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;eyeMoveLeft&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;視線が左に動いたかどうかを示す整数値&lt;br&gt;0：なし&lt;br&gt;1：移動検知ー小&lt;br&gt;2：移動検知ー中&lt;br&gt;3：逆移動検知ー大&lt;br&gt;4：逆移動検知ー特大&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;視線&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;eyeMoveRight&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;視線が右に動いたかどうかを示す整数値&lt;br&gt;&lt;br&gt;0：なし&lt;br&gt;1：移動検知ー小&lt;br&gt;2：移動検知ー中&lt;br&gt;3：逆移動検知ー大&lt;br&gt;4：逆移動検知ー特大&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;まばたき&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;blinkSpeed&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;まばたきのスピード（Millisecond）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;まばたき&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;blinkStrength&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;まばたきの強さ (一般的に、50～200の間におさまります。)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;歩行&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;walking&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;かかとを地面についたかどうか。それを検出するとtrueになる&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;姿勢&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;roll&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;姿勢を表す角度のうちのロール要素を示す度&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;姿勢&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;pitch&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;姿勢を表す角度のうちのピッチ要素を示す度&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;姿勢&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;yaw&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;姿勢を表す角度のうちのヨー要素を示す度&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;加速度&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;accX&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;加速度のX軸の値。-128 ~ 127 の1byteの整数値&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;加速度&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;accY&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;加速度のY軸の値。-128 ~ 127 の1byteの整数値&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;加速度&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;accZ&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;加速度のZ軸の値。-128 ~ 127 の1byteの整数値&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;着脱&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;fitError&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;JINS MEMEがきちんと装着されているかどうかを示す整数値。&lt;br&gt;&lt;br&gt;0：エラーなし&lt;br&gt;1：左鼻パッドエラー&lt;br&gt;2：右鼻パッドエラー&lt;br&gt;3：ブリッジエラー&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;バッテリー&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;powerLeft&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;電池残量を表す整数値&lt;br&gt;&lt;br&gt;0：充電中&lt;br&gt;1：低電圧&lt;br&gt;2：Lv2&lt;br&gt;3：Lv3 &lt;br&gt;4：Lv4&lt;br&gt;5：満充電&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;公式アプリ:138303b3945a90987eac0089729501b4&#34;&gt;公式アプリ&lt;/h2&gt;
+
+&lt;p&gt;3つリリースされている
+* JINS MEME&lt;br /&gt;
+センサーで得たデータを解析し、集中・活力・落ち着きの3つの指標で精神状態を判定。
+* JINS MEME RUN  　正しいランニングフォームで走れているかを測定するアプリ。加速度センサー、ジャイロセンサーを使用。
+* JINS MEME DRIVE&lt;br /&gt;
+  安全運転をサポートするアプリ。眼球の動きや瞬きを計測して、眠気を検出。&lt;/p&gt;
+
+&lt;h2 id=&#34;githubで公開されている公式以外のサンプル:138303b3945a90987eac0089729501b4&#34;&gt;Githubで公開されている公式以外のサンプル&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;公式サンプルコードをSwiftで書き換えたソース&lt;br /&gt;
+&lt;a href=&#34;https://github.com/manchan/JinsMeme-Swift-Sample&#34;&gt;https://github.com/manchan/JinsMeme-Swift-Sample&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;アプリ上でセンサデータをグラフ表示するサンプル&lt;br /&gt;
+&lt;a href=&#34;https://github.com/shoya140/MEMELogger-iOS-developers&#34;&gt;https://github.com/shoya140/MEMELogger-iOS-developers&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;socketioサーバサーバを介してデータをリアルタイムにiOSからmac PCに出力するサンプル   &lt;a href=&#34;https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/AutoLockScreen(socketio&#34;&gt;https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/AutoLockScreen(socketio&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;xx秒ごとにgoogle spread sheetに投げてデータを出力するサンプル&lt;br /&gt;
+&lt;a href=&#34;https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/Spreadsheet(POST&#34;&gt;https://github.com/mitolog/JINSMEMESampler/tree/master/JINSMEMESampler/Spreadsheet(POST&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;流し目でカメラのシャッターを押すサンプル(gist)&lt;br /&gt;
+&lt;a href=&#34;https://gist.github.com/manchan/d270366af589034290d5&#34;&gt;https://gist.github.com/manchan/d270366af589034290d5&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Netcom Developer&#39;s Backing #9のまとめ</title>

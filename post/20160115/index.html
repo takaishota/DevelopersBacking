@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/normalize.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/skeleton.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/custom.css">
+<link rel="alternate" href="/DevelopersBacking/index.xml" type="application/rss+xml" title="Netcom Developer&#39;s Backing">
+<title>Netcom Developer&#39;s Backing #11のまとめ - Netcom Developer&#39;s Backing</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		<div class="header-logo">
+			<a href="/DevelopersBacking/"><img src="/DevelopersBacking/images/logo.png" width="60" height="60"></a>
+		</div>
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="http://schema.org/BlogPosting">
+			<h1 class="entry-title" itemprop="headline">Netcom Developer&#39;s Backing #11のまとめ</h1>
+			<span class="entry-meta"><time itemprop="datePublished" datetime="2016-01-15">January 15, 2016</time></span>
+			<section itemprop="entry-text">
+				
+
+<p>1/15（金）にNetcom Developer&rsquo;s Backing #11を行いました。</p>
+
+<h1 id="jins-memeで作ったアプリのデモと最近のウェアラブルデバイスのまとめ-高井:88b79e70a2779f96202b091fc5ef6796">JINS MEMEで作ったアプリのデモと最近のウェアラブルデバイスのまとめ：高井</h1>
+
+<p>前回紹介したJINS MEMEを使ったiOSアプリを作ってみました！
+せっかくなので、JINS MEME Advent Calendar 2015にも投稿しました。
+<a href="http://qiita.com/tstnn/items/0fec0ae6fc57858b7a38">http://qiita.com/tstnn/items/0fec0ae6fc57858b7a38</a></p>
+
+<p>ソース<br />
+<a href="https://github.com/takaishota/MEME-HeadBanging">https://github.com/takaishota/MEME-HeadBanging</a></p>
+
+<p>あと、最近増えてきたウェアラブルデバイスについても調べてみました。</p>
+
+<h2 id="jins-memeとは:88b79e70a2779f96202b091fc5ef6796">JINS MEMEとは</h2>
+
+<p><img src="https://raw.githubusercontent.com/takaishota/DevelopersBacking/gh-pages/post/20151218/img/32700424-9b96-4a0b-9211-e35e478927de.png" alt="meme" /></p>
+
+<p>各種センサとBlueToothを内蔵したメガネです。</p>
+
+<p>以下の3つのセンサーで<br />
+目の動きや頭の動きや傾きなどが<br />
+Bluetooth経由で取得できます。</p>
+
+<ul>
+<li>3点式眼電位センサー</li>
+<li>3軸加速度センサー</li>
+<li>3軸ジャイロセンサー</li>
+</ul>
+
+<p>※ 現在、iOSのみSDKが公開されています</p>
+
+<h2 id="jins-memeで取得できる情報:88b79e70a2779f96202b091fc5ef6796">JINS MEMEで取得できる情報</h2>
+
+<ul>
+<li>視線：上下左右</li>
+<li>まばたき：スピード・強さ</li>
+<li>姿勢：roll・pitch・yaw</li>
+<li>加速度：X軸・Y軸・Z軸</li>
+<li>歩行</li>
+<li>着脱</li>
+</ul>
+
+<p>公式アプリではこれらのデータを組み合わせて眠気や集中力などの判定も行っています。</p>
+
+<p>BlueTooth経由で、約20Hzでリアルタイムモードでデータの取得ができます。
+電池は2時間の充電でだいたい24時間ぐらい持つらしいです。</p>
+
+<h2 id="アプリを作ってみました:88b79e70a2779f96202b091fc5ef6796">アプリを作ってみました</h2>
+
+<h3 id="meme-head-banging:88b79e70a2779f96202b091fc5ef6796">MEME HEAD BANGING</h3>
+
+<p>頭の振り（ヘッドバンギング）に応じて再生速度や音量が変化するアプリ</p>
+
+<p>頭の振りをpitch要素（頭を縦に振る向きの傾き）、頭の上下移動の頻度の算出に加速度のy軸の値を使用しました。</p>
+
+<h3 id="デモ動画:88b79e70a2779f96202b091fc5ef6796">デモ動画</h3>
+
+<p>せっかくなので、JINS MEMEストアの店員さんに使ってもらいました。</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/upRk_aKdWZg" frameborder="0" allowfullscreen></iframe>  
+
+<p><img src="./sample.gif" alt="left" /></p>
+
+<h2 id="ウェアラブルデバイスビジネスの動向:88b79e70a2779f96202b091fc5ef6796">ウェアラブルデバイスビジネスの動向</h2>
+
+<h3 id="itロードマップ-2015年版-によると:88b79e70a2779f96202b091fc5ef6796">ITロードマップ（2015年版）によると、、、</h3>
+
+<p><a href="http://toyokeizai.net/articles/-/59205?page=4">http://toyokeizai.net/articles/-/59205?page=4</a></p>
+
+<p>2016年度は</p>
+
+<ul>
+<li>スマートウォッチ、グラス型端末の普及期に入る</li>
+<li>生活者への情報の配信やサービス提供のインターフェイスとして利用される</li>
+<li>接客サービスの現場などでもウェアラブル端末の活用が始まる</li>
+<li>IoTの実現、センサー間の連動が目前</li>
+</ul>
+
+<p>らしいです。楽しくなりそうです。</p>
+
+<h2 id="デバイス分類:88b79e70a2779f96202b091fc5ef6796">デバイス分類</h2>
+
+<p>この辺りを参考にデバイスをいくつかに分類してどんなデバイスがあるか、ピックアップしてみました。AR／VRヘッドセットはまたいろいろ観点が違いそうなので除きました。<br />
+<a href="http://thebridge.jp/2015/11/beyond-mobile-42-wearables-startups-disrupting-fitness-apparel-and-healthcare-pickupnews">http://thebridge.jp/2015/11/beyond-mobile-42-wearables-startups-disrupting-fitness-apparel-and-healthcare-pickupnews</a></p>
+
+<ol>
+<li>スマートウォッチとアクセサリー</li>
+<li>ヘルスケアとフィットネスバンド</li>
+<li>スマートグラス</li>
+<li>スマートアパレル（衣類）</li>
+<li>その他</li>
+</ol>
+
+<h3 id="1-スマートウォッチとアクセサリー:88b79e70a2779f96202b091fc5ef6796">1. スマートウォッチとアクセサリー</h3>
+
+<ul>
+<li>Apple Watch(※)</li>
+<li>Android Wear(※)</li>
+<li>Microsoft Band(※)</li>
+<li>SmartWatch(※)：ソニー</li>
+<li>Lily：リクルートテクノロジーズ<br />
+<a href="http://atl.recruit-tech.co.jp/lily/">http://atl.recruit-tech.co.jp/lily/</a></li>
+<li>Nymi(※)：心臓の鼓動を用いて生体認証を行うリストバンド<br />
+<a href="https://www.nymi.com/">https://www.nymi.com/</a></li>
+<li>Ring(※)：指輪型のウェアラブル端末<br />
+<a href="http://logbar.jp/ring/ja/">http://logbar.jp/ring/ja/</a></li>
+</ul>
+
+<h3 id="2-ヘルスケアとフィットネスバンド:88b79e70a2779f96202b091fc5ef6796">2. ヘルスケアとフィットネスバンド</h3>
+
+<ul>
+<li>Fitbit</li>
+<li>Up by Jawbone</li>
+<li>MISFIT</li>
+<li>Moov Now：コーチングのアルゴリズムを持つAIを搭載したフィットネストラッカー<br />
+<a href="http://welcome.moov.cc/">http://welcome.moov.cc/</a></li>
+<li>Dialog：てんかん患者のサポートをするウェアラブルデバイス<br />
+<a href="https://www.artefactgroup.com/content/work/dialog/">https://www.artefactgroup.com/content/work/dialog/</a></li>
+<li>Pacifi：おしゃぶり型のデバイス、赤ちゃんの体温測定機能や、居場所の把握<br />
+<a href="http://pacif-i.io/">http://pacif-i.io/</a></li>
+</ul>
+
+<h3 id="3-スマートグラス:88b79e70a2779f96202b091fc5ef6796">3. スマートグラス</h3>
+
+<ul>
+<li>JINS MEME(※)<br />
+<a href="https://jins-meme.com/ja/">https://jins-meme.com/ja/</a></li>
+<li>雰囲気メガネ(※)：スマートフォンからの情報をアンビエントに伝達<br />
+<a href="http://fun-iki.com/">http://fun-iki.com/</a></li>
+<li>Google Glass(※)</li>
+<li>Wearvue  TG-1(※)：東芝グラス</li>
+</ul>
+
+<h3 id="4-スマートアパレル-衣類:88b79e70a2779f96202b091fc5ef6796">4. スマートアパレル（衣類）</h3>
+
+<ul>
+<li>hitoe（東レとNTTドコモ）：心拍数、心電情報を計測できる布(※)</li>
+<li>グンゼとNECのIoTインナー：姿勢や心拍数を計測する、洗濯も可能</li>
+<li>OMsignalシャツ：心拍数（bpm）、呼吸の状態やバランスをチェックするシャツ(※)<br />
+<a href="http://www.omsignal.com/">http://www.omsignal.com/</a></li>
+<li>Project Jacquard：Googleが開発したセンサーを編みこんだ布（Levi’sとコラボしたジーンズ）<br />
+<a href="https://www.google.com/atap/project-jacquard/">https://www.google.com/atap/project-jacquard/</a></li>
+</ul>
+
+<h3 id="5-その他:88b79e70a2779f96202b091fc5ef6796">5. その他</h3>
+
+<ul>
+<li>Owlet：赤ちゃんを心拍と酸素摂取状況でモニターする靴下<br />
+<a href="http://www.owletcare.com/">http://www.owletcare.com/</a></li>
+<li>Lechal： 振動で道案内するスマートシューズ(※)<br />
+<a href="http://lechal.com/">http://lechal.com/</a></li>
+<li>muse：脳波を測定できるヘッドバンド(※)<br />
+<a href="http://www.choosemuse.com/">http://www.choosemuse.com/</a></li>
+<li>ili：ウェアラブル翻訳デバイス<br />
+<a href="http://iamili.com/ja/">http://iamili.com/ja/</a></li>
+<li>Narrative Clip：ウェアラブル・ライフログカメラ<br />
+<a href="http://getnarrative.com/">http://getnarrative.com/</a></li>
+<li>BONX：ウェアラブルトランシーバー<br />
+<a href="https://bonx.co/ja/">https://bonx.co/ja/</a></li>
+</ul>
+
+<h5 id="sdkあり-または公開予定:88b79e70a2779f96202b091fc5ef6796">（※）SDKあり、または公開予定</h5>
+
+<h2 id="データの利用について:88b79e70a2779f96202b091fc5ef6796">データの利用について</h2>
+
+<p>たぶん、重要なのは、、、（ITビジネスとかWebサービスの観点から）<br />
+デバイス単体よりもデバイスから得られる情報の利用方法やそれらを使ったサービスなのかな、と思いましたのでセンサ情報を利用したサービスについても調べてみました。</p>
+
+<h3 id="サービスの事例:88b79e70a2779f96202b091fc5ef6796">サービスの事例</h3>
+
+<ul>
+<li><p>IBM（Watson Health Cloud）：Apple Watch等で収集したデータを使用してがん診断や生活習慣改善の提案<br />
+<a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/health/">http://www.ibm.com/smarterplanet/us/en/ibmwatson/health/</a></p></li>
+
+<li><p>Finc：Apple Watchや専用デバイスからのデータを元に生活習慣改善メニューを提案<br />
+<a href="https://finc.com/service/">https://finc.com/service/</a></p></li>
+
+<li><p>スマートドライブ（DriveOn）：車載デバイスとスマホからの情報を元に運転診断を提供するサービス<br />
+<a href="https://www.smartdrive.co.jp/">https://www.smartdrive.co.jp/</a></p></li>
+
+<li><p>トライプロ（スマ・ロケ Healthcare）：脈拍や睡眠の状態を元に運輸・運送業者のドライバーの健康管理<br />
+<a href="http://goo.gl/qAk0Pi">http://goo.gl/qAk0Pi</a></p></li>
+
+<li><p>ディズニーのMagicBand：ロイヤリティサービスの提供だけでなく顧客の動線などの分析にも利用<br />
+<a href="https://disneyworld.disney.go.com/plan/my-disney-experience/bands-cards/">https://disneyworld.disney.go.com/plan/my-disney-experience/bands-cards/</a></p></li>
+
+<li><p>NTTComと大林組：スマートアパレルによる建設現場の作業員の体調のモニタリング<br />
+<a href="http://www.ntt.com/release/monthNEWS/detail/20150325.html">http://www.ntt.com/release/monthNEWS/detail/20150325.html</a></p></li>
+
+<li><p>NTT西日本と東急スポーツオアシス：スマートアパレルによるフットサル選手の心拍数や移動距離を視覚化<br />
+<a href="http://www.ntt-west.co.jp/ikouze/futsal/">http://www.ntt-west.co.jp/ikouze/futsal/</a></p></li>
+</ul>
+
+<h2 id="sdkが公開されている欲しいデバイス一覧:88b79e70a2779f96202b091fc5ef6796">SDKが公開されている欲しいデバイス一覧</h2>
+
+<h3 id="ios用sdk公開済みのデバイス:88b79e70a2779f96202b091fc5ef6796">iOS用SDK公開済みのデバイス</h3>
+
+<ul>
+<li><del>AppleWatch（第一世代）：¥66,800（税別）</del>（購入済み）</li>
+<li>AppleWatch（第二世代）：¥???</li>
+<li>Microsoft Band：¥19,000</li>
+<li><del>JinsMEME：¥39,000（税別）</del>（購入済み）</li>
+<li>雰囲気メガネ：¥27,000（税別）</li>
+<li>Ring（指輪）：¥16,900（税込）</li>
+<li>muse（脳波）：$299.0</li>
+</ul>
+
+<p>アップルウォッチ第２世代のリリースやGoogle Glassの開発再開なども噂されているので、楽しみです。</p>
+
+<hr />
+
+<p>次回は2週間後の 1/29（金）に開催予定です。
+OpenCV3.0とGoogle Cloud Vision APIなどについて発表してもらう予定です。</p>
+
+<p>（高井）</p>
+
+			</section>
+		</article>
+	</main>
+
+
+	<footer role="contentinfo">
+		<div class="hr"></div>
+		<div class="footer-link">
+			<a href="mailto:takaiashota@gmail.com" target="_blank">Email</a></span>
+			
+			<a href="https://www.facebook.com/shota.takai.9" target="_blank">Facebook</a></span>
+			<a href="https://github.com/takaishota/DevelopersBacking" target="_blank">GitHub</a></span>
+		</div>
+		<div class="copyright">Copyright &copy; takaishota All rights reserved.</div>
+	</footer>
+
+</div>
+
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

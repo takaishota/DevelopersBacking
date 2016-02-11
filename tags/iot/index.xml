@@ -17,7 +17,8 @@
       <guid>http://takaishota.github.io/DevelopersBacking/post/20160129/</guid>
       <description>
 
-&lt;p&gt;1/29（金）にNetcom Developer&amp;rsquo;s Backing #12を行いました。&lt;/p&gt;
+&lt;p&gt;1/29（金）にNetcom Developer&amp;rsquo;s Backing #12を行いました。&lt;br /&gt;
+テーマは画像認識機能を提供するGoogle Cloud Vision APIとOpenCVについて、とIoTの通信プラットフォームを提供するサービスであるSORACOMについてです。&lt;/p&gt;
 
 &lt;h1 id=&#34;google-cloud-vision-apiデモ-佐藤さん:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Google Cloud Vision APIデモ：佐藤さん&lt;/h1&gt;
 

@@ -196,7 +196,7 @@
 &lt;li&gt;低価格のSIMを販売してMVNO（仮想移動体通信事業者）として各種サービスを提供している&lt;/li&gt;
 &lt;li&gt;基本料金は 1日 1枚 10円、データ通信量は 1MB あたり 0.2円からの従量課金&lt;/li&gt;
 &lt;li&gt;docomoの3G回線でSIMとSORACOMのクラウドサーバ（AWS）間で通信し、サーバで暗号化した上でWeb上にデータを流すことでセキュリティを確保した通信を提供している&lt;/li&gt;
-&lt;li&gt;APIで通信をプログラムで制御することができる&lt;/li&gt;
+&lt;li&gt;APIによって通信をプログラムで制御することができる&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;事例:2189c316cfc2ea5503bb370d5723091b&#34;&gt;事例&lt;/h2&gt;
@@ -213,7 +213,7 @@
 &lt;li&gt;訪日旅行者旅行者SIMで独自従量課金サービスの運営を自動化
 
 &lt;ul&gt;
-&lt;li&gt;simを刺した時点でsimを開通させる&lt;/li&gt;
+&lt;li&gt;SIMを挿した時点でSIMを開通させる&lt;/li&gt;
 &lt;li&gt;使用量に応じた回線の制御APIなどがあるので、通信事業者でなくても通信量に応じた課金制度を自分たちで制御できる&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;

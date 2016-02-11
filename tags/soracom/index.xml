@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Soracom on Netcom Developer&#39;s Backing</title>
+    <link>http://takaishota.github.io/DevelopersBacking/tags/soracom/</link>
+    <description>Recent content in Soracom on Netcom Developer&#39;s Backing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 29 Jan 2016 00:06:50 +0900</lastBuildDate>
+    <atom:link href="http://takaishota.github.io/DevelopersBacking/tags/soracom/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Netcom Developer&#39;s Backing #12のまとめ</title>
+      <link>http://takaishota.github.io/DevelopersBacking/post/20160129/</link>
+      <pubDate>Fri, 29 Jan 2016 00:06:50 +0900</pubDate>
+      
+      <guid>http://takaishota.github.io/DevelopersBacking/post/20160129/</guid>
+      <description>
+
+&lt;p&gt;1/29（金）にNetcom Developer&amp;rsquo;s Backing #12を行いました。&lt;/p&gt;
+
+&lt;h1 id=&#34;google-cloud-vision-apiデモ-佐藤さん:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Google Cloud Vision APIデモ：佐藤さん&lt;/h1&gt;
+
+&lt;p&gt;佐藤さんが、現在、限定プレビュー版でリリースされているGoogleの画像認識API Cloud Vision APIを使ったデモをしてくれました。&lt;/p&gt;
+
+&lt;h2 id=&#34;cloud-vision-apiの概要:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Cloud Vision APIの概要&lt;/h2&gt;
+
+&lt;p&gt;認識のタイプと画像データをJSON形式でPOSTすると、画像に映る物体のラベリング結果や人の顔やテキストを検知した結果がJSON形式で返ってくるREST形式のAPIです。&lt;br /&gt;
+ラベリング結果は可能性を表したスコアとともに複数のラベルが返ってきます。顔認識では感情の判定や顔の向きなども取得できるようです。&lt;/p&gt;
+
+&lt;h3 id=&#34;提供されている画像認識の種類:2189c316cfc2ea5503bb370d5723091b&#34;&gt;提供されている画像認識の種類&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;FACE_DETECTION    顔認識&lt;/li&gt;
+&lt;li&gt;LANDMARK_DETECTION    ランドマークの認識&lt;/li&gt;
+&lt;li&gt;LOGO_DETECTION    企業ロゴやブランドマークの認識&lt;/li&gt;
+&lt;li&gt;LABEL_DETECTION   物体の認識 (ラベリング)&lt;/li&gt;
+&lt;li&gt;TEXT_DETECTION    テキストの認識 (OCR)&lt;/li&gt;
+&lt;li&gt;SAFE_SEARCH_DETECTION セーフサーチの判定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;apiの使用制限:2189c316cfc2ea5503bb370d5723091b&#34;&gt;APIの使用制限&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;QPS   1&lt;/li&gt;
+&lt;li&gt;1リクエストあたりの画像サイズ(MB)   8 MB&lt;/li&gt;
+&lt;li&gt;1リクエストあたりの画像数 16&lt;/li&gt;
+&lt;li&gt;1日あたりのリクエスト数 (ラベリング以外)    10,000&lt;/li&gt;
+&lt;li&gt;1日あたりのリクエスト数 (ラベリング)  5,000&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;実装したもの:2189c316cfc2ea5503bb370d5723091b&#34;&gt;実装したもの&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;クラウド9のWebサーバ上で画像アップロードとCloud Vision APIへのリクエストを行うアプリケーション&lt;/li&gt;
+&lt;li&gt;レスポンスのJSONをそのまま表示している&lt;/li&gt;
+&lt;li&gt;だいたいリクエストして、1.5秒ぐらいでレスポンスが返ってくる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;open-cv-3-x-簡単な画像比較まで-石川さん:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Open CV 3.X 簡単な画像比較まで：石川さん&lt;/h1&gt;
+
+&lt;h2 id=&#34;open-cv-とは:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Open CV とは&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CV = Computer Vision&lt;/li&gt;
+&lt;li&gt;画像処理や解析などを行うライブラリ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;open-cv-2-x-と-3-x-の違い:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Open CV 2.X と 3.X の違い&lt;/h2&gt;
+
+&lt;h3 id=&#34;大きく分けると4つ:2189c316cfc2ea5503bb370d5723091b&#34;&gt;大きく分けると4つ&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;マルチプラットフォーム化
+
+&lt;ol&gt;
+&lt;li&gt;Windows, Linux, OSX, iOS, Android。 ARMサポートも。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;多言語バインディング(Python, Java)
+
+&lt;ol&gt;
+&lt;li&gt;C++, Java, Python(Python3 のサポート)&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;モジュール分割
+
+&lt;ol&gt;
+&lt;li&gt;opencv = opencv + opencv_contrib&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;ハードウェアサポート
+
+&lt;ol&gt;
+&lt;li&gt;T-API（Transparent API）でのOpenCL アクセラレーション&lt;/li&gt;
+&lt;li&gt;IPPCV(インテルCPU用のOpenCV高速化命令セット)のサポート&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;※ &lt;a href=&#34;http://www.buildinsider.net/small/opencv/001&#34;&gt;http://www.buildinsider.net/small/opencv/001&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;どうしてopencvを使いたいか:2189c316cfc2ea5503bb370d5723091b&#34;&gt;どうしてOpenCVを使いたいか?&lt;/h2&gt;
+
+&lt;h3 id=&#34;経緯:2189c316cfc2ea5503bb370d5723091b&#34;&gt;経緯&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Selenium でのエビデンスで差異を検出したい。&lt;/li&gt;
+&lt;li&gt;画像の差分を取る方法
+
+&lt;ul&gt;
+&lt;li&gt;WinMerge? Kaleidoscope? → 現実的でない&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Jenkins での自動テストに組み込みたい。 &lt;br /&gt;
+→ SeleniumはJavaなのでバインディングがサポートされているOpenCVなら自分でもできそう。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;javacv-opencv-java-binding:2189c316cfc2ea5503bb370d5723091b&#34;&gt;JavaCV - OpenCV Java Binding&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;公式のJavaバインディング&lt;/li&gt;
+&lt;li&gt;bytedeco/javacv&lt;/li&gt;
+&lt;li&gt;JNI を利用してC++ のインターフェースをラッピングしている&lt;/li&gt;
+&lt;li&gt;ffmpegなども利用可能なので動画にも対応できる。&lt;/li&gt;
+&lt;li&gt;様々なJVM言語で利用可能&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;つくりました:2189c316cfc2ea5503bb370d5723091b&#34;&gt;つくりました。&lt;/h2&gt;
+
+&lt;h3 id=&#34;o-ishikawa-image-singularity-marker:2189c316cfc2ea5503bb370d5723091b&#34;&gt;o-ishikawa/image-singularity-marker&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//image1.png&#34; alt=&#34;system_image&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;画像の差分箇所をマーキングした透過PNGを出力するプログラム&lt;/li&gt;
+&lt;li&gt;1枚当たり数十msで返ってくる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;やっていること:2189c316cfc2ea5503bb370d5723091b&#34;&gt;やっていること&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;画像の読み込み // 37&lt;/li&gt;
+&lt;li&gt;グレースケールへ変換 // 41&lt;/li&gt;
+&lt;li&gt;画像の差分を取得し2値画像化  // 45&lt;/li&gt;
+&lt;li&gt;差分ブロックの輪郭を検出  // 49&lt;/li&gt;
+&lt;li&gt;輪郭をマーキング(小さな差分をフィルタリング) // 52&lt;/li&gt;
+&lt;li&gt;差分マーカーを画像としてレンダリング // 62&lt;/li&gt;
+&lt;li&gt;画像を保存 // 66&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;pros-cons:2189c316cfc2ea5503bb370d5723091b&#34;&gt;pros/cons&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;👍数十行でかなり複雑なことを実現できる。
+
+&lt;ul&gt;
+&lt;li&gt;Java2D とか考えたくない・・・&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;👍だいたいコピペでどうにかなる。&lt;/li&gt;
+&lt;li&gt;👎C++をJNIでバインディングしているので生に近い。参照渡しをたくさん使う。慣れな気はする。&lt;/li&gt;
+&lt;li&gt;👎色変換などint定数がたくさん出てくる→ドキュメントを読みながら・・・&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;α:2189c316cfc2ea5503bb370d5723091b&#34;&gt;+ α&lt;/h2&gt;
+
+&lt;h3 id=&#34;diff-compare-tool:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Diff Compare Tool&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;画像差分を確認するためのツールを作成
+
+&lt;ul&gt;
+&lt;li&gt;SVNDiff や Kaleidoscope とかであるやつ&lt;/li&gt;
+&lt;li&gt;HTML5 Canvas API で実装。&lt;/li&gt;
+&lt;li&gt;Javascriptすげー。 (CCV.js というOpenCVのJavascript実装もある。)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;もうJavascriptでいいじゃん（いいじゃん）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;one-more-thing:2189c316cfc2ea5503bb370d5723091b&#34;&gt;One More Thing&lt;/h2&gt;
+
+&lt;h3 id=&#34;opencv-での顔認識サンプル:2189c316cfc2ea5503bb370d5723091b&#34;&gt;OpenCV での顔認識サンプル&lt;/h3&gt;
+
+&lt;p&gt;jami-i/javacv-face-recognition-scala&lt;/p&gt;
+
+&lt;h2 id=&#34;まとめ:2189c316cfc2ea5503bb370d5723091b&#34;&gt;まとめ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OpenCV を利用すると複雑な画像演算・解析機能を簡単に実装できる。&lt;/li&gt;
+&lt;li&gt;使わない手はない。どんどん使おう！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;soracom-conference-connected-の情報共有-武内さん:2189c316cfc2ea5503bb370d5723091b&#34;&gt;SORACOM Conference &amp;ldquo;Connected.&amp;ldquo;の情報共有：武内さん&lt;/h1&gt;
+
+&lt;h2 id=&#34;soracomとは:2189c316cfc2ea5503bb370d5723091b&#34;&gt;SORACOMとは&lt;/h2&gt;
+
+&lt;p&gt;&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/bnmbmcR489xh8g&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&#34;margin-bottom:5px&#34;&gt; &lt;strong&gt; &lt;a href=&#34;//www.slideshare.net/SORACOM/soracom-conference-connected2016-keynote&#34; title=&#34;SORACOM Conference &amp;quot;Connected.&amp;quot;2016 keynote&#34; target=&#34;_blank&#34;&gt;SORACOM Conference &amp;quot;Connected.&amp;quot;2016 keynote&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&#34;//www.slideshare.net/SORACOM&#34; target=&#34;_blank&#34;&gt;SORACOM,INC&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IoTデバイスのデータ通信のためのプラットフォームを提供する&lt;/li&gt;
+&lt;li&gt;低価格のSIMを販売してMVNO（仮想移動体通信事業者）として各種サービスを提供している&lt;/li&gt;
+&lt;li&gt;基本料金は 1日 1枚 10円、データ通信量は 1MB あたり 0.2円からの従量課金&lt;/li&gt;
+&lt;li&gt;docomoの3G回線でSIMとSORACOMのクラウドサーバ（AWS）間で通信し、サーバで暗号化した上でWeb上にデータを流すことでセキュリティを確保した通信を提供している&lt;/li&gt;
+&lt;li&gt;APIで通信をプログラムで制御することができる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;事例:2189c316cfc2ea5503bb370d5723091b&#34;&gt;事例&lt;/h2&gt;
+
+&lt;h3 id=&#34;soracom-airを使った事例:2189c316cfc2ea5503bb370d5723091b&#34;&gt;SORACOM Airを使った事例&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;放射線情報のオープンマップ（SafeCast）&lt;/li&gt;
+&lt;li&gt;路線バスの運行案内（十勝バス）&lt;/li&gt;
+&lt;li&gt;除雪車の位置情報管理（デザイニウム）&lt;/li&gt;
+&lt;li&gt;スマートロック Akerunの遠隔操作（フォトシンス）&lt;/li&gt;
+&lt;li&gt;POSレジアプリ Airレジ（リクルートライフスタイル）&lt;/li&gt;
+&lt;li&gt;店舗システムのバックアップ回線（東急ハンズ）&lt;/li&gt;
+&lt;li&gt;訪日旅行者旅行者SIMで独自従量課金サービスの運営を自動化
+
+&lt;ul&gt;
+&lt;li&gt;simを刺した時点でsimを開通させる&lt;/li&gt;
+&lt;li&gt;使用量に応じた回線の制御APIなどがあるので、通信事業者でなくても通信量に応じた課金制度を自分たちで制御できる&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;soracom-beam:2189c316cfc2ea5503bb370d5723091b&#34;&gt;SORACOM Beam&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;データをセキュアに送信し、客層分析の結果をリアルタイムに可視化（パルコ）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;新サービス:2189c316cfc2ea5503bb370d5723091b&#34;&gt;新サービス&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Soracom Canal
+
+&lt;ul&gt;
+&lt;li&gt;Amazon VPCとSORACOM（AWS）間でプライベート接続することでインターネットを介さずにセキュアなデータ通信を行うサービス&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Soracom Direct&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AWS外のクラウドやDCを専用線で接続するサービス&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;SORACOM Endorse&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SIMからリクエストして発行された認証トークンを使って、業務システムなどのデバイス認証を行うサービス&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;SORACOM Funnel&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SORACOMから各種クラウドサービスへの連携を行うための各種機能（プロトコル変換、認証ロジックなど）を提供するサービス&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;現在-全てのサービス無料枠が使える:2189c316cfc2ea5503bb370d5723091b&#34;&gt;現在、全てのサービス無料枠が使える&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ABEFは1年間の無料利用枠&lt;/li&gt;
+&lt;li&gt;EFは2月末まで&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;simのコンソールパネルを使ってみた:2189c316cfc2ea5503bb370d5723091b&#34;&gt;SIMのコンソールパネルを使ってみた&lt;/h2&gt;
+
+&lt;h3 id=&#34;どんなデータが取れるか:2189c316cfc2ea5503bb370d5723091b&#34;&gt;どんなデータが取れるか&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;通信量&lt;/li&gt;
+&lt;li&gt;一意なID&lt;/li&gt;
+&lt;li&gt;SIMの有効期限（設定可能）など&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;soracom-apiを使ってみた:2189c316cfc2ea5503bb370d5723091b&#34;&gt;Soracom APIを使ってみた&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;回線の制御ができるAPI
+
+&lt;ul&gt;
+&lt;li&gt;通信速度の変更&lt;/li&gt;
+&lt;li&gt;SIMの停止/解約&lt;/li&gt;
+&lt;li&gt;通信量/利用料の取得&lt;/li&gt;
+&lt;li&gt;タグ付け&lt;/li&gt;
+&lt;li&gt;グループなど&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;soracom-air-simカード-amazonで888円-2016-1-29現在:2189c316cfc2ea5503bb370d5723091b&#34;&gt;SORACOM Air SIMカード amazonで888円〜（2016/1/29現在）&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://goo.gl/c5JDwH&#34;&gt;http://goo.gl/c5JDwH&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;カンファレンス講演資料:2189c316cfc2ea5503bb370d5723091b&#34;&gt;カンファレンス講演資料&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://goo.gl/7nFLqX&#34;&gt;http://goo.gl/7nFLqX&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;次回は2週間後の 2/12（金）に開催予定です。&lt;/p&gt;
+
+&lt;p&gt;（高井）&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

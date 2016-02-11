@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/normalize.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/skeleton.css">
+<link rel="stylesheet" href="/DevelopersBacking/css/custom.css">
+<link rel="alternate" href="/DevelopersBacking/index.xml" type="application/rss+xml" title="Netcom Developer&#39;s Backing">
+<title>Netcom Developer&#39;s Backing #12のまとめ - Netcom Developer&#39;s Backing</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		<div class="header-logo">
+			<a href="/DevelopersBacking/"><img src="/DevelopersBacking/images/logo.png" width="60" height="60"></a>
+		</div>
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="http://schema.org/BlogPosting">
+			<h1 class="entry-title" itemprop="headline">Netcom Developer&#39;s Backing #12のまとめ</h1>
+			<span class="entry-meta"><time itemprop="datePublished" datetime="2016-01-29">January 29, 2016</time></span>
+			<section itemprop="entry-text">
+				
+
+<p>1/29（金）にNetcom Developer&rsquo;s Backing #12を行いました。</p>
+
+<h1 id="google-cloud-vision-apiデモ-佐藤さん:2189c316cfc2ea5503bb370d5723091b">Google Cloud Vision APIデモ：佐藤さん</h1>
+
+<p>佐藤さんが、現在、限定プレビュー版でリリースされているGoogleの画像認識API Cloud Vision APIを使ったデモをしてくれました。</p>
+
+<h2 id="cloud-vision-apiの概要:2189c316cfc2ea5503bb370d5723091b">Cloud Vision APIの概要</h2>
+
+<p>認識のタイプと画像データをJSON形式でPOSTすると、画像に映る物体のラベリング結果や人の顔やテキストを検知した結果がJSON形式で返ってくるREST形式のAPIです。<br />
+ラベリング結果は可能性を表したスコアとともに複数のラベルが返ってきます。顔認識では感情の判定や顔の向きなども取得できるようです。</p>
+
+<h3 id="提供されている画像認識の種類:2189c316cfc2ea5503bb370d5723091b">提供されている画像認識の種類</h3>
+
+<ul>
+<li>FACE_DETECTION    顔認識</li>
+<li>LANDMARK_DETECTION    ランドマークの認識</li>
+<li>LOGO_DETECTION    企業ロゴやブランドマークの認識</li>
+<li>LABEL_DETECTION   物体の認識 (ラベリング)</li>
+<li>TEXT_DETECTION    テキストの認識 (OCR)</li>
+<li>SAFE_SEARCH_DETECTION セーフサーチの判定</li>
+</ul>
+
+<h3 id="apiの使用制限:2189c316cfc2ea5503bb370d5723091b">APIの使用制限</h3>
+
+<ul>
+<li>QPS   1</li>
+<li>1リクエストあたりの画像サイズ(MB)   8 MB</li>
+<li>1リクエストあたりの画像数 16</li>
+<li>1日あたりのリクエスト数 (ラベリング以外)    10,000</li>
+<li>1日あたりのリクエスト数 (ラベリング)  5,000</li>
+</ul>
+
+<h2 id="実装したもの:2189c316cfc2ea5503bb370d5723091b">実装したもの</h2>
+
+<ul>
+<li>クラウド9のWebサーバ上で画像アップロードとCloud Vision APIへのリクエストを行うアプリケーション</li>
+<li>レスポンスのJSONをそのまま表示している</li>
+<li>だいたいリクエストして、1.5秒ぐらいでレスポンスが返ってくる</li>
+</ul>
+
+<h1 id="open-cv-3-x-簡単な画像比較まで-石川さん:2189c316cfc2ea5503bb370d5723091b">Open CV 3.X 簡単な画像比較まで：石川さん</h1>
+
+<h2 id="open-cv-とは:2189c316cfc2ea5503bb370d5723091b">Open CV とは</h2>
+
+<ul>
+<li>CV = Computer Vision</li>
+<li>画像処理や解析などを行うライブラリ</li>
+</ul>
+
+<h2 id="open-cv-2-x-と-3-x-の違い:2189c316cfc2ea5503bb370d5723091b">Open CV 2.X と 3.X の違い</h2>
+
+<h3 id="大きく分けると4つ:2189c316cfc2ea5503bb370d5723091b">大きく分けると4つ</h3>
+
+<ol>
+<li>マルチプラットフォーム化
+
+<ol>
+<li>Windows, Linux, OSX, iOS, Android。 ARMサポートも。</li>
+</ol></li>
+<li>多言語バインディング(Python, Java)
+
+<ol>
+<li>C++, Java, Python(Python3 のサポート)</li>
+</ol></li>
+<li>モジュール分割
+
+<ol>
+<li>opencv = opencv + opencv_contrib</li>
+</ol></li>
+<li>ハードウェアサポート
+
+<ol>
+<li>T-API（Transparent API）でのOpenCL アクセラレーション</li>
+<li>IPPCV(インテルCPU用のOpenCV高速化命令セット)のサポート</li>
+</ol></li>
+</ol>
+
+<p>※ <a href="http://www.buildinsider.net/small/opencv/001">http://www.buildinsider.net/small/opencv/001</a></p>
+
+<h2 id="どうしてopencvを使いたいか:2189c316cfc2ea5503bb370d5723091b">どうしてOpenCVを使いたいか?</h2>
+
+<h3 id="経緯:2189c316cfc2ea5503bb370d5723091b">経緯</h3>
+
+<ul>
+<li>Selenium でのエビデンスで差異を検出したい。</li>
+<li>画像の差分を取る方法
+
+<ul>
+<li>WinMerge? Kaleidoscope? → 現実的でない</li>
+</ul></li>
+<li>Jenkins での自動テストに組み込みたい。 <br />
+→ SeleniumはJavaなのでバインディングがサポートされているOpenCVなら自分でもできそう。</li>
+</ul>
+
+<h3 id="javacv-opencv-java-binding:2189c316cfc2ea5503bb370d5723091b">JavaCV - OpenCV Java Binding</h3>
+
+<ul>
+<li>公式のJavaバインディング</li>
+<li>bytedeco/javacv</li>
+<li>JNI を利用してC++ のインターフェースをラッピングしている</li>
+<li>ffmpegなども利用可能なので動画にも対応できる。</li>
+<li>様々なJVM言語で利用可能</li>
+</ul>
+
+<h2 id="つくりました:2189c316cfc2ea5503bb370d5723091b">つくりました。</h2>
+
+<h3 id="o-ishikawa-image-singularity-marker:2189c316cfc2ea5503bb370d5723091b">o-ishikawa/image-singularity-marker</h3>
+
+<p><img src=".//image1.png" alt="system_image" /></p>
+
+<ul>
+<li>画像の差分箇所をマーキングした透過PNGを出力するプログラム</li>
+<li>1枚当たり数十msで返ってくる</li>
+</ul>
+
+<h3 id="やっていること:2189c316cfc2ea5503bb370d5723091b">やっていること</h3>
+
+<ul>
+<li>画像の読み込み // 37</li>
+<li>グレースケールへ変換 // 41</li>
+<li>画像の差分を取得し2値画像化  // 45</li>
+<li>差分ブロックの輪郭を検出  // 49</li>
+<li>輪郭をマーキング(小さな差分をフィルタリング) // 52</li>
+<li>差分マーカーを画像としてレンダリング // 62</li>
+<li>画像を保存 // 66</li>
+</ul>
+
+<h3 id="pros-cons:2189c316cfc2ea5503bb370d5723091b">pros/cons</h3>
+
+<ul>
+<li>👍数十行でかなり複雑なことを実現できる。
+
+<ul>
+<li>Java2D とか考えたくない・・・</li>
+</ul></li>
+<li>👍だいたいコピペでどうにかなる。</li>
+<li>👎C++をJNIでバインディングしているので生に近い。参照渡しをたくさん使う。慣れな気はする。</li>
+<li>👎色変換などint定数がたくさん出てくる→ドキュメントを読みながら・・・</li>
+</ul>
+
+<h2 id="α:2189c316cfc2ea5503bb370d5723091b">+ α</h2>
+
+<h3 id="diff-compare-tool:2189c316cfc2ea5503bb370d5723091b">Diff Compare Tool</h3>
+
+<ul>
+<li>画像差分を確認するためのツールを作成
+
+<ul>
+<li>SVNDiff や Kaleidoscope とかであるやつ</li>
+<li>HTML5 Canvas API で実装。</li>
+<li>Javascriptすげー。 (CCV.js というOpenCVのJavascript実装もある。)</li>
+</ul></li>
+<li>もうJavascriptでいいじゃん（いいじゃん）</li>
+</ul>
+
+<h2 id="one-more-thing:2189c316cfc2ea5503bb370d5723091b">One More Thing</h2>
+
+<h3 id="opencv-での顔認識サンプル:2189c316cfc2ea5503bb370d5723091b">OpenCV での顔認識サンプル</h3>
+
+<p>jami-i/javacv-face-recognition-scala</p>
+
+<h2 id="まとめ:2189c316cfc2ea5503bb370d5723091b">まとめ</h2>
+
+<ul>
+<li>OpenCV を利用すると複雑な画像演算・解析機能を簡単に実装できる。</li>
+<li>使わない手はない。どんどん使おう！</li>
+</ul>
+
+<h1 id="soracom-conference-connected-の情報共有-武内さん:2189c316cfc2ea5503bb370d5723091b">SORACOM Conference &ldquo;Connected.&ldquo;の情報共有：武内さん</h1>
+
+<h2 id="soracomとは:2189c316cfc2ea5503bb370d5723091b">SORACOMとは</h2>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/bnmbmcR489xh8g" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/SORACOM/soracom-conference-connected2016-keynote" title="SORACOM Conference &quot;Connected.&quot;2016 keynote" target="_blank">SORACOM Conference &quot;Connected.&quot;2016 keynote</a> </strong> from <strong><a href="//www.slideshare.net/SORACOM" target="_blank">SORACOM,INC</a></strong> </div></p>
+
+<ul>
+<li>IoTデバイスのデータ通信のためのプラットフォームを提供する</li>
+<li>低価格のSIMを販売してMVNO（仮想移動体通信事業者）として各種サービスを提供している</li>
+<li>基本料金は 1日 1枚 10円、データ通信量は 1MB あたり 0.2円からの従量課金</li>
+<li>docomoの3G回線でSIMとSORACOMのクラウドサーバ（AWS）間で通信し、サーバで暗号化した上でWeb上にデータを流すことでセキュリティを確保した通信を提供している</li>
+<li>APIで通信をプログラムで制御することができる</li>
+</ul>
+
+<h2 id="事例:2189c316cfc2ea5503bb370d5723091b">事例</h2>
+
+<h3 id="soracom-airを使った事例:2189c316cfc2ea5503bb370d5723091b">SORACOM Airを使った事例</h3>
+
+<ul>
+<li>放射線情報のオープンマップ（SafeCast）</li>
+<li>路線バスの運行案内（十勝バス）</li>
+<li>除雪車の位置情報管理（デザイニウム）</li>
+<li>スマートロック Akerunの遠隔操作（フォトシンス）</li>
+<li>POSレジアプリ Airレジ（リクルートライフスタイル）</li>
+<li>店舗システムのバックアップ回線（東急ハンズ）</li>
+<li>訪日旅行者旅行者SIMで独自従量課金サービスの運営を自動化
+
+<ul>
+<li>simを刺した時点でsimを開通させる</li>
+<li>使用量に応じた回線の制御APIなどがあるので、通信事業者でなくても通信量に応じた課金制度を自分たちで制御できる</li>
+</ul></li>
+</ul>
+
+<h3 id="soracom-beam:2189c316cfc2ea5503bb370d5723091b">SORACOM Beam</h3>
+
+<ul>
+<li>データをセキュアに送信し、客層分析の結果をリアルタイムに可視化（パルコ）</li>
+</ul>
+
+<h2 id="新サービス:2189c316cfc2ea5503bb370d5723091b">新サービス</h2>
+
+<ul>
+<li>Soracom Canal
+
+<ul>
+<li>Amazon VPCとSORACOM（AWS）間でプライベート接続することでインターネットを介さずにセキュアなデータ通信を行うサービス</li>
+</ul></li>
+
+<li><p>Soracom Direct</p>
+
+<ul>
+<li>AWS外のクラウドやDCを専用線で接続するサービス</li>
+</ul></li>
+
+<li><p>SORACOM Endorse</p>
+
+<ul>
+<li>SIMからリクエストして発行された認証トークンを使って、業務システムなどのデバイス認証を行うサービス</li>
+</ul></li>
+
+<li><p>SORACOM Funnel</p>
+
+<ul>
+<li>SORACOMから各種クラウドサービスへの連携を行うための各種機能（プロトコル変換、認証ロジックなど）を提供するサービス</li>
+</ul></li>
+</ul>
+
+<h2 id="現在-全てのサービス無料枠が使える:2189c316cfc2ea5503bb370d5723091b">現在、全てのサービス無料枠が使える</h2>
+
+<ul>
+<li>ABEFは1年間の無料利用枠</li>
+<li>EFは2月末まで</li>
+</ul>
+
+<h2 id="simのコンソールパネルを使ってみた:2189c316cfc2ea5503bb370d5723091b">SIMのコンソールパネルを使ってみた</h2>
+
+<h3 id="どんなデータが取れるか:2189c316cfc2ea5503bb370d5723091b">どんなデータが取れるか</h3>
+
+<ul>
+<li>通信量</li>
+<li>一意なID</li>
+<li>SIMの有効期限（設定可能）など</li>
+</ul>
+
+<h2 id="soracom-apiを使ってみた:2189c316cfc2ea5503bb370d5723091b">Soracom APIを使ってみた</h2>
+
+<ul>
+<li>回線の制御ができるAPI
+
+<ul>
+<li>通信速度の変更</li>
+<li>SIMの停止/解約</li>
+<li>通信量/利用料の取得</li>
+<li>タグ付け</li>
+<li>グループなど</li>
+</ul></li>
+</ul>
+
+<h2 id="soracom-air-simカード-amazonで888円-2016-1-29現在:2189c316cfc2ea5503bb370d5723091b">SORACOM Air SIMカード amazonで888円〜（2016/1/29現在）</h2>
+
+<p><a href="http://goo.gl/c5JDwH">http://goo.gl/c5JDwH</a></p>
+
+<h2 id="カンファレンス講演資料:2189c316cfc2ea5503bb370d5723091b">カンファレンス講演資料</h2>
+
+<p><a href="http://goo.gl/7nFLqX">http://goo.gl/7nFLqX</a></p>
+
+<hr />
+
+<p>次回は2週間後の 2/12（金）に開催予定です。</p>
+
+<p>（高井）</p>
+
+			</section>
+		</article>
+	</main>
+
+
+	<footer role="contentinfo">
+		<div class="hr"></div>
+		<div class="footer-link">
+			<a href="mailto:takaiashota@gmail.com" target="_blank">Email</a></span>
+			
+			<a href="https://www.facebook.com/shota.takai.9" target="_blank">Facebook</a></span>
+			<a href="https://github.com/takaishota/DevelopersBacking" target="_blank">GitHub</a></span>
+		</div>
+		<div class="copyright">Copyright &copy; takaishota All rights reserved.</div>
+	</footer>
+
+</div>
+
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
